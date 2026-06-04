@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВЭД-Маршрут — агрегатор платёжных агентов для бизнеса</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr">
+  <div class="wrap hdr-inner">
+    <a href="#" class="logo">
+      <span class="mark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      ВЭД·Маршрут
+    </a>
+    <nav class="nav">
+      <a href="#compare">Сравнение</a>
+      <a href="#how">Как это работает</a>
+      <a href="#lead">Контакты</a>
+    </nav>
+    <div class="hdr-cta">
+      <div class="hdr-phone">+7 495 120-50-50<span>Пн–Пт, 9:00–20:00 МСК</span></div>
+      <a href="#finder" class="btn btn-blue btn-sm">Подобрать маршрут</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-banner">
+      <div class="hero-banner-copy">
+        <span class="hero-eyebrow">Финансовый маркетплейс для бизнеса</span>
+        <h1>Подберём предложения банков и платёжных агентов для ВЭД</h1>
+        <p class="hero-sub">Сравните комиссии, сроки и маршруты движения средств за минуту — и оставьте заявку проверенному провайдеру.</p>
+      </div>
+      <div class="hero-art">
+        <image-slot id="heroPhoto" fit="cover" placeholder="Перетащите фото для баннера"></image-slot>
+      </div>
+    </div>
+
+    <!-- Route finder bar -->
+    <form class="finder" id="finder">
+      <div class="field">
+        <label for="fFlow">Направление</label>
+        <select class="control" id="fFlow">
+          <option value="">Импорт и экспорт</option>
+          <option value="import">Импорт</option>
+          <option value="export">Экспорт</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fCountry">Страна</label>
+        <select class="control" id="fCountry"><option value="">Любая</option></select>
+      </div>
+      <div class="field">
+        <label for="fCurrency">Валюта</label>
+        <select class="control" id="fCurrency"><option value="">Любая</option></select>
+      </div>
+      <div class="field">
+        <label for="fAmount">Сумма платежа, $</label>
+        <input class="control" id="fAmount" type="text" inputmode="numeric" placeholder="50 000">
+      </div>
+      <button type="submit" class="btn btn-primary">Подобрать</button>
+      <p class="finder-note">Подбор бесплатный и ни к чему не обязывает. Не передаём данные третьим лицам.</p>
+    </form>
+
+    <div class="hero-pills">
+      <div class="hero-pill">
+        <span class="ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+        <span>Решение по маршруту за 3 минуты</span>
+      </div>
+      <div class="hero-pill">
+        <span class="ic v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></span>
+        <span>Только проверенные провайдеры</span>
+      </div>
+      <div class="hero-pill">
+        <span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13l-3-3"/><path d="M21 17H8l3 3"/></svg></span>
+        <span>Прозрачные комиссии от 0,3%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section class="section" id="compare" style="padding-top: 24px;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Сравнение</span>
+      <h2>Банки и платёжные агенты в одной таблице</h2>
+      <p>Комиссии, минимальные суммы, сроки и маршруты движения средств. Фильтруйте под свою сделку и сравнивайте честно — банки и платёжных агентов рядом.</p>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="cat-tabs" id="catTabs">
+      <button type="button" data-type="" class="active">Все предложения</button>
+      <button type="button" data-type="agent">Платёжные агенты</button>
+      <button type="button" data-type="bank">Банки для ВЭД</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters" id="filters">
+      <div class="field">
+        <label for="flCountry">Страна</label>
+        <select class="control" id="flCountry"><option value="">Все страны</option></select>
+      </div>
+      <div class="field">
+        <label for="flCurrency">Валюта</label>
+        <select class="control" id="flCurrency"><option value="">Все валюты</option></select>
+      </div>
+      <div class="field">
+        <label for="flFlow">Направление</label>
+        <select class="control" id="flFlow">
+          <option value="">Импорт и экспорт</option>
+          <option value="import">Импорт</option>
+          <option value="export">Экспорт</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="flAmount">Сумма платежа, $</label>
+        <input class="control" id="flAmount" type="text" inputmode="numeric" placeholder="любая">
+      </div>
+      <button class="filter-reset" id="filterReset" type="button">Сбросить</button>
+    </div>
+
+    <!-- Results bar -->
+    <div class="results-bar">
+      <div class="results-count"><span id="resultCount">0</span> предложений подходят под фильтры</div>
+      <div class="sort">
+        <label for="sortBy">Сортировать:</label>
+        <select class="control" id="sortBy">
+          <option value="rating">По рейтингу</option>
+          <option value="commission">По комиссии</option>
+          <option value="term">По сроку платежа</option>
+          <option value="min">По мин. сумме</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table view (alternate, toggled via tweak) -->
+    <div class="cmp is-hidden" id="cmpTable">
+      <div class="cmp-row cmp-head">
+        <div>Провайдер</div>
+        <div class="th" data-sort="commission">Комиссия <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="th" data-sort="min">Мин. сумма <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="th" data-sort="term">Срок платежа <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div>Валюты / страны</div>
+        <div></div>
+      </div>
+      <div class="cmp-body" id="cmpBody"></div>
+    </div>
+
+    <!-- Card view (Сравни.ру style, default) -->
+    <div class="cmp-cards" id="cmpCards"></div>
+
+    <p class="cmp-note">Условия (комиссии и сроки) указаны для сравнения по публичным данным на 2025–2026 и могут отличаться. Перед сделкой уточняйте актуальные тарифы у банка или платёжного агента.</p>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section class="section" id="how" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Как это работает</span>
+      <h2>Маршрут платежа за 4 шага</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Опишите сделку</h4><p>Страна, валюта, сумма и направление. Подбор занимает меньше минуты.</p></div>
+      <div class="step"><div class="n">2</div><h4>Сравните агентов</h4><p>Видите комиссии, сроки, документы и маршрут движения средств по каждому агенту.</p></div>
+      <div class="step"><div class="n">3</div><h4>Получите маршруты</h4><p>Оставляете заявку — присылаем 2–3 готовых маршрута с расчётом стоимости.</p></div>
+      <div class="step"><div class="n">4</div><h4>Проводите платёж</h4><p>Персональный менеджер сопровождает сделку до получения ПД и SWIFT.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEAD ============ -->
+<section class="section" id="lead">
+  <div class="wrap">
+    <div class="lead">
+      <div class="lead-copy">
+        <h2>Получите 2–3 маршрута движения средств под вашу сделку</h2>
+        <p>Оставьте контакты — подберём агентов, рассчитаем комиссию и сроки. Бесплатно и без обязательств.</p>
+        <div class="ll"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ответ в течение 1 рабочего часа</div>
+        <div class="ll"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Только проверенные агенты с валютным контролем</div>
+      </div>
+      <div class="lead-form">
+        <form id="leadForm">
+          <h3>Оставить заявку</h3>
+          <div class="field">
+            <label for="lName">Имя</label>
+            <input class="control" id="lName" type="text" placeholder="Как к вам обращаться" required>
+            <div class="hint">Укажите имя</div>
+          </div>
+          <div class="field">
+            <label for="lPhone">Телефон</label>
+            <input class="control" id="lPhone" type="tel" placeholder="+7 (___) ___-__-__" required>
+            <div class="hint">Введите корректный номер</div>
+          </div>
+          <div class="field">
+            <label for="lCompany">Компания / ИНН</label>
+            <input class="control" id="lCompany" type="text" placeholder="ООО «Компания» или ИНN">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Получить маршруты</button>
+          <p class="finder-foot">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+        </form>
+        <div class="lead-ok" id="leadOk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>Заявка принята!</h3>
+          <p>Менеджер свяжется с вами в течение рабочего часа и пришлёт подходящие маршруты.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <div class="logo"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M13 5l7 7-7 7"/></svg></span>ВЭД-Маршрут</div>
+        <p>Независимый финансовый маркетплейс для внешнеэкономической деятельности. Помогаем найти подходящие предложения банков и платёжных агентов: сравниваем условия и подбираем безопасный маршрут платежа.</p>
+      </div>
+      <div><h5>Сервис</h5><ul><li><a href="#compare">Сравнение агентов</a></li><li><a href="#how">Как это работает</a></li><li><a href="#offers">Предложения</a></li><li><a href="#finder">Подбор маршрута</a></li></ul></div>
+      <div><h5>Направления</h5><ul><li><a href="#compare">Платежи в Китай</a></li><li><a href="#compare">Платежи в ОАЭ</a></li><li><a href="#compare">Платежи в Турцию</a></li><li><a href="#compare">Экспортная выручка</a></li></ul></div>
+      <div><h5>Контакты</h5><ul><li><a href="tel:+74951205050">+7 495 120-50-50</a></li><li><a href="mailto:hello@ved-marshrut.ru">hello@ved-marshrut.ru</a></li><li><a href="#lead">Оставить заявку</a></li></ul></div>
+    </div>
+    <div class="ftr-bottom">
+      <span>© 2026 ВЭД-Маршрут. Информация на сайте не является публичной офертой.</span>
+      <span>Политика конфиденциальности · Условия использования</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div class="modal" id="modal">
+  <div class="modal-back" data-close></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close type="button"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <h3>Оставить заявку</h3>
+    <p class="msub">Менеджер агента свяжется с вами и пришлёт расчёт.</p>
+    <div class="modal-agent" id="modalAgent"></div>
+    <form id="modalForm">
+      <div class="field">
+        <label for="mName">Имя</label>
+        <input class="control" id="mName" type="text" placeholder="Как к вам обращаться" required>
+        <div class="hint">Укажите имя</div>
+      </div>
+      <div class="field">
+        <label for="mPhone">Телефон</label>
+        <input class="control" id="mPhone" type="tel" placeholder="+7 (___) ___-__-__" required>
+        <div class="hint">Введите корректный номер</div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+    </form>
+    <div class="lead-ok" id="modalOk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <h3>Заявка отправлена!</h3>
+      <p>Менеджер свяжется с вами в ближайшее время.</p>
+    </div>
+  </div>
+</div>
+
+<script src="image-slot.js"></script>
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks.jsx"></script>
+</body>
+</html>
