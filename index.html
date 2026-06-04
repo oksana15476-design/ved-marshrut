@@ -255,6 +255,15 @@ select.control {
   transition: transform .14s, box-shadow .2s;
 }
 .acard:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(17,20,26,.10); }
+.acard.is-recommended { border-color: #0F1B35; box-shadow: 0 0 0 1.5px #0F1B35, var(--shadow-sm); }
+.acard-rec-label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+  color: #fff; background: #0F1B35;
+  padding: 5px 12px 5px 10px; border-radius: 0 0 10px 0; width: fit-content;
+  margin-bottom: 12px;
+}
+.acard-rec-label svg { width: 12px; height: 12px; }
 
 /* Цветная полоса сверху в цвете бренда агента */
 .acard-stripe { height: 4px; flex: none; }
@@ -802,7 +811,7 @@ window.AGENTS = [
   },
   {
     id: "valter", type: "agent", name: "V ALTER", color: "#0F1B35",
-    site: "v-alter.ru", plan: "Подбор плательщика за 2 часа", verified: true, top: true,
+    site: "v-alter.ru", plan: "Подбор плательщика за 2 часа", verified: true, top: true, recommended: true,
     rating: 4.7, reviews: 210,
     commissionFrom: 0.8, commissionText: "от 0,8%",
     minAmount: 0, minText: "по запросу",
@@ -1045,10 +1054,12 @@ window.DICT = {
 
   function cardHTML(a) {
     const typeLabel = a.type === "bank" ? "Банк" : "Платёжный агент";
+    const recLabel = a.recommended ? `<div class="acard-rec-label"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Проверенный игрок</div>` : "";
     return `
-    <div class="acard" data-id="${a.id}">
+    <div class="acard${a.recommended ? " is-recommended" : ""}" data-id="${a.id}">
       <div class="acard-stripe" style="background:${a.color}"></div>
       <div class="acard-body">
+        ${recLabel}
         <div class="acard-head">
           <div>
             <div class="acard-kind">${typeLabel}</div>
