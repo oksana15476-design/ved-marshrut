@@ -8,6 +8,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!-- OG / Social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://oksana15476-design.github.io/ved-marshrut/">
+<meta property="og:title" content="ВЭД-Маршрут — сравните платёжных агентов для бизнеса">
+<meta property="og:description" content="Комиссии от 0,3%. Подберите проверенного платёжного агента или банк для ВЭД за 3 минуты. 9 провайдеров, 40+ валют, 110+ направлений.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ВЭД-Маршрут — сравните платёжных агентов для бизнеса">
+<meta name="twitter:description" content="Комиссии от 0,3%. 9 проверенных провайдеров для платежей в Китай, ОАЭ, Турцию и ещё 40+ направлений.">
+<!-- Yandex.Metrika — замените XXXXXXXX на ваш ID счётчика -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym(XXXXXXXX,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+</script>
 <style>
 /* ============================================================
    ВЭД-Маршрут — финансовый маркетплейс
@@ -127,11 +142,26 @@ img { display: block; max-width: 100%; }
 }
 .hero-art svg { width: 100%; height: 100%; max-height: 340px; }
 
-.hero-stats {
-  display: flex; align-items: center; gap: 10px; margin-top: 14px;
-  font-size: 14px; font-weight: 600; color: var(--ink-2); flex-wrap: wrap;
+/* Social proof bar */
+.proof-bar {
+  display: flex; margin-top: 16px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm);
 }
-.hero-stats .dot { color: var(--line); font-size: 18px; line-height: 1; }
+.proof-stat { flex: 1; padding: 14px 20px; text-align: center; }
+.proof-stat:not(:last-child) { border-right: 1px solid var(--line); }
+.ps-val { font-size: 21px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); line-height: 1.1; }
+.ps-lbl { font-size: 11.5px; color: var(--muted); font-weight: 600; margin-top: 3px; }
+
+/* Mobile call button */
+.hdr-call { display: none; }
+
+/* Modal deal context */
+.modal-context {
+  font-size: 13px; font-weight: 700; color: var(--brand);
+  background: var(--brand-100); border-radius: 8px;
+  padding: 7px 12px; margin-bottom: 14px;
+}
 
 /* ---------- Route finder ---------- */
 .finder {
@@ -395,13 +425,23 @@ select.control {
   .hero-banner-copy { padding: 40px 32px; }
   .hero-art { min-height: 220px; }
   .hero-art::after { display: none; }
-  .hero-pills { grid-template-columns: 1fr; }
   .filters { grid-template-columns: 1fr 1fr; }
   .filters .filter-reset { grid-column: 1 / -1; }
   .steps, .cmp-cards { grid-template-columns: 1fr 1fr; }
   .lead { grid-template-columns: 1fr; padding: 34px; }
   .ftr-grid { grid-template-columns: 1fr 1fr; }
   .nav, .hdr-phone { display: none; }
+  .hdr-call {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--brand); color: #fff;
+    padding: 10px 16px; border-radius: 10px;
+    font-size: 14px; font-weight: 700; margin-left: auto; text-decoration: none;
+  }
+  .hdr-call svg { width: 16px; height: 16px; }
+  .proof-bar { display: grid; grid-template-columns: 1fr 1fr; }
+  .proof-stat:nth-child(2) { border-right: none; }
+  .proof-stat:nth-child(3) { border-right: 1px solid var(--line); border-top: 1px solid var(--line); }
+  .proof-stat:nth-child(4) { border-top: 1px solid var(--line); }
 }
 @media (max-width: 720px) {
   .section { padding: 56px 0; }
@@ -441,6 +481,10 @@ select.control {
       <div class="hdr-phone">+7 495 120-50-50<span>Пн–Пт, 9:00–20:00 МСК</span></div>
       <a href="#finder" class="btn btn-primary btn-sm">Подобрать маршрут</a>
     </div>
+    <a href="tel:+74951205050" class="hdr-call">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.58 3.5 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Позвонить
+    </a>
   </div>
 </header>
 
@@ -537,12 +581,11 @@ select.control {
       <p class="finder-note">Подбор бесплатный и ни к чему не обязывает. Не передаём данные третьим лицам.</p>
     </form>
 
-    <div class="hero-stats">
-      <span>⚡ Решение за 3 минуты</span>
-      <span class="dot">·</span>
-      <span>✓ Только проверенные провайдеры</span>
-      <span class="dot">·</span>
-      <span>Комиссии от 0,3%</span>
+    <div class="proof-bar">
+      <div class="proof-stat"><div class="ps-val">500+</div><div class="ps-lbl">компаний подобрали маршрут</div></div>
+      <div class="proof-stat"><div class="ps-val">9</div><div class="ps-lbl">проверенных провайдеров</div></div>
+      <div class="proof-stat"><div class="ps-val">40+</div><div class="ps-lbl">валют и направлений</div></div>
+      <div class="proof-stat"><div class="ps-val">от 0,3%</div><div class="ps-lbl">минимальная комиссия</div></div>
     </div>
   </div>
 </section>
@@ -680,6 +723,7 @@ select.control {
       <div class="lead-form">
         <form id="leadForm">
           <h3>Оставить заявку</h3>
+          <div class="modal-context" id="leadContext" style="display:none"></div>
           <div class="field">
             <label for="lName">Имя</label>
             <input class="control" id="lName" type="text" placeholder="Как к вам обращаться" required>
@@ -691,9 +735,17 @@ select.control {
             <div class="hint">Введите корректный номер</div>
           </div>
           <div class="field">
+            <label for="lTelegram">Telegram</label>
+            <input class="control" id="lTelegram" type="text" placeholder="@username (необязательно)">
+          </div>
+          <div class="field">
             <label for="lCompany">Компания / ИНН</label>
             <input class="control" id="lCompany" type="text" placeholder="ООО «Компания» или ИНН">
           </div>
+          <input type="hidden" id="lCountry" name="country">
+          <input type="hidden" id="lCurrency" name="currency">
+          <input type="hidden" id="lFlow" name="flow">
+          <input type="hidden" id="lAmount" name="amount">
           <button type="submit" class="btn btn-primary btn-block">Получить маршруты</button>
           <p class="finder-foot">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
         </form>
@@ -768,6 +820,7 @@ select.control {
     <p class="msub">Менеджер агента свяжется с вами и пришлёт расчёт.</p>
     <div class="modal-agent" id="modalAgent"></div>
     <form id="modalForm">
+      <div class="modal-context" id="modalContext" style="display:none"></div>
       <div class="field">
         <label for="mName">Имя</label>
         <input class="control" id="mName" type="text" placeholder="Как к вам обращаться" required>
@@ -778,6 +831,14 @@ select.control {
         <input class="control" id="mPhone" type="tel" placeholder="+7 (___) ___-__-__" required>
         <div class="hint">Введите корректный номер</div>
       </div>
+      <div class="field">
+        <label for="mTelegram">Telegram</label>
+        <input class="control" id="mTelegram" type="text" placeholder="@username (необязательно)">
+      </div>
+      <input type="hidden" id="mCountry" name="country">
+      <input type="hidden" id="mCurrency" name="currency">
+      <input type="hidden" id="mFlow" name="flow">
+      <input type="hidden" id="mAmount" name="amount">
       <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
     </form>
     <div class="lead-ok" id="modalOk">
@@ -1163,6 +1224,30 @@ window.DICT = {
     }
   }
 
+  function dealContext() {
+    const parts = [];
+    if (state.flow) parts.push(state.flow === "import" ? "Импорт" : "Экспорт");
+    if (state.country) parts.push(state.country);
+    if (state.currency) parts.push(state.currency);
+    if (state.amount) parts.push("$" + state.amount.toLocaleString("ru-RU"));
+    return parts.join(" · ");
+  }
+
+  function fillDealContext(ctxEl, hiddenPrefix) {
+    const ctx = dealContext();
+    if (ctxEl) {
+      if (ctx) { ctxEl.textContent = "Параметры сделки: " + ctx; ctxEl.style.display = ""; }
+      else { ctxEl.style.display = "none"; }
+    }
+    if (hiddenPrefix) {
+      const s = (id, v) => { const el = $(id); if (el) el.value = v || ""; };
+      s("#" + hiddenPrefix + "Country", state.country);
+      s("#" + hiddenPrefix + "Currency", state.currency);
+      s("#" + hiddenPrefix + "Flow", state.flow);
+      s("#" + hiddenPrefix + "Amount", state.amount || "");
+    }
+  }
+
   /* Modal */
   const modal = $("#modal");
   function openModal(agentId) {
@@ -1177,6 +1262,7 @@ window.DICT = {
     } else {
       $("#modalAgent").style.display = "none";
     }
+    fillDealContext($("#modalContext"), "m");
     modal.classList.add("show");
     document.body.style.overflow = "hidden";
   }
@@ -1274,6 +1360,7 @@ window.DICT = {
       $("#flCountry").value = state.country;
       $("#flCurrency").value = state.currency;
       $("#flAmount").value = state.amount ? state.amount.toLocaleString("ru-RU") : "";
+      fillDealContext($("#leadContext"), "l");
       render();
       document.getElementById("compare").scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -1284,6 +1371,7 @@ window.DICT = {
       if (!validateForm(e.target)) return;
       e.target.style.display = "none";
       $("#leadOk").classList.add("show");
+      if (typeof ym !== "undefined") ym(XXXXXXXX, "reachGoal", "lead_form");
     });
 
     /* Modal form */
@@ -1292,6 +1380,7 @@ window.DICT = {
       if (!validateForm(e.target)) return;
       e.target.style.display = "none";
       $("#modalOk").classList.add("show");
+      if (typeof ym !== "undefined") ym(XXXXXXXX, "reachGoal", "modal_form");
     });
 
     /* Clear error on input */
