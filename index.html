@@ -57,7 +57,9 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-h1, h2, h3, h4 { margin: 0; line-height: 1.05; letter-spacing: -0.035em; font-weight: 800; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.05; }
+h1, h2 { font-weight: 800; letter-spacing: -0.035em; }
+h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 p { margin: 0; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
@@ -85,8 +87,6 @@ img { display: block; max-width: 100%; }
 .btn:active { transform: translateY(1px); }
 .btn-primary { background: var(--brand); color: #fff; box-shadow: 0 8px 20px rgba(43,127,255,.28); }
 .btn-primary:hover { background: var(--brand-700); }
-.btn-blue { background: var(--brand); color: #fff; box-shadow: 0 8px 20px rgba(43,127,255,.28); }
-.btn-blue:hover { background: var(--brand-700); }
 .btn-ghost { background: var(--card); color: var(--ink); border: 1.5px solid var(--line); box-shadow: var(--shadow-sm); }
 .btn-ghost:hover { border-color: var(--brand); color: var(--brand); }
 .btn-sm { padding: 10px 16px; font-size: 14px; border-radius: 10px; }
@@ -101,11 +101,8 @@ img { display: block; max-width: 100%; }
 .hdr-inner { display: flex; align-items: center; gap: 28px; height: 72px; }
 .logo { display: flex; align-items: center; gap: 11px; font-weight: 800; font-size: 21px; letter-spacing: -.03em; white-space: nowrap; }
 .logo .mark {
-  width: 30px; height: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+  width: 28px; height: 28px; flex: none;
 }
-.logo .mark i { display: block; border-radius: 50%; background: var(--brand); opacity: .28; }
-.logo .mark i:nth-child(1), .logo .mark i:nth-child(5), .logo .mark i:nth-child(9) { opacity: 1; }
-.logo .mark i:nth-child(6) { opacity: .6; }
 .nav { display: flex; gap: 26px; margin-left: 8px; }
 .nav a { color: var(--ink-2); font-weight: 600; font-size: 15px; }
 .nav a:hover { color: var(--brand); }
@@ -121,11 +118,6 @@ img { display: block; max-width: 100%; }
   display: grid; grid-template-columns: 1.1fr .9fr; min-height: 380px;
 }
 .hero-banner-copy { padding: 56px 56px 64px; color: #fff; align-self: center; z-index: 2; }
-.hero-eyebrow {
-  display: inline-block; white-space: nowrap; font-size: 13px; font-weight: 800;
-  letter-spacing: .04em; color: #fff; background: rgba(255,255,255,.16);
-  padding: 7px 14px; border-radius: 100px; margin-bottom: 20px;
-}
 .hero h1 { font-size: clamp(34px, 4.4vw, 54px); color: #fff; max-width: 14ch; }
 .hero-sub { color: rgba(255,255,255,.9); font-size: clamp(17px, 1.6vw, 20px); margin: 20px 0 0; max-width: 460px; }
 .hero-art { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -135,18 +127,11 @@ img { display: block; max-width: 100%; }
 }
 .hero-art svg { width: 100%; height: 100%; max-height: 340px; }
 
-.hero-pills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-.hero-pill {
-  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-  padding: 16px 18px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-sm);
+.hero-stats {
+  display: flex; align-items: center; gap: 10px; margin-top: 14px;
+  font-size: 14px; font-weight: 600; color: var(--ink-2); flex-wrap: wrap;
 }
-.hero-pill .ic { width: 40px; height: 40px; border-radius: 10px; flex: none; display: grid; place-items: center; background: var(--brand-100); }
-.hero-pill .ic svg { width: 20px; height: 20px; color: var(--brand); }
-.hero-pill .ic.v { background: #F0EBFE; }
-.hero-pill .ic.v svg { color: #7B2FF0; }
-.hero-pill .ic.g { background: var(--accent-100); }
-.hero-pill .ic.g svg { color: var(--accent-700); }
-.hero-pill span { font-weight: 700; font-size: 14.5px; color: var(--ink); line-height: 1.3; }
+.hero-stats .dot { color: var(--line); font-size: 18px; line-height: 1; }
 
 /* ---------- Route finder ---------- */
 .finder {
@@ -294,12 +279,11 @@ select.control {
 .acard-rating-val { font-size: 13px; font-weight: 700; color: var(--ink); }
 .acard-rating-cnt { font-size: 12px; color: var(--muted); font-weight: 500; }
 
-/* Разделитель комиссия / главный оффер */
 .acard-commission {
-  background: var(--line-2); border-radius: 10px; padding: 12px 14px;
-  display: flex; align-items: baseline; gap: 6px; margin-bottom: 16px;
+  display: flex; align-items: baseline; gap: 7px; margin-bottom: 18px;
+  border-bottom: 1px solid var(--line); padding-bottom: 16px;
 }
-.acard-commission .cv { font-size: 26px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); }
+.acard-commission .cv { font-size: 28px; font-weight: 800; letter-spacing: -.04em; color: var(--ink); }
 .acard-commission .cl { font-size: 13px; color: var(--muted); font-weight: 600; }
 
 .acard-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin-bottom: 20px; }
@@ -335,15 +319,10 @@ select.control {
 
 /* ---------- Lead form ---------- */
 .lead {
-  background: linear-gradient(120deg, #1E5FD8 0%, #2B7FFF 60%, #4F9BFF 100%);
+  background: #0F1B35;
   border-radius: var(--radius-lg); padding: 54px; display: grid;
   grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
   color: #fff; position: relative; overflow: hidden;
-}
-.lead::before {
-  content:""; position:absolute; inset:0;
-  background: radial-gradient(540px 360px at 96% -10%, rgba(255,255,255,.16), transparent 60%);
-  pointer-events: none;
 }
 .lead-copy { position: relative; }
 .lead-copy h2 { font-size: clamp(28px, 3.6vw, 42px); margin-bottom: 16px; }
@@ -435,7 +414,13 @@ select.control {
 <header class="hdr">
   <div class="wrap hdr-inner">
     <a href="#" class="logo">
-      <span class="mark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <svg class="mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="6" cy="14" r="4" fill="var(--brand)"/>
+        <circle cx="22" cy="7" r="3" fill="var(--brand)" opacity=".45"/>
+        <circle cx="22" cy="21" r="3" fill="var(--brand)" opacity=".7"/>
+        <path d="M10 14 L19 7" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M10 14 L19 21" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
       ВЭД·Маршрут
     </a>
     <nav class="nav">
@@ -445,7 +430,7 @@ select.control {
     </nav>
     <div class="hdr-cta">
       <div class="hdr-phone">+7 495 120-50-50<span>Пн–Пт, 9:00–20:00 МСК</span></div>
-      <a href="#finder" class="btn btn-blue btn-sm">Подобрать маршрут</a>
+      <a href="#finder" class="btn btn-primary btn-sm">Подобрать маршрут</a>
     </div>
   </div>
 </header>
@@ -455,7 +440,6 @@ select.control {
   <div class="wrap">
     <div class="hero-banner">
       <div class="hero-banner-copy">
-        <span class="hero-eyebrow">Финансовый маркетплейс для бизнеса</span>
         <h1>Подберём предложения банков и платёжных агентов для ВЭД</h1>
         <p class="hero-sub">Сравните комиссии, сроки и маршруты движения средств за минуту — и оставьте заявку проверенному провайдеру.</p>
       </div>
@@ -544,19 +528,12 @@ select.control {
       <p class="finder-note">Подбор бесплатный и ни к чему не обязывает. Не передаём данные третьим лицам.</p>
     </form>
 
-    <div class="hero-pills">
-      <div class="hero-pill">
-        <span class="ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-        <span>Решение по маршруту за 3 минуты</span>
-      </div>
-      <div class="hero-pill">
-        <span class="ic v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></span>
-        <span>Только проверенные провайдеры</span>
-      </div>
-      <div class="hero-pill">
-        <span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13l-3-3"/><path d="M21 17H8l3 3"/></svg></span>
-        <span>Прозрачные комиссии от 0,3%</span>
-      </div>
+    <div class="hero-stats">
+      <span>⚡ Решение за 3 минуты</span>
+      <span class="dot">·</span>
+      <span>✓ Только проверенные провайдеры</span>
+      <span class="dot">·</span>
+      <span>Комиссии от 0,3%</span>
     </div>
   </div>
 </section>
@@ -648,7 +625,6 @@ select.control {
 <section class="section" id="how" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Как это работает</span>
       <h2>Маршрут платежа за 4 шага</h2>
     </div>
     <div class="steps">
@@ -728,7 +704,13 @@ select.control {
     <div class="ftr-grid">
       <div>
         <div class="logo">
-          <span class="mark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <svg class="mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6" cy="14" r="4" fill="#fff"/>
+            <circle cx="22" cy="7" r="3" fill="#fff" opacity=".4"/>
+            <circle cx="22" cy="21" r="3" fill="#fff" opacity=".65"/>
+            <path d="M10 14 L19 7" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 14 L19 21" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
           ВЭД-Маршрут
         </div>
         <p>Независимый финансовый маркетплейс для внешнеэкономической деятельности. Помогаем найти подходящие предложения банков и платёжных агентов: сравниваем условия и подбираем безопасный маршрут платежа.</p>
