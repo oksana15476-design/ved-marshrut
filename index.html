@@ -135,17 +135,18 @@ img { display: block; max-width: 100%; }
 }
 .hero-art svg { width: 100%; height: 100%; max-height: 340px; }
 
-.hero-pills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
+.hero-pills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
 .hero-pill {
-  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-  padding: 18px 20px; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-sm);
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 16px 18px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-sm);
 }
-.hero-pill .ic { width: 44px; height: 44px; border-radius: 12px; flex: none; display: grid; place-items: center; }
-.hero-pill .ic svg { width: 23px; height: 23px; color: #fff; }
-.hero-pill .ic.b { background: linear-gradient(135deg, #2B7FFF, #57A6FF); }
-.hero-pill .ic.v { background: linear-gradient(135deg, #8B5CF6, #C084FC); }
-.hero-pill .ic.g { background: linear-gradient(135deg, #16B364, #34D399); }
-.hero-pill span { font-weight: 700; font-size: 15.5px; color: var(--ink); line-height: 1.25; }
+.hero-pill .ic { width: 40px; height: 40px; border-radius: 10px; flex: none; display: grid; place-items: center; background: var(--brand-100); }
+.hero-pill .ic svg { width: 20px; height: 20px; color: var(--brand); }
+.hero-pill .ic.v { background: #F0EBFE; }
+.hero-pill .ic.v svg { color: #7B2FF0; }
+.hero-pill .ic.g { background: var(--accent-100); }
+.hero-pill .ic.g svg { color: var(--accent-700); }
+.hero-pill span { font-weight: 700; font-size: 14.5px; color: var(--ink); line-height: 1.3; }
 
 /* ---------- Route finder ---------- */
 .finder {
@@ -261,38 +262,64 @@ select.control {
 .detail-item .dd.good { color: var(--accent-700); }
 .detail-item .dd.bad { color: var(--danger); }
 
-/* ---------- Card layout (Сравни.ру style) ---------- */
-.cmp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+/* ---------- Card layout (Банки.ру / Сравни.ру style) ---------- */
+.cmp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .acard {
-  background: var(--card); border: 1px solid var(--line); border-radius: 20px;
-  padding: 26px 26px 24px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
   transition: transform .14s, box-shadow .2s;
 }
-.acard:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-.acard-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 16px; }
-.acard-name { font-weight: 800; font-size: 21px; letter-spacing: -.02em; }
-.acard-kind { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 5px; }
+.acard:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(17,20,26,.10); }
+
+/* Цветная полоса сверху в цвете бренда агента */
+.acard-stripe { height: 4px; flex: none; }
+
+.acard-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+
+.acard-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.acard-name { font-weight: 800; font-size: 19px; letter-spacing: -.02em; line-height: 1.15; }
+.acard-kind { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
 .acard-logo-wrap { position: relative; flex: none; }
-.acard-logo-wrap .agent-logo { width: 56px; height: 56px; border-radius: 14px; font-size: 22px; }
+.acard-logo-wrap .agent-logo { width: 52px; height: 52px; border-radius: 12px; font-size: 20px; }
 .seal {
-  position: absolute; right: -5px; bottom: -5px; width: 22px; height: 22px; border-radius: 50%;
-  background: var(--brand); color: #fff; display: grid; place-items: center; border: 2.5px solid #fff;
+  position: absolute; right: -5px; bottom: -5px; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--brand); color: #fff; display: grid; place-items: center; border: 2px solid #fff;
 }
-.seal svg { width: 12px; height: 12px; }
-.acard-plan {
-  color: var(--brand); font-weight: 800; font-size: 13px; letter-spacing: .04em;
-  text-transform: uppercase; margin-bottom: 20px;
+.seal svg { width: 11px; height: 11px; }
+
+/* Рейтинг звёздами */
+.acard-rating { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+.acard-stars { display: flex; gap: 2px; }
+.acard-stars svg { width: 13px; height: 13px; color: var(--star); }
+.acard-rating-val { font-size: 13px; font-weight: 700; color: var(--ink); }
+.acard-rating-cnt { font-size: 12px; color: var(--muted); font-weight: 500; }
+
+/* Разделитель комиссия / главный оффер */
+.acard-commission {
+  background: var(--line-2); border-radius: 10px; padding: 12px 14px;
+  display: flex; align-items: baseline; gap: 6px; margin-bottom: 16px;
 }
-.acard-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 18px; margin-bottom: 22px; align-content: start; }
+.acard-commission .cv { font-size: 26px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); }
+.acard-commission .cl { font-size: 13px; color: var(--muted); font-weight: 600; }
+
+.acard-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin-bottom: 20px; }
 .astat { min-width: 0; }
-.astat .av { font-size: 21px; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
-.astat .al { font-size: 13px; color: var(--muted); font-weight: 600; margin-top: 4px; }
-.acard-btn {
-  width: 100%; background: var(--ink); color: #fff; font-weight: 700; font-size: 16px;
-  border-radius: 13px; padding: 16px; margin-top: auto; transition: background .18s, transform .12s;
+.astat .av { font-size: 15px; font-weight: 800; letter-spacing: -.01em; line-height: 1.2; color: var(--ink); }
+.astat .al { font-size: 11.5px; color: var(--muted); font-weight: 600; margin-top: 3px; }
+
+.acard-plan {
+  font-size: 12px; font-weight: 700; color: var(--muted);
+  margin-bottom: 16px; line-height: 1.4; border-left: 2px solid var(--line); padding-left: 10px;
 }
-.acard-btn:hover { background: #14213f; }
-.acard-btn:active { transform: translateY(1px); }
+
+.acard-btn {
+  width: 100%; background: var(--brand); color: #fff; font-weight: 700; font-size: 15px;
+  border-radius: 10px; padding: 14px; margin-top: auto;
+  transition: background .15s, transform .1s, box-shadow .15s;
+  box-shadow: 0 4px 12px rgba(43,127,255,.25);
+}
+.acard-btn:hover { background: var(--brand-700); box-shadow: 0 6px 18px rgba(43,127,255,.35); }
+.acard-btn:active { transform: translateY(1px); box-shadow: none; }
 
 .is-hidden { display: none !important; }
 .empty { text-align: center; padding: 70px 20px; color: var(--muted); }
@@ -1023,28 +1050,51 @@ window.DICT = {
     return `<span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>`;
   }
 
+  function starsHTML(rating) {
+    const full = Math.floor(rating);
+    const half = rating % 1 >= 0.5;
+    let s = "";
+    for (let i = 0; i < 5; i++) {
+      const filled = i < full || (i === full && half);
+      s += `<svg viewBox="0 0 24 24" fill="${filled ? "currentColor" : "none"}" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+    }
+    return s;
+  }
+
   function cardHTML(a) {
     const typeLabel = a.type === "bank" ? "Банк" : "Платёжный агент";
     return `
     <div class="acard" data-id="${a.id}">
-      <div class="acard-head">
-        <div>
-          <div class="acard-kind">${typeLabel}</div>
-          <div class="acard-name">${esc(a.name)}</div>
+      <div class="acard-stripe" style="background:${a.color}"></div>
+      <div class="acard-body">
+        <div class="acard-head">
+          <div>
+            <div class="acard-kind">${typeLabel}</div>
+            <div class="acard-name">${esc(a.name)}</div>
+          </div>
+          <div class="acard-logo-wrap">
+            ${agentLogo(a)}
+            ${a.verified ? sealHTML() : ""}
+          </div>
         </div>
-        <div class="acard-logo-wrap">
-          ${agentLogo(a)}
-          ${a.verified ? sealHTML() : ""}
+        <div class="acard-rating">
+          <div class="acard-stars">${starsHTML(a.rating)}</div>
+          <span class="acard-rating-val">${a.rating}</span>
+          <span class="acard-rating-cnt">${a.reviews.toLocaleString("ru-RU")} отзывов</span>
         </div>
+        <div class="acard-commission">
+          <span class="cv">${esc(a.commissionText)}</span>
+          <span class="cl">комиссия</span>
+        </div>
+        <div class="acard-stats">
+          <div class="astat"><div class="av">${esc(a.minText)}</div><div class="al">Мин. сумма</div></div>
+          <div class="astat"><div class="av">${esc(a.termText)}</div><div class="al">Срок платежа</div></div>
+          <div class="astat"><div class="av">${esc(a.docText)}</div><div class="al">Срок ПД / SWIFT</div></div>
+          <div class="astat"><div class="av">${a.flow.map(f => f === "import" ? "Импорт" : "Экспорт").join(" · ")}</div><div class="al">Направление</div></div>
+        </div>
+        <div class="acard-plan">${esc(a.plan)}</div>
+        <button class="acard-btn" data-apply="${a.id}" type="button">Оставить заявку</button>
       </div>
-      <div class="acard-plan">«${esc(a.plan)}»</div>
-      <div class="acard-stats">
-        <div class="astat"><div class="av">${esc(a.commissionText)}</div><div class="al">Комиссия агента</div></div>
-        <div class="astat"><div class="av">${esc(a.minText)}</div><div class="al">Минимальная сумма</div></div>
-        <div class="astat"><div class="av">${esc(a.termText)}</div><div class="al">Срок платежа</div></div>
-        <div class="astat"><div class="av">${esc(a.docText)}</div><div class="al">Срок ПД / SWIFT</div></div>
-      </div>
-      <button class="acard-btn" data-apply="${a.id}" type="button">Оставить заявку</button>
     </div>`;
   }
 
