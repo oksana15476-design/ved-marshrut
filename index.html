@@ -416,6 +416,12 @@ select.control {
 .feat-bullet svg { color: #16B364; flex: none; width: 16px; height: 16px; margin-top: 1px; }
 .feat-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 16px; }
 .feat-chip { font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 7px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.65); }
+.feat-live { display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 700; color: #16B364; margin-bottom: 14px; }
+.feat-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #16B364; flex: none; box-shadow: 0 0 0 0 rgba(22,179,100,.5); animation: livepulse 2s infinite; }
+@keyframes livepulse { 0%,100%{box-shadow:0 0 0 0 rgba(22,179,100,.5)} 50%{box-shadow:0 0 0 6px rgba(22,179,100,0)} }
+.feat-mini-quote { margin-top: 18px; padding: 12px 14px; background: rgba(255,255,255,.06); border-left: 2px solid rgba(255,255,255,.2); border-radius: 0 8px 8px 0; }
+.feat-mini-quote-text { font-size: 12.5px; color: rgba(255,255,255,.65); line-height: 1.5; font-style: italic; }
+.feat-mini-quote-author { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.35); margin-top: 5px; }
 @media (max-width: 980px) {
   .acard.is-featured .acard-body { grid-template-columns: 1fr 1fr; }
   .feat-col-mid { border-right: none; }
@@ -1052,7 +1058,7 @@ window.AGENTS = [
   /* ===================== #1 — V ALTER (закреплён) ===================== */
   {
     id: "valter", type: "agent", name: "V ALTER", color: "#0F1B35",
-    site: "v-alter.ru", plan: "Платёж день в день · курс ЦБ · любая юрисдикция",
+    site: "v-alter.ru", plan: "Ведём сделку от первого документа до подтверждения платежа",
     verified: true, top: true, recommended: true, pinTop: true,
     rating: 5.0, reviews: 350,
     commissionFrom: 0.85, commissionText: "0,85% всё включено",
@@ -1065,7 +1071,7 @@ window.AGENTS = [
     docs: "Договор + памятка → список документов → подписание и отправка сканов/оригиналов", jurisdiction: "100+ компаний инфраструктуры по миру · ВТБ Шанхай",
     manager: true, currencyControl: true,
     limits: "Мин. $50 000 · без мелких платежей · без товаров двойного назначения (оружие, чипы)",
-    statusText: "Проверен · фиксация курса ЦБ · без доп. расходов",
+    statusText: "500+ компаний · фиксация курса ЦБ · без доп. расходов",
     logoFile: "valter.svg",
     svgMark: '<path d="M14 34 L25 16 L36 34" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="16" y1="38" x2="34" y2="38" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>',
   },
@@ -1536,6 +1542,7 @@ function handleLogoError(img) {
       <div class="acard-body">
         <div class="feat-col">
           <div class="feat-rec-label"><svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>МаршрутВЭД рекомендует</div>
+          <div class="feat-live"><span class="feat-live-dot"></span>Принимает заявки сейчас</div>
           <div class="feat-logo-row">
             <div class="acard-logo-wrap">
               ${agentLogo(a)}
@@ -1570,11 +1577,15 @@ function handleLogoError(img) {
         </div>
         <div class="feat-col feat-cta">
           <div>
-            <button class="feat-btn" data-apply="${a.id}" type="button">Оставить заявку →</button>
+            <button class="feat-btn" data-apply="${a.id}" type="button">Получить расчёт бесплатно →</button>
             <div class="feat-bullets">
-              <div class="feat-bullet">${checkIcon()} Платёж день в день — персональное сопровождение сделки</div>
-              <div class="feat-bullet">${checkIcon()} 0,85% всё включено — без скрытых комиссий и надбавок</div>
-              <div class="feat-bullet">${checkIcon()} Фиксация курса ЦБ РФ · 100+ юрисдикций инфраструктуры</div>
+              <div class="feat-bullet">${checkIcon()} Персональный менеджер ведёт вашу сделку от A до Я</div>
+              <div class="feat-bullet">${checkIcon()} 0,85% — всё включено, никаких скрытых комиссий</div>
+              <div class="feat-bullet">${checkIcon()} Курс ЦБ без наценки · 100+ юрисдикций по всему миру</div>
+            </div>
+            <div class="feat-mini-quote">
+              <div class="feat-mini-quote-text">«Впервые провели платёж в Китай без нервов — агент взял все документы на себя»</div>
+              <div class="feat-mini-quote-author">— Алексей С., CFO · ТД «Восток» · $85 000 в CNY</div>
             </div>
           </div>
         </div>
