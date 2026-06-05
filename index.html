@@ -120,10 +120,10 @@ img { display: block; max-width: 100%; }
   border-bottom: 1px solid var(--line);
 }
 .hdr-inner { display: flex; align-items: center; gap: 28px; height: 72px; }
-.logo { display: flex; align-items: center; gap: 11px; font-weight: 800; font-size: 21px; letter-spacing: -.03em; white-space: nowrap; }
-.logo .mark {
-  width: 28px; height: 28px; flex: none;
-}
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; letter-spacing: .01em; white-space: nowrap; }
+.logo .logo-dom { color: var(--ink); }
+.logo .logo-ved { color: var(--brand); }
+.logo .mark { width: 34px; height: 34px; flex: none; }
 .nav { display: flex; gap: 26px; margin-left: 8px; }
 .nav a { color: var(--ink-2); font-weight: 600; font-size: 15px; }
 .nav a:hover { color: var(--brand); }
@@ -651,11 +651,15 @@ select.control {
 <header class="hdr">
   <div class="wrap hdr-inner">
     <a href="#" class="logo">
-      <svg class="mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="7" fill="var(--brand)"/>
-        <path d="M16 7 L27 16 H24 V25 H19 V19 H13 V25 H8 V16 H5 Z" fill="white"/>
+      <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="34" height="34" rx="8" fill="#0F1B35"/>
+        <!-- Geometric Д: two pillars + arch + base + feet -->
+        <path d="M9 24 L9 11 Q9 10 10 10 L24 10 Q25 10 25 11 L25 24" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="6" y1="24" x2="28" y2="24" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="6" y1="24" x2="6" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="28" y1="24" x2="28" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
       </svg>
-      Дом ВЭД
+      <span class="logo-dom">Дом</span><span class="logo-ved">&thinsp;ВЭД</span>
     </a>
     <nav class="nav">
       <a href="#compare">Сравнение</a>
@@ -934,11 +938,14 @@ select.control {
     <div class="ftr-grid">
       <div>
         <div class="logo">
-          <svg class="mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="7" fill="rgba(255,255,255,.12)"/>
-            <path d="M16 7 L27 16 H24 V25 H19 V19 H13 V25 H8 V16 H5 Z" fill="white"/>
+          <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="34" height="34" rx="8" fill="rgba(255,255,255,.12)"/>
+            <path d="M9 24 L9 11 Q9 10 10 10 L24 10 Q25 10 25 11 L25 24" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="6" y1="24" x2="28" y2="24" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="6" y1="24" x2="6" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="28" y1="24" x2="28" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
           </svg>
-          Дом ВЭД
+          <span>Дом</span><span style="color:rgba(255,255,255,.6)">&thinsp;ВЭД</span>
         </div>
         <p>Независимый агрегатор платёжных агентов и банков для ВЭД. Сравниваем комиссии, сроки и маршруты — подбираем проверенного агента для платежей в Китай, ОАЭ, Турцию и 110+ направлений.</p>
       </div>
