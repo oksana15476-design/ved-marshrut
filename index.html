@@ -503,6 +503,28 @@ select.control {
   border-radius: 12px; padding: 12px 14px; margin-bottom: 18px;
 }
 
+/* ---------- Trust strip ---------- */
+.trust-strip {
+  background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+.trust-items {
+  display: flex; align-items: center; gap: 0; flex-wrap: wrap;
+  justify-content: space-between;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 700; color: var(--ink-2);
+  padding: 6px 0;
+}
+.trust-item svg { color: var(--accent); flex: none; }
+.trust-sep { width: 1px; height: 28px; background: var(--line); flex: none; }
+@media (max-width: 860px) {
+  .trust-sep { display: none; }
+  .trust-items { gap: 10px 20px; }
+  .trust-item { font-size: 12px; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1040px) {
   .finder { grid-template-columns: 1fr 1fr; }
@@ -673,10 +695,37 @@ select.control {
       <div class="proof-stat"><div class="ps-val">500+</div><div class="ps-lbl">компаний подобрали маршрут</div></div>
       <div class="proof-stat"><div class="ps-val">21</div><div class="ps-lbl">проверенных провайдеров</div></div>
       <div class="proof-stat"><div class="ps-val">110+</div><div class="ps-lbl">стран и направлений</div></div>
-      <div class="proof-stat"><div class="ps-val">от 0,3%</div><div class="ps-lbl">минимальная комиссия</div></div>
+      <div class="proof-stat"><div class="ps-val">от 0,85%</div><div class="ps-lbl">минимальная комиссия</div></div>
     </div>
   </div>
 </section>
+
+<!-- ============ TRUST STRIP ============ -->
+<div class="trust-strip">
+  <div class="wrap">
+    <div class="trust-items">
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Все агенты проверены · Валютный контроль ЦБ РФ
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Платёж от 108 минут · SWIFT T+1
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Фиксация курса ЦБ · без скрытых сборов
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        100+ юрисдикций · персональный менеджер
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ============ COMPARE ============ -->
 <section class="section" id="compare" style="padding-top: 24px;">
@@ -797,8 +846,8 @@ select.control {
   <div class="wrap">
     <div class="lead">
       <div class="lead-copy">
-        <h2>Не знаете, какой маршрут выбрать? Подберём бесплатно</h2>
-        <p>Оставьте контакты — подберём 2–3 агента под вашу сделку, рассчитаем комиссию и сроки. Без обязательств.</p>
+        <h2>Подберём агента под вашу сделку — за 15 минут</h2>
+        <p>Расскажите о платеже: страна, сумма, валюта. Пришлём 2–3 проверенных агента с точным расчётом комиссии. Без обязательств.</p>
         <div class="ll">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           Менеджер ответит в течение 1 рабочего часа
@@ -862,7 +911,7 @@ select.control {
           </svg>
           Маршрут·ВЭД
         </div>
-        <p>Независимый финансовый маркетплейс для внешнеэкономической деятельности. Помогаем найти подходящие предложения банков и платёжных агентов: сравниваем условия и подбираем безопасный маршрут платежа.</p>
+        <p>Независимый агрегатор платёжных агентов для ВЭД. Сравниваем комиссии, сроки и маршруты — подбираем проверенного агента для платежей в Китай, ОАЭ, Турцию и 110+ направлений.</p>
       </div>
       <div>
         <h5>Сервис</h5>
@@ -891,7 +940,7 @@ select.control {
       </div>
     </div>
     <div class="ftr-bottom">
-      <span>© 2026 ВЭД-Маршрут. Информация на сайте не является публичной офертой.</span>
+      <span>© 2026 МаршрутВЭД. Информация на сайте не является публичной офертой.</span>
       <span>Политика конфиденциальности · Условия использования</span>
     </div>
   </div>
