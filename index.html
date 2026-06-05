@@ -443,6 +443,8 @@ select.control {
 .feat-bullet svg { color: #16B364; flex: none; width: 16px; height: 16px; margin-top: 1px; }
 .feat-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 16px; }
 .feat-chip { font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 7px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.65); }
+.feat-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.feat-tag { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 6px; background: rgba(43,127,255,.18); color: #7EB8FF; letter-spacing: .01em; }
 .feat-live { display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 700; color: #16B364; margin-bottom: 14px; }
 .feat-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #16B364; flex: none; box-shadow: 0 0 0 0 rgba(22,179,100,.5); animation: livepulse 2s infinite; }
 @keyframes livepulse { 0%,100%{box-shadow:0 0 0 0 rgba(22,179,100,.5)} 50%{box-shadow:0 0 0 6px rgba(22,179,100,0)} }
@@ -1034,6 +1036,7 @@ window.AGENTS = [
     manager: true, currencyControl: true,
     limits: "Мин. $50 000 · без мелких платежей · без товаров двойного назначения (оружие, чипы)",
     statusText: "500+ компаний · весь мир · фиксация курса ЦБ",
+    tags: ["Лучший для Китая", "Минимальная комиссия", "День в день", "Весь мир", "Крупные сделки"],
     logoFile: "valter.svg",
     svgMark: '<path d="M14 34 L25 16 L36 34" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="16" y1="38" x2="34" y2="38" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>',
   },
@@ -1520,6 +1523,7 @@ function handleLogoError(img) {
             <span class="feat-rating-val">${a.rating}</span>
             <span class="feat-rating-cnt">${a.reviews.toLocaleString("ru-RU")} отзывов</span>
           </div>
+          ${a.tags && a.tags.length ? `<div class="feat-tags">${a.tags.map(t=>`<span class="feat-tag">${esc(t)}</span>`).join('')}</div>` : ''}
           <div class="feat-tagline">${esc(a.plan)}</div>
           <div class="feat-chips">${a.currencies.slice(0,5).map(c=>`<span class="feat-chip">${esc(c)}</span>`).join("")}${a.currencies.length > 5 ? `<span class="feat-chip">+${a.currencies.length-5}</span>` : ""}</div>
         </div>
