@@ -150,15 +150,20 @@ img { display: block; max-width: 100%; }
 }
 .hero h1 { font-size: clamp(30px, 4vw, 48px); color: #fff; margin: 0 auto 16px; max-width: 22ch; }
 .hero-sub { color: rgba(255,255,255,.85); font-size: 17px; margin: 0 auto; max-width: 520px; line-height: 1.6; }
-/* Finder embedded inside banner */
-.hero-finder-tray {
-  background: rgba(0,0,0,.15); border-top: 1px solid rgba(255,255,255,.12);
-  padding: 20px 32px 24px;
+/* Hero CTA row */
+.hero-cta-row {
+  display: flex; align-items: center; justify-content: center; gap: 18px;
+  padding: 0 24px 48px; flex-wrap: wrap;
 }
-.hero-finder-tray .finder {
-  margin: 0; border-radius: 14px;
-  box-shadow: 0 12px 40px rgba(10,30,80,.25);
+.btn-hero-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #fff; color: #1356C8; font-weight: 800; font-size: 17px;
+  padding: 16px 36px; border-radius: 14px; letter-spacing: -.01em;
+  box-shadow: 0 8px 28px rgba(10,30,80,.25);
+  transition: transform .12s, box-shadow .2s;
 }
+.btn-hero-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 36px rgba(10,30,80,.32); }
+.hero-cta-note { font-size: 13px; color: rgba(255,255,255,.65); font-weight: 600; }
 
 /* Social proof bar */
 .proof-bar {
@@ -554,7 +559,7 @@ select.control {
 }
 @media (max-width: 980px) {
   .hero-banner-copy { padding: 40px 24px 36px; }
-  .hero-finder-tray { padding: 16px 20px 20px; }
+  .hero-cta-row { padding-bottom: 36px; }
   .filters { grid-template-columns: 1fr 1fr; }
   .filters .filter-reset { grid-column: 1 / -1; }
   .steps, .cmp-cards { grid-template-columns: 1fr 1fr; }
@@ -576,8 +581,8 @@ select.control {
 @media (max-width: 720px) {
   .section { padding: 56px 0; }
   .finder { grid-template-columns: 1fr; }
-  .hero-finder-tray { padding: 14px 16px 18px; }
-  .hero-finder-tray .finder { border-radius: 12px; }
+  .hero-cta-row { gap: 12px; padding-bottom: 32px; }
+  .btn-hero-primary { font-size: 16px; padding: 14px 28px; }
   .cmp-head { display: none; }
   .cmp-row { grid-template-columns: 1fr 1fr; gap: 10px 14px; }
   .cmp-row .agent { grid-column: 1 / -1; }
@@ -673,33 +678,10 @@ select.control {
         <h1>Платёж в Китай, ОАЭ или Турцию — выберите агента за 3 минуты</h1>
         <p class="hero-sub">Честное сравнение комиссий, сроков и маршрутов. Подбор бесплатно — без звонков и обязательств.</p>
       </div>
-      <div class="hero-finder-tray">
-        <!-- Route finder bar -->
-        <form class="finder" id="finder">
-      <div class="field">
-        <label for="fFlow">Направление</label>
-        <select class="control" id="fFlow">
-          <option value="">Импорт и экспорт</option>
-          <option value="import">Импорт</option>
-          <option value="export">Экспорт</option>
-        </select>
+      <div class="hero-cta-row">
+        <a href="#compare" class="btn btn-hero-primary">Подобрать агента →</a>
+        <span class="hero-cta-note">Бесплатно · без звонков · за 3 минуты</span>
       </div>
-      <div class="field">
-        <label for="fCountry">Страна</label>
-        <select class="control" id="fCountry"><option value="">Любая</option></select>
-      </div>
-      <div class="field">
-        <label for="fCurrency">Валюта</label>
-        <select class="control" id="fCurrency"><option value="">Любая</option></select>
-      </div>
-      <div class="field">
-        <label for="fAmount">Сумма платежа, $</label>
-        <input class="control" id="fAmount" type="text" inputmode="numeric" placeholder="50 000">
-      </div>
-      <button type="submit" class="btn btn-primary">Подобрать</button>
-      <p class="finder-note">Подбор бесплатный и ни к чему не обязывает. Не передаём данные третьим лицам.</p>
-    </form>
-      </div><!-- /hero-finder-tray -->
     </div><!-- /hero-banner -->
 
     <div class="proof-bar">
@@ -1743,8 +1725,6 @@ function handleLogoError(img) {
   }
 
   function bind() {
-    fillSelect($("#fCountry"), DICT.countries);
-    fillSelect($("#fCurrency"), DICT.currencies);
     fillSelect($("#flCountry"), DICT.countries);
     fillSelect($("#flCurrency"), DICT.currencies);
 
@@ -1795,22 +1775,6 @@ function handleLogoError(img) {
       if (e.target.closest("[data-close]")) { closeModal(); return; }
     });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
-
-    /* Finder bar */
-    $("#finder").addEventListener("submit", (e) => {
-      e.preventDefault();
-      state.flow = $("#fFlow").value;
-      state.country = $("#fCountry").value;
-      state.currency = $("#fCurrency").value;
-      state.amount = parseNum($("#fAmount").value);
-      $("#flFlow").value = state.flow;
-      $("#flCountry").value = state.country;
-      $("#flCurrency").value = state.currency;
-      $("#flAmount").value = state.amount ? state.amount.toLocaleString("ru-RU") : "";
-      fillDealContext($("#leadContext"), "l");
-      render();
-      document.getElementById("compare").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
 
     /* Lead form */
     $("#leadForm").addEventListener("submit", (e) => {
