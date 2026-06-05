@@ -469,17 +469,20 @@ select.control {
 .finder-foot { font-size: 12px; color: var(--muted); margin-top: 10px; }
 
 /* ---------- Footer ---------- */
-.ftr { background: var(--ink); color: #B9C2DC; padding: 56px 0 30px; }
+.ftr {
+  background: linear-gradient(115deg, #1E5FD8 0%, #2B7FFF 52%, #57A6FF 100%);
+  color: rgba(255,255,255,.82); padding: 56px 0 30px;
+}
 .ftr-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 36px; }
 .ftr .logo { color: #fff; margin-bottom: 14px; }
-.ftr p { font-size: 14px; line-height: 1.7; max-width: 320px; }
+.ftr p { font-size: 14px; line-height: 1.7; max-width: 320px; color: rgba(255,255,255,.72); }
 .ftr h5 { color: #fff; font-size: 14px; font-weight: 800; margin-bottom: 14px; letter-spacing: .02em; }
 .ftr ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.ftr a { font-size: 14px; color: #B9C2DC; }
+.ftr a { font-size: 14px; color: rgba(255,255,255,.72); }
 .ftr a:hover { color: #fff; }
 .ftr-bottom {
-  border-top: 1px solid rgba(255,255,255,.1); margin-top: 40px; padding-top: 22px;
-  font-size: 12.5px; color: #7C88A8; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  border-top: 1px solid rgba(255,255,255,.18); margin-top: 40px; padding-top: 22px;
+  font-size: 12.5px; color: rgba(255,255,255,.5); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
 }
 
 /* ---------- Modal ---------- */
