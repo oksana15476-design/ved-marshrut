@@ -1547,9 +1547,13 @@ function handleLogoError(img) {
   const clearbit = c.dataset.clearbit;
   const src = img.src;
 
-  // png → try jpg variant
+  // png → jpg → webp chain
   if (/\/logos\/[^/?#]+\.png([?#].*)?$/.test(src)) {
     img.src = src.replace(/\.png([?#].*)?$/, '.jpg');
+    return;
+  }
+  if (/\/logos\/[^/?#]+\.jpg([?#].*)?$/.test(src)) {
+    img.src = src.replace(/\.jpg([?#].*)?$/, '.webp');
     return;
   }
 
