@@ -344,6 +344,88 @@ select.control {
 .acard-btn:hover { background: var(--brand-700); box-shadow: 0 6px 18px rgba(43,127,255,.35); }
 .acard-btn:active { transform: translateY(1px); box-shadow: none; }
 
+/* Chips rows inside card */
+.acard-chips-row { margin-bottom: 10px; }
+.acard-chips-row .al { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 5px; }
+
+/* ---------- Featured card (V ALTER) ---------- */
+.acard.is-featured {
+  grid-column: 1 / -1;
+  background: #0F1B35;
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  box-shadow: 0 20px 60px rgba(15,27,53,.45);
+  overflow: hidden;
+}
+.acard.is-featured:hover { transform: translateY(-3px); box-shadow: 0 28px 72px rgba(15,27,53,.5); }
+.acard.is-featured .acard-stripe { display: none; }
+.acard.is-featured .acard-body {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  padding: 0;
+}
+.feat-col { padding: 36px 32px; }
+.feat-col-mid { border-left: 1px solid rgba(255,255,255,.08); border-right: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); }
+.feat-rec-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--star); background: rgba(255,176,32,.12); border: 1px solid rgba(255,176,32,.25);
+  padding: 5px 12px; border-radius: 8px; margin-bottom: 18px;
+}
+.feat-rec-label svg { width: 12px; height: 12px; }
+.feat-logo-row { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.feat-logo-row .agent-logo { width: 58px; height: 58px; border-radius: 14px; flex: none; }
+.feat-name { font-size: 30px; font-weight: 800; letter-spacing: -.04em; color: #fff; line-height: 1; }
+.feat-kind { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: rgba(255,255,255,.4); margin-bottom: 4px; }
+.feat-rating { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+.feat-rating .acard-stars svg { width: 14px; height: 14px; }
+.feat-rating-val { font-size: 13.5px; font-weight: 800; color: #fff; }
+.feat-rating-cnt { font-size: 12px; color: rgba(255,255,255,.45); font-weight: 500; }
+.feat-tagline { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.55); line-height: 1.55; }
+.feat-commission {
+  display: flex; align-items: baseline; gap: 8px;
+  margin-bottom: 24px; padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.feat-commission .cv { font-size: 38px; font-weight: 800; letter-spacing: -.05em; color: #fff; }
+.feat-commission .cl { font-size: 14px; color: rgba(255,255,255,.5); font-weight: 600; }
+.feat-stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px 14px; }
+.feat-stat .fsv { font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -.02em; line-height: 1.2; }
+.feat-stat .fsl { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.42); text-transform: uppercase; letter-spacing: .04em; margin-top: 3px; }
+.feat-cta { display: flex; flex-direction: column; justify-content: space-between; }
+.feat-btn {
+  width: 100%; background: #2B7FFF; color: #fff; font-weight: 800; font-size: 17px;
+  border-radius: 13px; padding: 18px; border: none; cursor: pointer;
+  box-shadow: 0 10px 30px rgba(43,127,255,.45);
+  transition: background .15s, transform .1s, box-shadow .15s;
+}
+.feat-btn:hover { background: #145CD6; box-shadow: 0 14px 38px rgba(43,127,255,.55); }
+.feat-btn:active { transform: translateY(1px); }
+.feat-bullets { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.feat-bullet { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,.78); line-height: 1.4; }
+.feat-bullet svg { color: #16B364; flex: none; width: 16px; height: 16px; margin-top: 1px; }
+.feat-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 16px; }
+.feat-chip { font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 7px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.65); }
+@media (max-width: 980px) {
+  .acard.is-featured .acard-body { grid-template-columns: 1fr 1fr; }
+  .feat-col-mid { border-right: none; }
+  .feat-col:last-child { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px; }
+  .feat-cta { flex-direction: row; align-items: center; gap: 24px; }
+  .feat-bullets { margin-top: 0; }
+}
+@media (max-width: 720px) {
+  .acard.is-featured .acard-body { grid-template-columns: 1fr; }
+  .feat-col-mid { border-left: none; border-top: 1px solid rgba(255,255,255,.08); }
+  .feat-col:last-child { border-top: 1px solid rgba(255,255,255,.08); }
+  .feat-cta { flex-direction: column; }
+  .feat-name { font-size: 24px; }
+  .feat-commission .cv { font-size: 30px; }
+  .feat-stats-grid { grid-template-columns: 1fr 1fr; }
+}
+
 .is-hidden { display: none !important; }
 .empty { text-align: center; padding: 70px 20px; color: var(--muted); }
 .empty svg { width: 54px; height: 54px; color: var(--line); margin-bottom: 14px; }
@@ -1393,14 +1475,69 @@ window.DICT = {
     return s;
   }
 
-  function cardHTML(a) {
-    const typeLabel = a.type === "bank" ? "Банк" : "Платёжный агент";
-    const recLabel = a.recommended ? `<div class="acard-rec-label"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Выбор редакции</div>` : "";
+  function checkIcon() {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+  }
+
+  function featuredCardHTML(a) {
     return `
-    <div class="acard${a.recommended ? " is-recommended" : ""}" data-id="${a.id}">
+    <div class="acard is-recommended is-featured" data-id="${a.id}">
+      <div class="acard-body">
+        <div class="feat-col">
+          <div class="feat-rec-label"><svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Выбор редакции</div>
+          <div class="feat-logo-row">
+            <div class="acard-logo-wrap">
+              ${agentLogo(a)}
+              ${sealHTML()}
+            </div>
+            <div>
+              <div class="feat-kind">Платёжный агент</div>
+              <div class="feat-name">${esc(a.name)}</div>
+            </div>
+          </div>
+          <div class="feat-rating">
+            <div class="acard-stars">${starsHTML(a.rating)}</div>
+            <span class="feat-rating-val">${a.rating}</span>
+            <span class="feat-rating-cnt">${a.reviews.toLocaleString("ru-RU")} отзывов</span>
+          </div>
+          <div class="feat-tagline">${esc(a.plan)}</div>
+          <div class="feat-chips">${a.currencies.slice(0,5).map(c=>`<span class="feat-chip">${esc(c)}</span>`).join("")}${a.currencies.length > 5 ? `<span class="feat-chip">+${a.currencies.length-5}</span>` : ""}</div>
+        </div>
+        <div class="feat-col feat-col-mid">
+          <div class="feat-commission">
+            <span class="cv">${esc(a.commissionText)}</span>
+            <span class="cl">комиссия · всё включено</span>
+          </div>
+          <div class="feat-stats-grid">
+            <div class="feat-stat"><div class="fsv">${esc(a.termText)}</div><div class="fsl">Срок платежа</div></div>
+            <div class="feat-stat"><div class="fsv">${esc(a.minText)}</div><div class="fsl">Мин. сумма</div></div>
+            <div class="feat-stat"><div class="fsv">${esc(a.docText)}</div><div class="fsl">Срок ПД / SWIFT</div></div>
+            <div class="feat-stat"><div class="fsv">${a.countries.length}+</div><div class="fsl">Стран покрытия</div></div>
+            <div class="feat-stat"><div class="fsv">Курс ЦБ</div><div class="fsl">Фиксация курса</div></div>
+            <div class="feat-stat"><div class="fsv">${a.flow.map(f=>f==="import"?"Импорт":"Экспорт").join(" · ")}</div><div class="fsl">Направление</div></div>
+          </div>
+        </div>
+        <div class="feat-col feat-cta">
+          <div>
+            <button class="feat-btn" data-apply="${a.id}" type="button">Оставить заявку →</button>
+            <div class="feat-bullets">
+              <div class="feat-bullet">${checkIcon()} Платёж за 108 минут — быстрее любого конкурента</div>
+              <div class="feat-bullet">${checkIcon()} 0,85% всё включено — без скрытых комиссий и надбавок</div>
+              <div class="feat-bullet">${checkIcon()} Фиксация курса ЦБ РФ · 100+ юрисдикций инфраструктуры</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  function cardHTML(a) {
+    if (a.recommended) return featuredCardHTML(a);
+    const typeLabel = a.type === "bank" ? "Банк" : "Платёжный агент";
+    return `
+    <div class="acard" data-id="${a.id}">
       <div class="acard-stripe" style="background:${a.color}"></div>
       <div class="acard-body">
-        ${recLabel}
         <div class="acard-head">
           <div>
             <div class="acard-kind">${typeLabel}</div>
@@ -1424,9 +1561,16 @@ window.DICT = {
           <div class="astat"><div class="av">${esc(a.minText)}</div><div class="al">Мин. сумма</div></div>
           <div class="astat"><div class="av">${esc(a.termText)}</div><div class="al">Срок платежа</div></div>
           <div class="astat"><div class="av">${esc(a.docText)}</div><div class="al">Срок ПД / SWIFT</div></div>
-          <div class="astat"><div class="av">${a.flow.map(f => f === "import" ? "Импорт" : "Экспорт").join(" · ")}</div><div class="al">Направление</div></div>
+          <div class="astat"><div class="av">${a.flow.map(f=>f==="import"?"Импорт":"Экспорт").join(" · ")}</div><div class="al">Направление</div></div>
         </div>
-        <div class="acard-plan">${esc(a.plan)}</div>
+        <div class="acard-chips-row">
+          <div class="al">Валюты</div>
+          ${chips(a.currencies, 4)}
+        </div>
+        <div class="acard-chips-row">
+          <div class="al">Страны</div>
+          ${chips(a.countries, 3)}
+        </div>
         <button class="acard-btn" data-apply="${a.id}" type="button">Оставить заявку</button>
       </div>
     </div>`;
