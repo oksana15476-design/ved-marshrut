@@ -1545,9 +1545,16 @@ function handleLogoError(img) {
   if (!c) return;
   const id = c.dataset.agentId;
   const clearbit = c.dataset.clearbit;
+  const src = img.src;
 
-  // First fallback: try Clearbit if not already tried
-  if (clearbit && img.src.indexOf('logo.clearbit.com') === -1) {
+  // png → try jpg variant
+  if (/\/logos\/[^/?#]+\.png([?#].*)?$/.test(src)) {
+    img.src = src.replace(/\.png([?#].*)?$/, '.jpg');
+    return;
+  }
+
+  // local file failed → try Clearbit
+  if (clearbit && src.indexOf('logo.clearbit.com') === -1) {
     img.src = clearbit;
     return;
   }
