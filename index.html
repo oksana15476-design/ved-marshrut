@@ -283,7 +283,7 @@ select.control {
 .cmp-body .cmp-row { transition: background .12s; }
 .cmp-body .cmp-row:hover { background: #FBFCFE; }
 .cmp-body .cmp-row:last-child { border-bottom: none; }
-.cmp-row.is-leader { background: #F5F8FF; border-left: 3px solid #0F1B35; }
+.cmp-row.is-leader { background: #F5F8FF; border-left: 3px solid #0F1B35; scroll-margin-top: 120px; }
 .cmp-row.is-leader:hover { background: #EEF4FF; }
 .row-leader-badge {
   display: inline-flex; align-items: center; gap: 3px;
@@ -1038,7 +1038,7 @@ window.AGENTS = [
     site: "v-alter.ru", plan: "Платим по всему миру — 100% покрытие географии",
     verified: true, top: true, recommended: true, pinTop: true,
     rating: 5.0, reviews: 350,
-    commissionFrom: 0.85, commissionText: "0,85% (всё вкл.)",
+    commissionFrom: 0.85, commissionText: "0,85%", commissionSub: "всё включено",
     minAmount: 50000, minText: "от $50 000",
     termDays: 1, termText: "день в день",
     docDays: 1, docText: "от 1 часа",
@@ -1597,7 +1597,7 @@ function handleLogoError(img) {
         </div>
         <div class="acard-commission">
           <span class="cv">${esc(a.commissionText)}</span>
-          <span class="cl">комиссия</span>
+          <span class="cl">${a.commissionSub ? esc(a.commissionSub) : 'комиссия'}</span>
         </div>
         <div class="acard-stats">
           <div class="astat"><div class="av">${esc(a.minText)}</div><div class="al">Мин. сумма</div></div>
@@ -1633,7 +1633,7 @@ function handleLogoError(img) {
           </div>
         </div>
       </div>
-      <div><div class="cell-big">${esc(a.commissionText)}</div><div class="cell-sub">за перевод</div></div>
+      <div><div class="cell-big">${esc(a.commissionText)}</div><div class="cell-sub">${a.commissionSub ? esc(a.commissionSub) : 'за перевод'}</div></div>
       <div><div class="cell-big">${esc(a.minText)}</div><div class="cell-sub">мин. сумма</div></div>
       <div><div class="cell-big">${esc(a.termText)}</div><div class="cell-sub">Срок: ${esc(a.docText)}</div></div>
       <div>
