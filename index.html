@@ -283,6 +283,14 @@ select.control {
 .cmp-body .cmp-row { transition: background .12s; }
 .cmp-body .cmp-row:hover { background: #FBFCFE; }
 .cmp-body .cmp-row:last-child { border-bottom: none; }
+.cmp-row.is-leader { background: #F5F8FF; border-left: 3px solid #0F1B35; }
+.cmp-row.is-leader:hover { background: #EEF4FF; }
+.row-leader-badge {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 11px; font-weight: 800; letter-spacing: .04em;
+  background: #0F1B35; color: #FFB020;
+  padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle;
+}
 
 .agent { display: flex; align-items: center; gap: 14px; min-width: 0; }
 .agent-logo {
@@ -807,7 +815,7 @@ select.control {
     </div>
 
     <!-- Card view (default) -->
-    <div class="cmp-cards" id="cmpCards"></div>
+    <div class="cmp-cards is-hidden" id="cmpCards"></div>
 
     <p class="cmp-note">Условия (комиссии и сроки) указаны для сравнения по публичным данным на 2025–2026 и могут отличаться. Перед сделкой уточняйте актуальные тарифы у банка или платёжного агента.</p>
   </div>
@@ -1030,7 +1038,7 @@ window.AGENTS = [
     site: "v-alter.ru", plan: "Платим по всему миру — 100% покрытие географии",
     verified: true, top: true, recommended: true, pinTop: true,
     rating: 5.0, reviews: 350,
-    commissionFrom: 0.85, commissionText: "0,85% всё включено",
+    commissionFrom: 0.85, commissionText: "0,85% (всё вкл.)",
     minAmount: 50000, minText: "от $50 000",
     termDays: 1, termText: "день в день",
     docDays: 1, docText: "от 1 часа",
@@ -1612,12 +1620,13 @@ function handleLogoError(img) {
 
   function rowHTML(a) {
     const open = state.expanded.has(a.id) ? "open" : "";
+    const leaderClass = a.recommended ? "is-leader" : "";
     return `
-    <div class="cmp-row ${open}" data-id="${a.id}">
+    <div class="cmp-row ${open} ${leaderClass}" data-id="${a.id}">
       <div class="agent">
         ${agentLogo(a)}
         <div>
-          <div class="agent-name">${esc(a.name)}</div>
+          <div class="agent-name">${esc(a.name)}${a.recommended ? `<span class="row-leader-badge">★ Топ выбор</span>` : ''}</div>
           <div style="display:flex;gap:6px;margin-top:5px;flex-wrap:wrap">${badges(a)}</div>
           <div class="agent-meta">
             <span class="rating"><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>${a.rating} · ${a.reviews} отзывов</span>
