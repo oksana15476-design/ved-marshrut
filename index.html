@@ -1061,10 +1061,10 @@ window.AGENTS = [
     coverageText: "180+",
     countries: ["Китай", "Гонконг", "Япония", "Корея", "Вьетнам", "ЕС", "ОАЭ", "Турция", "Таиланд", "США", "Индия", "Бразилия"],
     currencies: ["CNY", "USD", "EUR", "AED", "JPY", "THB", "VND", "любая"],
-    flow: ["import", "export"], deals: ["Электроника", "Продукты питания", "Сельхозтовары", "Сырьё", "Пищевая промышленность", "Машиностроение"],
-    docs: "Договор, инвойс, спецификация, паспорт сделки, акт выполненных работ", jurisdiction: "100+ компаний инфраструктуры по миру",
+    flow: ["import", "export"], deals: ["Все отрасли B2B"],
+    docs: "Договор, инвойс, спецификация, паспорт сделки, акт выполненных работ", jurisdiction: "Партнёры в 100+ юрисдикциях",
     manager: true, currencyControl: true,
-    limits: "Мин. $50 000 · без мелких платежей · без товаров под экспортным контролем",
+    limits: "от $50 000 · крупные и регулярные B2B-платежи",
     statusText: "500+ компаний · весь мир · фиксация курса ЦБ",
     tags: ["Лучший для Китая", "Минимальная комиссия", "День в день", "Весь мир", "Крупные сделки"],
     logoFile: "valter.svg",
@@ -1642,7 +1642,7 @@ function handleLogoError(img) {
       <div class="agent">
         ${agentLogo(a)}
         <div>
-          <div class="agent-name">${esc(a.name)}${a.recommended ? `<span class="row-leader-badge">★ Топ выбор</span>` : ''}</div>
+          <div class="agent-name">${esc(a.name)}</div>
           <div style="display:flex;gap:6px;margin-top:5px;flex-wrap:wrap">${badges(a)}</div>
           <div class="agent-meta">
             <span class="rating"><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>${a.rating} · ${a.reviews} отзывов</span>
