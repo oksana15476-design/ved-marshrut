@@ -132,59 +132,33 @@ img { display: block; max-width: 100%; }
 .hdr-phone span { display: block; font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: .03em; }
 
 /* ---------- Hero ---------- */
-.hero { padding: 32px 0 56px; }
+.hero { padding: 28px 0 0; }
 .hero-banner {
-  position: relative; border-radius: 28px; overflow: hidden;
-  background: linear-gradient(115deg, #1E5FD8 0%, #2B7FFF 52%, #57A6FF 100%);
-  display: grid; grid-template-columns: 1.1fr .9fr; min-height: 380px;
+  border-radius: 28px; overflow: hidden;
+  background: linear-gradient(135deg, #1356C8 0%, #2177F5 55%, #4FA3FF 100%);
 }
-.hero-banner-copy { padding: 56px 56px 64px; color: #fff; align-self: center; z-index: 2; }
-.hero h1 { font-size: clamp(34px, 4.4vw, 54px); color: #fff; max-width: 14ch; }
-.hero-sub { color: rgba(255,255,255,.9); font-size: clamp(17px, 1.6vw, 20px); margin: 20px 0 0; max-width: 460px; }
-.hero-art { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 32px 24px; }
-.hero-art::after {
-  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 60px;
-  background: linear-gradient(90deg, rgba(30,95,216,.7), transparent); z-index: 1; pointer-events: none;
+.hero-banner-copy {
+  padding: 52px 24px 40px; color: #fff;
+  text-align: center; max-width: 760px; margin: 0 auto;
 }
-/* Hero payment card */
-.hpay-wrap { position: relative; width: 280px; }
-.hpay-card {
-  background: rgba(255,255,255,.13); backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,.25); border-radius: 22px;
-  padding: 22px 22px 20px; color: #fff; position: relative; z-index: 2;
-  animation: hfloat 5s ease-in-out infinite;
-  box-shadow: 0 24px 64px rgba(10,30,80,.35);
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.22);
+  border-radius: 100px; padding: 6px 16px;
+  font-size: 12px; font-weight: 700; color: rgba(255,255,255,.9);
+  text-transform: uppercase; letter-spacing: .07em; margin-bottom: 20px;
 }
-@keyframes hfloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
-.hpay-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(22,179,100,.22); border: 1px solid rgba(22,179,100,.4);
-  border-radius: 100px; padding: 5px 11px; font-size: 12px; font-weight: 700; color: #5EE8A0;
-  margin-bottom: 18px;
+.hero h1 { font-size: clamp(30px, 4vw, 48px); color: #fff; margin: 0 auto 16px; max-width: 22ch; }
+.hero-sub { color: rgba(255,255,255,.85); font-size: 17px; margin: 0 auto; max-width: 520px; line-height: 1.6; }
+/* Finder embedded inside banner */
+.hero-finder-tray {
+  background: rgba(0,0,0,.15); border-top: 1px solid rgba(255,255,255,.12);
+  padding: 20px 32px 24px;
 }
-.hpay-badge svg { width: 13px; height: 13px; }
-.hpay-route { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-.hpay-flag { font-size: 26px; line-height: 1; }
-.hpay-arrow { flex: 1; height: 1px; background: rgba(255,255,255,.25); position: relative; }
-.hpay-arrow::after { content:"→"; position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:13px; color:rgba(255,255,255,.5); }
-.hpay-amount { font-size: 36px; font-weight: 800; letter-spacing: -.04em; margin: 4px 0 2px; }
-.hpay-currency { font-size: 13px; color: rgba(255,255,255,.55); font-weight: 600; margin-bottom: 16px; }
-.hpay-row { display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,.1); padding-top: 14px; }
-.hpay-cell { flex: 1; }
-.hpay-cell:not(:last-child) { border-right: 1px solid rgba(255,255,255,.1); padding-right: 10px; margin-right: 10px; }
-.hpay-cv { font-size: 13.5px; font-weight: 800; color: #fff; }
-.hpay-cl { font-size: 10px; color: rgba(255,255,255,.42); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
-/* Floating mini cards */
-.hpay-mini {
-  position: absolute; background: rgba(255,255,255,.14); backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,.22); border-radius: 12px;
-  padding: 9px 13px; font-size: 12px; font-weight: 700; color: #fff;
-  display: flex; align-items: center; gap: 7px; white-space: nowrap;
-  box-shadow: 0 8px 24px rgba(10,30,80,.25);
+.hero-finder-tray .finder {
+  margin: 0; border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(10,30,80,.25);
 }
-.hpay-mini-1 { top: -18px; right: -30px; animation: hfloat 4.2s ease-in-out infinite .6s; }
-.hpay-mini-2 { bottom: -16px; right: -24px; animation: hfloat 5.5s ease-in-out infinite 1.2s; }
-.hpay-mini-dot { width: 7px; height: 7px; border-radius: 50%; background: #5EE8A0; flex: none; }
 
 /* Social proof bar */
 .proof-bar {
@@ -209,7 +183,7 @@ img { display: block; max-width: 100%; }
 
 /* ---------- Route finder ---------- */
 .finder {
-  position: relative; z-index: 3; margin: -36px 32px 0; background: var(--card);
+  position: relative; z-index: 3; margin: 0; background: var(--card);
   border-radius: 18px; box-shadow: var(--shadow-lg); border: 1px solid var(--line);
   padding: 16px; display: grid; grid-template-columns: 1.1fr 1fr 1fr .9fr auto; gap: 12px; align-items: end;
 }
@@ -579,10 +553,8 @@ select.control {
   .finder .btn { grid-column: 1 / -1; }
 }
 @media (max-width: 980px) {
-  .hero-banner { grid-template-columns: 1fr; min-height: 0; }
-  .hero-banner-copy { padding: 40px 32px; }
-  .hero-art { min-height: 220px; }
-  .hero-art::after { display: none; }
+  .hero-banner-copy { padding: 40px 24px 36px; }
+  .hero-finder-tray { padding: 16px 20px 20px; }
   .filters { grid-template-columns: 1fr 1fr; }
   .filters .filter-reset { grid-column: 1 / -1; }
   .steps, .cmp-cards { grid-template-columns: 1fr 1fr; }
@@ -603,7 +575,9 @@ select.control {
 }
 @media (max-width: 720px) {
   .section { padding: 56px 0; }
-  .finder { grid-template-columns: 1fr; margin: -28px 14px 0; }
+  .finder { grid-template-columns: 1fr; }
+  .hero-finder-tray { padding: 14px 16px 18px; }
+  .hero-finder-tray .finder { border-radius: 12px; }
   .cmp-head { display: none; }
   .cmp-row { grid-template-columns: 1fr 1fr; gap: 10px 14px; }
   .cmp-row .agent { grid-column: 1 / -1; }
@@ -692,41 +666,16 @@ select.control {
   <div class="wrap">
     <div class="hero-banner">
       <div class="hero-banner-copy">
-        <h1>Платёж в Китай, ОАЭ или Турцию — выберите агента за 3 минуты</h1>
-        <p class="hero-sub">17 проверенных агентов и банков для ВЭД. Честное сравнение комиссий, сроков и маршрутов. Подбор бесплатно — без звонков и обязательств.</p>
-      </div>
-      <div class="hero-art">
-        <div class="hpay-wrap">
-          <div class="hpay-card">
-            <div class="hpay-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Платёж подтверждён
-            </div>
-            <div class="hpay-route">
-              <span class="hpay-flag">🇷🇺</span>
-              <div class="hpay-arrow"></div>
-              <span class="hpay-flag">🇨🇳</span>
-            </div>
-            <div class="hpay-amount">$85 000</div>
-            <div class="hpay-currency">CNY · Китай · сегодня в 11:42</div>
-            <div class="hpay-row">
-              <div class="hpay-cell"><div class="hpay-cv">1 день</div><div class="hpay-cl">Срок</div></div>
-              <div class="hpay-cell"><div class="hpay-cv">0,85%</div><div class="hpay-cl">Комиссия</div></div>
-              <div class="hpay-cell"><div class="hpay-cv">Курс ЦБ</div><div class="hpay-cl">Без наценки</div></div>
-            </div>
-          </div>
-          <div class="hpay-mini hpay-mini-1">
-            <span class="hpay-mini-dot"></span>🇦🇪 ОАЭ · $210 000
-          </div>
-          <div class="hpay-mini hpay-mini-2">
-            <span class="hpay-mini-dot"></span>🇹🇷 Турция · $47 000
-          </div>
+        <div class="hero-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          17 проверенных агентов и банков
         </div>
+        <h1>Платёж в Китай, ОАЭ или Турцию — выберите агента за 3 минуты</h1>
+        <p class="hero-sub">Честное сравнение комиссий, сроков и маршрутов. Подбор бесплатно — без звонков и обязательств.</p>
       </div>
-    </div>
-
-    <!-- Route finder bar -->
-    <form class="finder" id="finder">
+      <div class="hero-finder-tray">
+        <!-- Route finder bar -->
+        <form class="finder" id="finder">
       <div class="field">
         <label for="fFlow">Направление</label>
         <select class="control" id="fFlow">
@@ -750,6 +699,8 @@ select.control {
       <button type="submit" class="btn btn-primary">Подобрать</button>
       <p class="finder-note">Подбор бесплатный и ни к чему не обязывает. Не передаём данные третьим лицам.</p>
     </form>
+      </div><!-- /hero-finder-tray -->
+    </div><!-- /hero-banner -->
 
     <div class="proof-bar">
       <div class="proof-stat"><div class="ps-val">500+</div><div class="ps-lbl">компаний подобрали маршрут</div></div>
