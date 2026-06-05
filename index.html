@@ -1057,8 +1057,8 @@ window.AGENTS = [
     rating: 5.0, reviews: 350,
     commissionFrom: 0.85, commissionText: "0,85% всё включено",
     minAmount: 50000, minText: "от $50 000",
-    termDays: 1, termText: "SWIFT T+1 / T+3",
-    docDays: 1, docText: "T+1",
+    termDays: 1, termText: "1–3 дня",
+    docDays: 1, docText: "1 день",
     countries: ["Китай", "Гонконг", "Япония", "Корея", "Вьетнам", "ЕС", "ОАЭ", "Турция", "Таиланд"],
     currencies: ["CNY", "USD", "EUR", "AED", "JPY", "THB", "VND", "любая"],
     flow: ["import", "export"], deals: ["Электроника", "Продукты питания", "Сельхозтовары", "Сырьё", "Пищевая промышленность", "Туроператоры"],
@@ -1191,7 +1191,7 @@ window.AGENTS = [
     rating: 4.5, reviews: 38,
     commissionFrom: 0.9, commissionText: "от 0,9%",
     minAmount: 100, minText: "от $100",
-    termDays: 1, termText: "T+0 (крипто: 30 мин)",
+    termDays: 1, termText: "в день платежа (крипто: 30 мин)",
     docDays: 2, docText: "акт + отчёт",
     countries: ["Кот-д'Ивуар", "Гонконг", "Австрия", "ОАЭ", "Китай", "ЕС"],
     currencies: ["AED", "CNY", "EUR", "USD", "ZAR", "USDT"],
@@ -1562,7 +1562,7 @@ function handleLogoError(img) {
           <div class="feat-stats-grid">
             <div class="feat-stat"><div class="fsv">${esc(a.termText)}</div><div class="fsl">Срок платежа</div></div>
             <div class="feat-stat"><div class="fsv">${esc(a.minText)}</div><div class="fsl">Мин. сумма</div></div>
-            <div class="feat-stat"><div class="fsv">${esc(a.docText)}</div><div class="fsl">Срок ПД / SWIFT</div></div>
+            <div class="feat-stat"><div class="fsv">${esc(a.docText)}</div><div class="fsl">Срок перевода</div></div>
             <div class="feat-stat"><div class="fsv">${a.countries.length}+</div><div class="fsl">Стран покрытия</div></div>
             <div class="feat-stat"><div class="fsv">Курс ЦБ</div><div class="fsl">Фиксация курса</div></div>
             <div class="feat-stat"><div class="fsv">${a.flow.map(f=>f==="import"?"Импорт":"Экспорт").join(" · ")}</div><div class="fsl">Направление</div></div>
@@ -1612,7 +1612,7 @@ function handleLogoError(img) {
         <div class="acard-stats">
           <div class="astat"><div class="av">${esc(a.minText)}</div><div class="al">Мин. сумма</div></div>
           <div class="astat"><div class="av">${esc(a.termText)}</div><div class="al">Срок платежа</div></div>
-          <div class="astat"><div class="av">${esc(a.docText)}</div><div class="al">Срок ПД / SWIFT</div></div>
+          <div class="astat"><div class="av">${esc(a.docText)}</div><div class="al">Срок перевода</div></div>
           <div class="astat"><div class="av">${a.flow.map(f=>f==="import"?"Импорт":"Экспорт").join(" · ")}</div><div class="al">Направление</div></div>
         </div>
         <div class="acard-chips-row">
@@ -1644,7 +1644,7 @@ function handleLogoError(img) {
       </div>
       <div><div class="cell-big">${esc(a.commissionText)}</div><div class="cell-sub">за перевод</div></div>
       <div><div class="cell-big">${esc(a.minText)}</div><div class="cell-sub">мин. сумма</div></div>
-      <div><div class="cell-big">${esc(a.termText)}</div><div class="cell-sub">ПД/SWIFT: ${esc(a.docText)}</div></div>
+      <div><div class="cell-big">${esc(a.termText)}</div><div class="cell-sub">Срок: ${esc(a.docText)}</div></div>
       <div>
         ${chips(a.currencies, 4)}
         <div style="margin-top:6px">${chips(a.countries, 3)}</div>
@@ -1659,7 +1659,7 @@ function handleLogoError(img) {
     </div>
     <div class="cmp-detail">
       <div class="detail-grid">
-        <div class="detail-item"><div class="dt">Срок ПД / SWIFT</div><div class="dd">${esc(a.docText)}</div></div>
+        <div class="detail-item"><div class="dt">Срок перевода</div><div class="dd">${esc(a.docText)}</div></div>
         <div class="detail-item"><div class="dt">Направление</div><div class="dd">${a.flow.map((f) => (f === "import" ? "Импорт" : "Экспорт")).join(" · ")}</div></div>
         <div class="detail-item"><div class="dt">Типы сделок</div><div class="dd">${esc(a.deals.join(", "))}</div></div>
         <div class="detail-item"><div class="dt">Документы</div><div class="dd">${esc(a.docs)}</div></div>
