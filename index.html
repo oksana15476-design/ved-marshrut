@@ -141,12 +141,50 @@ img { display: block; max-width: 100%; }
 .hero-banner-copy { padding: 56px 56px 64px; color: #fff; align-self: center; z-index: 2; }
 .hero h1 { font-size: clamp(34px, 4.4vw, 54px); color: #fff; max-width: 14ch; }
 .hero-sub { color: rgba(255,255,255,.9); font-size: clamp(17px, 1.6vw, 20px); margin: 20px 0 0; max-width: 460px; }
-.hero-art { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-art { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 32px 24px; }
 .hero-art::after {
-  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 80px;
-  background: linear-gradient(90deg, rgba(30,95,216,.6), transparent); z-index: 1; pointer-events: none;
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 60px;
+  background: linear-gradient(90deg, rgba(30,95,216,.7), transparent); z-index: 1; pointer-events: none;
 }
-.hero-art svg { width: 100%; height: 100%; max-height: 340px; }
+/* Hero payment card */
+.hpay-wrap { position: relative; width: 280px; }
+.hpay-card {
+  background: rgba(255,255,255,.13); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 22px;
+  padding: 22px 22px 20px; color: #fff; position: relative; z-index: 2;
+  animation: hfloat 5s ease-in-out infinite;
+  box-shadow: 0 24px 64px rgba(10,30,80,.35);
+}
+@keyframes hfloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+.hpay-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(22,179,100,.22); border: 1px solid rgba(22,179,100,.4);
+  border-radius: 100px; padding: 5px 11px; font-size: 12px; font-weight: 700; color: #5EE8A0;
+  margin-bottom: 18px;
+}
+.hpay-badge svg { width: 13px; height: 13px; }
+.hpay-route { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.hpay-flag { font-size: 26px; line-height: 1; }
+.hpay-arrow { flex: 1; height: 1px; background: rgba(255,255,255,.25); position: relative; }
+.hpay-arrow::after { content:"→"; position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:13px; color:rgba(255,255,255,.5); }
+.hpay-amount { font-size: 36px; font-weight: 800; letter-spacing: -.04em; margin: 4px 0 2px; }
+.hpay-currency { font-size: 13px; color: rgba(255,255,255,.55); font-weight: 600; margin-bottom: 16px; }
+.hpay-row { display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,.1); padding-top: 14px; }
+.hpay-cell { flex: 1; }
+.hpay-cell:not(:last-child) { border-right: 1px solid rgba(255,255,255,.1); padding-right: 10px; margin-right: 10px; }
+.hpay-cv { font-size: 13.5px; font-weight: 800; color: #fff; }
+.hpay-cl { font-size: 10px; color: rgba(255,255,255,.42); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
+/* Floating mini cards */
+.hpay-mini {
+  position: absolute; background: rgba(255,255,255,.14); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.22); border-radius: 12px;
+  padding: 9px 13px; font-size: 12px; font-weight: 700; color: #fff;
+  display: flex; align-items: center; gap: 7px; white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(10,30,80,.25);
+}
+.hpay-mini-1 { top: -18px; right: -30px; animation: hfloat 4.2s ease-in-out infinite .6s; }
+.hpay-mini-2 { bottom: -16px; right: -24px; animation: hfloat 5.5s ease-in-out infinite 1.2s; }
+.hpay-mini-dot { width: 7px; height: 7px; border-radius: 50%; background: #5EE8A0; flex: none; }
 
 /* Social proof bar */
 .proof-bar {
@@ -654,65 +692,36 @@ select.control {
   <div class="wrap">
     <div class="hero-banner">
       <div class="hero-banner-copy">
-        <h1>Сравните платёжных агентов для ВЭД — и выберите лучший маршрут</h1>
-        <p class="hero-sub">14 агентов и 3 банка для платежей за рубеж — Китай, ОАЭ, Турция, ЕС и ещё 110+ направлений. Комиссии от 0,85%. Подбор бесплатно, без обязательств.</p>
+        <h1>Платёж в Китай, ОАЭ или Турцию — выберите агента за 3 минуты</h1>
+        <p class="hero-sub">17 проверенных агентов и банков для ВЭД. Честное сравнение комиссий, сроков и маршрутов. Подбор бесплатно — без звонков и обязательств.</p>
       </div>
       <div class="hero-art">
-        <!-- Payment route visualization -->
-        <svg viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Flow lines -->
-          <path d="M 88 160 C 160 110 210 80 290 72" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="5 5"/>
-          <path d="M 88 160 L 290 160" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="5 5"/>
-          <path d="M 88 160 C 160 210 210 240 290 248" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="5 5"/>
-
-          <!-- Animated dots on paths -->
-          <circle r="4.5" fill="rgba(255,255,255,0.85)">
-            <animateMotion dur="3.2s" repeatCount="indefinite" begin="0s"
-              path="M 88 160 C 160 110 210 80 290 72"/>
-          </circle>
-          <circle r="4.5" fill="rgba(255,255,255,0.85)">
-            <animateMotion dur="2.6s" repeatCount="indefinite" begin="0.9s"
-              path="M 88 160 L 290 160"/>
-          </circle>
-          <circle r="4.5" fill="rgba(255,255,255,0.85)">
-            <animateMotion dur="3.6s" repeatCount="indefinite" begin="1.8s"
-              path="M 88 160 C 160 210 210 240 290 248"/>
-          </circle>
-
-          <!-- Source node: Russia -->
-          <circle cx="60" cy="160" r="48" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-          <circle cx="60" cy="160" r="34" fill="rgba(255,255,255,0.13)"/>
-          <text x="60" y="155" fill="white" font-size="14" font-weight="800" text-anchor="middle" font-family="Manrope,sans-serif" letter-spacing="-0.5">RUB</text>
-          <text x="60" y="173" fill="rgba(255,255,255,0.72)" font-size="10.5" font-weight="600" text-anchor="middle" font-family="Manrope,sans-serif">Россия</text>
-
-          <!-- Destination node: China -->
-          <circle cx="320" cy="72" r="42" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-          <circle cx="320" cy="72" r="30" fill="rgba(255,255,255,0.13)"/>
-          <text x="320" y="67" fill="white" font-size="14" font-weight="800" text-anchor="middle" font-family="Manrope,sans-serif" letter-spacing="-0.5">CNY</text>
-          <text x="320" y="85" fill="rgba(255,255,255,0.72)" font-size="10.5" font-weight="600" text-anchor="middle" font-family="Manrope,sans-serif">Китай</text>
-
-          <!-- Destination node: UAE -->
-          <circle cx="320" cy="160" r="42" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-          <circle cx="320" cy="160" r="30" fill="rgba(255,255,255,0.13)"/>
-          <text x="320" y="155" fill="white" font-size="14" font-weight="800" text-anchor="middle" font-family="Manrope,sans-serif" letter-spacing="-0.5">AED</text>
-          <text x="320" y="173" fill="rgba(255,255,255,0.72)" font-size="10.5" font-weight="600" text-anchor="middle" font-family="Manrope,sans-serif">ОАЭ</text>
-
-          <!-- Destination node: Turkey -->
-          <circle cx="320" cy="248" r="42" fill="rgba(255,255,255,0.11)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-          <circle cx="320" cy="248" r="30" fill="rgba(255,255,255,0.13)"/>
-          <text x="320" y="243" fill="white" font-size="14" font-weight="800" text-anchor="middle" font-family="Manrope,sans-serif" letter-spacing="-0.5">TRY</text>
-          <text x="320" y="261" fill="rgba(255,255,255,0.72)" font-size="10.5" font-weight="600" text-anchor="middle" font-family="Manrope,sans-serif">Турция</text>
-
-          <!-- Amount badges -->
-          <rect x="158" y="86" width="68" height="24" rx="12" fill="rgba(255,255,255,0.18)"/>
-          <text x="192" y="102" fill="white" font-size="11" font-weight="700" text-anchor="middle" font-family="Manrope,sans-serif">$50 000</text>
-
-          <rect x="168" y="144" width="54" height="24" rx="12" fill="rgba(255,255,255,0.18)"/>
-          <text x="195" y="160" fill="white" font-size="11" font-weight="700" text-anchor="middle" font-family="Manrope,sans-serif">€30 000</text>
-
-          <rect x="158" y="214" width="68" height="24" rx="12" fill="rgba(255,255,255,0.18)"/>
-          <text x="192" y="230" fill="white" font-size="11" font-weight="700" text-anchor="middle" font-family="Manrope,sans-serif">$20 000</text>
-        </svg>
+        <div class="hpay-wrap">
+          <div class="hpay-card">
+            <div class="hpay-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Платёж подтверждён
+            </div>
+            <div class="hpay-route">
+              <span class="hpay-flag">🇷🇺</span>
+              <div class="hpay-arrow"></div>
+              <span class="hpay-flag">🇨🇳</span>
+            </div>
+            <div class="hpay-amount">$85 000</div>
+            <div class="hpay-currency">CNY · Китай · сегодня в 11:42</div>
+            <div class="hpay-row">
+              <div class="hpay-cell"><div class="hpay-cv">1 день</div><div class="hpay-cl">Срок</div></div>
+              <div class="hpay-cell"><div class="hpay-cv">0,85%</div><div class="hpay-cl">Комиссия</div></div>
+              <div class="hpay-cell"><div class="hpay-cv">Курс ЦБ</div><div class="hpay-cl">Без наценки</div></div>
+            </div>
+          </div>
+          <div class="hpay-mini hpay-mini-1">
+            <span class="hpay-mini-dot"></span>🇦🇪 ОАЭ · $210 000
+          </div>
+          <div class="hpay-mini hpay-mini-2">
+            <span class="hpay-mini-dot"></span>🇹🇷 Турция · $47 000
+          </div>
+        </div>
       </div>
     </div>
 
