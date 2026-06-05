@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дизайн-ревью · МаршрутВЭД</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Manrope", sans-serif; background: #0E1117; color: #E4EAF4; font-size: 15px; line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+
+/* ── Review chrome ── */
+.review-nav {
+  position: sticky; top: 0; z-index: 200;
+  background: #0E1117; border-bottom: 1px solid #1E2535;
+  display: flex; align-items: center; gap: 0; height: 52px;
+}
+.review-nav-inner {
+  max-width: 1440px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; gap: 24px; width: 100%;
+}
+.review-title { font-size: 13px; font-weight: 700; color: #6B7A96; letter-spacing: .06em; text-transform: uppercase; margin-right: auto; }
+.rv-tab {
+  font-size: 13px; font-weight: 700; padding: 8px 18px; border-radius: 8px;
+  cursor: pointer; border: none; background: none; color: #6B7A96;
+  transition: .15s;
+}
+.rv-tab:hover { color: #E4EAF4; background: #1A2235; }
+.rv-tab.active { background: #1A2235; color: #E4EAF4; }
+.rv-badge-a { background: #3B1A1A; color: #F87171; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+.rv-badge-b { background: #0D2A1A; color: #34D399; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+
+.review-section { display: none; }
+.review-section.active { display: block; }
+
+/* ── Section labels ── */
+.rv-section-label {
+  max-width: 1440px; margin: 0 auto; padding: 40px 32px 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+.rv-section-label h2 { font-size: 22px; font-weight: 800; }
+.rv-issue-count {
+  background: #3B1A1A; color: #F87171; font-size: 12px; font-weight: 800;
+  padding: 4px 12px; border-radius: 20px;
+}
+
+/* ── Issue annotations ── */
+.rv-annotated { position: relative; }
+.rv-issue {
+  position: absolute; z-index: 50;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #EF4444; color: #fff; font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 3px rgba(239,68,68,.3), 0 4px 12px rgba(239,68,68,.4);
+  cursor: default;
+}
+.rv-issue::after {
+  content: attr(data-tip);
+  position: absolute; top: 36px; left: 50%; transform: translateX(-50%);
+  background: #1A1A2E; color: #F87171; font-size: 12px; font-weight: 600;
+  padding: 6px 12px; border-radius: 8px; white-space: nowrap;
+  border: 1px solid #3B1A1A; pointer-events: none; opacity: 0;
+  transition: opacity .2s; z-index: 100;
+}
+.rv-issue:hover::after { opacity: 1; }
+
+/* ── Audit summary panel ── */
+.audit-panel {
+  max-width: 1440px; margin: 0 auto; padding: 32px;
+}
+.audit-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.audit-item {
+  background: #141B2B; border: 1px solid #1E2B42; border-radius: 14px;
+  padding: 20px;
+}
+.audit-item .ai-num {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: #3B1A1A; color: #F87171;
+  font-size: 14px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.audit-item .ai-title { font-size: 14px; font-weight: 700; color: #E4EAF4; margin-bottom: 6px; }
+.audit-item .ai-desc { font-size: 12.5px; color: #6B7A96; line-height: 1.55; }
+.audit-item.good .ai-num { background: #0D2A1A; color: #34D399; }
+
+/* ═══════════════════════════════════════
+   VERSION A — CURRENT DESIGN (reproduced)
+   ═══════════════════════════════════════ */
+
+/* A: root variables */
+.va { --ink:#11141A; --ink-2:#3A4250; --muted:#7B8698; --line:#E7EBF1; --line-2:#F1F4F8; --bg:#EEF2F7; --card:#fff; --brand:#2B7FFF; --brand-700:#145CD6; --brand-100:#E7F0FF; --accent:#16B364; --accent-100:#E2F6EC; --accent-700:#0E9457; --star:#FFB020; --warn-100:#FFF1DE; --radius:16px; --shadow-sm:0 1px 2px rgba(17,20,26,.05),0 2px 6px rgba(17,20,26,.04); --shadow-lg:0 26px 60px rgba(17,20,26,.13); }
+.va { font-family:"Manrope",sans-serif; background: var(--bg); color: var(--ink); }
+
+.va .wrap { max-width:1240px; margin:0 auto; padding:0 24px; }
+
+/* A: header */
+.va .hdr { background:rgba(255,255,255,.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); padding:0 24px; }
+.va .hdr-inner { display:flex; align-items:center; gap:24px; height:68px; max-width:1240px; margin:0 auto; }
+.va .logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; letter-spacing:-.03em; }
+.va .logo-mark { width:30px; height:30px; background:var(--brand); border-radius:7px; display:grid; place-items:center; flex:none; }
+.va .nav-a { display:flex; gap:24px; }
+.va .nav-a a { font-size:14px; font-weight:600; color:var(--ink-2); }
+.va .hdr-right { margin-left:auto; display:flex; align-items:center; gap:14px; }
+.va .hdr-phone { font-size:15px; font-weight:800; }
+.va .hdr-phone span { display:block; font-size:10px; color:var(--muted); font-weight:600; }
+.va .btn-p { background:var(--brand); color:#fff; font-size:13px; font-weight:800; padding:9px 18px; border-radius:10px; border:none; cursor:pointer; }
+
+/* A: hero */
+.va .hero { padding:28px 0 48px; }
+.va .hero-banner { border-radius:26px; overflow:hidden; background:linear-gradient(115deg,#1E5FD8 0%,#2B7FFF 52%,#57A6FF 100%); display:grid; grid-template-columns:1.1fr .9fr; min-height:340px; position:relative; }
+.va .hero-copy { padding:50px 52px 58px; color:#fff; z-index:2; }
+.va .hero-h1 { font-size:46px; font-weight:800; letter-spacing:-.04em; line-height:1.05; max-width:13ch; }
+.va .hero-sub { font-size:17px; color:rgba(255,255,255,.88); margin-top:18px; max-width:420px; line-height:1.55; }
+.va .hero-art-col { display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.04); }
+.va .hero-art-placeholder { width:90%; aspect-ratio:4/3; background:rgba(255,255,255,.07); border-radius:16px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; }
+.va .hero-art-placeholder span { font-size:11px; font-weight:700; color:rgba(255,255,255,.4); letter-spacing:.1em; text-transform:uppercase; }
+
+/* A: finder bar */
+.va .finder-bar { margin:-32px 28px 0; background:#fff; border-radius:16px; box-shadow:var(--shadow-lg); border:1px solid var(--line); padding:14px; display:grid; grid-template-columns:1.1fr 1fr 1fr .9fr auto; gap:10px; align-items:end; position:relative; z-index:3; }
+.va .finder-bar label { font-size:11px; font-weight:700; color:var(--muted); margin-bottom:5px; display:block; }
+.va .finder-bar .ctrl { width:100%; height:48px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:14px; font-weight:600; background:#fff; }
+.va .finder-bar .btn-search { height:48px; padding:0 22px; background:var(--brand); color:#fff; font-weight:800; font-size:14px; border-radius:10px; border:none; white-space:nowrap; cursor:pointer; }
+
+/* A: proof bar */
+.va .proof-bar { display:flex; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-top:14px; box-shadow:var(--shadow-sm); }
+.va .proof-stat { flex:1; padding:12px 16px; text-align:center; border-right:1px solid var(--line); }
+.va .proof-stat:last-child { border-right:none; }
+.va .ps-val { font-size:20px; font-weight:800; letter-spacing:-.03em; }
+.va .ps-lbl { font-size:11px; color:var(--muted); font-weight:600; margin-top:2px; }
+
+/* A: trust strip */
+.va .trust-strip { background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:12px 24px; }
+.va .trust-items { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:0; }
+.va .trust-item { display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; color:var(--ink-2); }
+.va .trust-item svg { color:var(--accent); }
+.va .trust-sep { width:1px; height:24px; background:var(--line); }
+
+/* A: compare section header */
+.va .section-hd { padding:48px 24px 0; max-width:1240px; margin:0 auto; }
+.va .eyebrow { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); background:var(--brand-100); padding:6px 12px; border-radius:100px; }
+.va .section-hd h2 { font-size:38px; font-weight:800; letter-spacing:-.035em; margin:14px 0 12px; }
+.va .section-hd p { font-size:17px; color:var(--muted); max-width:600px; }
+
+/* A: cat-tabs + filters */
+.va .cat-tabs { display:inline-flex; gap:5px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:5px; box-shadow:var(--shadow-sm); margin:20px 0 14px; }
+.va .cat-tabs button { padding:10px 18px; border-radius:9px; font-weight:700; font-size:13.5px; color:var(--ink-2); border:none; background:none; cursor:pointer; }
+.va .cat-tabs button.active { background:var(--brand); color:#fff; }
+.va .filter-row { background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px; display:grid; grid-template-columns:repeat(4,1fr) auto; gap:12px; align-items:end; box-shadow:var(--shadow-sm); }
+.va .filter-row label { font-size:11px; font-weight:700; color:var(--muted); display:block; margin-bottom:4px; }
+.va .filter-row .ctrl { width:100%; height:44px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:13px; font-weight:600; }
+.va .filter-row .btn-reset { height:44px; padding:0 14px; font-size:13px; font-weight:700; color:var(--muted); border-radius:9px; border:none; background:none; cursor:pointer; }
+
+/* A: featured card */
+.va .feat-card { background:#0F1B35; border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(15,27,53,.45); display:grid; grid-template-columns:1fr 1.6fr 1fr; }
+.va .feat-col { padding:32px 28px; }
+.va .feat-col-mid { border-left:1px solid rgba(255,255,255,.08); border-right:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.02); }
+.va .feat-badge { display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#FFB020; background:rgba(255,176,32,.12); border:1px solid rgba(255,176,32,.22); padding:4px 10px; border-radius:7px; margin-bottom:16px; }
+.va .feat-logo-row { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.va .feat-logo { width:52px; height:52px; border-radius:12px; background:#1A2D4A; display:flex; align-items:center; justify-content:center; }
+.va .feat-name { font-size:26px; font-weight:800; color:#fff; letter-spacing:-.04em; }
+.va .feat-kind { font-size:10px; font-weight:700; text-transform:uppercase; color:rgba(255,255,255,.38); margin-bottom:3px; }
+.va .feat-stars { display:flex; gap:2px; margin-bottom:12px; }
+.va .feat-stars span { color:#FFB020; font-size:13px; }
+.va .feat-tagline { font-size:12px; font-weight:600; color:rgba(255,255,255,.5); line-height:1.55; }
+.va .feat-comm { font-size:34px; font-weight:800; color:#fff; letter-spacing:-.05em; margin-bottom:6px; }
+.va .feat-comm-lbl { font-size:13px; color:rgba(255,255,255,.45); font-weight:600; margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid rgba(255,255,255,.09); }
+.va .feat-stats-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px 10px; }
+.va .feat-stat-val { font-size:16px; font-weight:800; color:#fff; }
+.va .feat-stat-lbl { font-size:10px; font-weight:600; color:rgba(255,255,255,.38); text-transform:uppercase; letter-spacing:.04em; margin-top:2px; }
+.va .feat-cta-col { display:flex; flex-direction:column; justify-content:center; gap:12px; }
+.va .feat-btn { width:100%; background:#2B7FFF; color:#fff; font-weight:800; font-size:16px; padding:16px; border-radius:12px; border:none; cursor:pointer; box-shadow:0 8px 24px rgba(43,127,255,.4); }
+.va .feat-bullet { display:flex; align-items:flex-start; gap:8px; font-size:12.5px; font-weight:600; color:rgba(255,255,255,.72); line-height:1.4; }
+.va .feat-bullet-icon { color:#16B364; margin-top:1px; flex:none; }
+
+/* A: regular card */
+.va .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:16px 24px; max-width:1240px; margin:0 auto; }
+.va .acard { background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+.va .acard-stripe { height:4px; }
+.va .acard-body { padding:18px 20px 20px; }
+.va .acard-head { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:12px; }
+.va .acard-name { font-size:18px; font-weight:800; letter-spacing:-.02em; }
+.va .acard-kind { font-size:10px; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:3px; letter-spacing:.06em; }
+.va .acard-logo { width:48px; height:48px; border-radius:11px; display:grid; place-items:center; font-weight:800; font-size:15px; color:#fff; flex:none; }
+.va .acard-commission { font-size:26px; font-weight:800; letter-spacing:-.04em; margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid var(--line); }
+.va .acard-commission span { font-size:12px; color:var(--muted); font-weight:600; margin-left:4px; }
+.va .acard-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px 14px; margin-bottom:16px; }
+.va .astat-val { font-size:14px; font-weight:800; }
+.va .astat-lbl { font-size:11px; color:var(--muted); font-weight:600; margin-top:2px; }
+.va .acard-chips { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px; }
+.va .chip { font-size:11px; font-weight:700; padding:2px 7px; border-radius:6px; background:var(--line-2); color:var(--ink-2); }
+.va .acard-btn { width:100%; background:var(--brand); color:#fff; font-weight:700; font-size:14px; border-radius:9px; padding:12px; border:none; cursor:pointer; margin-top:8px; }
+
+/* A: how it works */
+.va .steps-section { background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:60px 24px; }
+.va .steps-wrap { max-width:1240px; margin:0 auto; }
+.va .steps-h2 { font-size:36px; font-weight:800; letter-spacing:-.035em; margin-bottom:28px; }
+.va .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.va .step { background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:var(--shadow-sm); }
+.va .step-num { width:36px; height:36px; border-radius:10px; background:var(--brand-100); color:var(--brand); font-size:14px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
+.va .step h4 { font-size:17px; font-weight:700; margin-bottom:7px; }
+.va .step p { font-size:13.5px; color:var(--muted); line-height:1.55; }
+
+/* ═══════════════════════════════════════
+   VERSION B — NEW CONCEPT
+   ═══════════════════════════════════════ */
+.vb { --navy:#0B1628; --navy-2:#102040; --navy-3:#162B4A; --surface:#FFFFFF; --bg:#F4F7FB; --bg-2:#EDF1F8; --ink:#0C1A2E; --ink-2:#2C3E57; --muted:#64748B; --line:#DDE3EE; --primary:#1B56D2; --primary-dark:#0F3A9A; --primary-bg:#EBF2FF; --gold:#B8860B; --gold-bg:#FFF9E6; --gold-border:#E8C96A; --success:#12A05A; --success-bg:#ECFDF5; --danger:#DC2626; --star:#F59E0B; }
+.vb { font-family:"Manrope",sans-serif; background:var(--bg); color:var(--ink); }
+
+/* B: header */
+.vb .hdr { background:var(--navy); border-bottom:1px solid rgba(255,255,255,.06); padding:0; }
+.vb .hdr-inner { max-width:1240px; margin:0 auto; padding:0 28px; display:flex; align-items:center; gap:28px; height:64px; }
+.vb .logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:19px; letter-spacing:-.03em; color:#fff; }
+.vb .logo-mark { width:32px; height:32px; background:var(--primary); border-radius:8px; display:grid; place-items:center; flex:none; }
+.vb .logo-mark svg { width:18px; height:18px; }
+.vb .nav-b { display:flex; gap:6px; margin-left:16px; }
+.vb .nav-b a { font-size:13.5px; font-weight:600; color:rgba(255,255,255,.55); padding:6px 12px; border-radius:7px; transition:.15s; }
+.vb .nav-b a:hover { color:#fff; background:rgba(255,255,255,.07); }
+.vb .hdr-right { margin-left:auto; display:flex; align-items:center; gap:12px; }
+.vb .hdr-phone-b { font-size:14px; font-weight:700; color:rgba(255,255,255,.7); }
+.vb .hdr-phone-b small { display:block; font-size:10px; color:rgba(255,255,255,.35); font-weight:500; }
+.vb .btn-primary-b { background:var(--primary); color:#fff; font-size:13px; font-weight:700; padding:9px 20px; border-radius:9px; border:none; cursor:pointer; letter-spacing:.01em; transition:.15s; }
+.vb .btn-primary-b:hover { background:var(--primary-dark); }
+.vb .btn-ghost-b { background:rgba(255,255,255,.08); color:rgba(255,255,255,.7); font-size:13px; font-weight:600; padding:9px 16px; border-radius:9px; border:1px solid rgba(255,255,255,.1); cursor:pointer; }
+
+/* B: hero */
+.vb .hero { background:var(--navy); padding:0 0 0; }
+.vb .hero-inner { max-width:1240px; margin:0 auto; padding:56px 28px 0; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; }
+.vb .hero-copy { padding-bottom:56px; }
+.vb .hero-label { display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); padding:5px 12px; border-radius:20px; margin-bottom:22px; }
+.vb .hero-label span { width:6px; height:6px; border-radius:50%; background:#34D399; display:inline-block; }
+.vb .hero-h1 { font-size:52px; font-weight:800; letter-spacing:-.04em; line-height:1.04; color:#fff; max-width:13ch; margin-bottom:18px; }
+.vb .hero-h1 em { font-style:normal; color:#5BA3FF; }
+.vb .hero-sub { font-size:17px; color:rgba(255,255,255,.6); line-height:1.6; max-width:460px; margin-bottom:28px; }
+.vb .hero-btns { display:flex; gap:10px; align-items:center; margin-bottom:36px; }
+.vb .hero-btn-main { background:var(--primary); color:#fff; font-weight:800; font-size:15px; padding:14px 28px; border-radius:11px; border:none; cursor:pointer; box-shadow:0 8px 24px rgba(27,86,210,.4); }
+.vb .hero-btn-sec { background:transparent; color:rgba(255,255,255,.6); font-weight:600; font-size:14px; padding:14px 20px; border-radius:11px; border:1px solid rgba(255,255,255,.12); cursor:pointer; }
+.vb .hero-proof { display:flex; gap:28px; }
+.vb .hproof-item { }
+.vb .hproof-val { font-size:22px; font-weight:800; color:#fff; letter-spacing:-.03em; }
+.vb .hproof-lbl { font-size:11px; color:rgba(255,255,255,.38); font-weight:600; margin-top:1px; }
+
+/* B: hero right — inline comparison preview */
+.vb .hero-preview { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:16px 16px 0 0; padding:20px; overflow:hidden; }
+.vb .hp-label { font-size:11px; font-weight:700; color:rgba(255,255,255,.35); text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px; }
+.vb .hp-row { display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:10px; margin-bottom:6px; }
+.vb .hp-row.top { background:rgba(27,86,210,.18); border:1px solid rgba(27,86,210,.25); }
+.vb .hp-row.normal { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06); }
+.vb .hp-logo { width:36px; height:36px; border-radius:8px; flex:none; display:grid; place-items:center; font-weight:800; font-size:11px; color:#fff; }
+.vb .hp-name { font-size:13px; font-weight:700; color:#fff; flex:1; }
+.vb .hp-top-badge { font-size:10px; font-weight:800; color:#F59E0B; background:rgba(245,158,11,.12); padding:2px 7px; border-radius:5px; }
+.vb .hp-comm { font-size:15px; font-weight:800; color:#fff; min-width:60px; text-align:right; }
+.vb .hp-comm small { display:block; font-size:10px; color:rgba(255,255,255,.35); font-weight:500; text-align:right; }
+.vb .hp-speed { font-size:11px; font-weight:700; color:rgba(255,255,255,.45); min-width:64px; text-align:right; }
+.vb .hp-finder { margin-top:14px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:10px 14px; display:flex; gap:8px; align-items:center; }
+.vb .hp-finder input, .vb .hp-finder select { flex:1; background:none; border:none; font-size:13px; font-weight:600; color:rgba(255,255,255,.6); font-family:"Manrope",sans-serif; outline:none; }
+.vb .hp-finder-btn { background:var(--primary); color:#fff; font-size:12px; font-weight:800; padding:7px 14px; border-radius:7px; border:none; cursor:pointer; white-space:nowrap; }
+
+/* B: spotlight (V ALTER) */
+.vb .spotlight { background:var(--navy); border-top:1px solid rgba(255,255,255,.05); padding:28px 0; }
+.vb .spotlight-inner { max-width:1240px; margin:0 auto; padding:0 28px; display:flex; align-items:center; gap:28px; }
+.vb .spotlight-badge { background:rgba(245,158,11,.1); border:1px solid rgba(245,158,11,.25); color:#F59E0B; font-size:11px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; padding:5px 12px; border-radius:8px; white-space:nowrap; }
+.vb .spot-logo { width:44px; height:44px; border-radius:10px; background:#1A2D4A; display:flex; align-items:center; justify-content:center; flex:none; border:1px solid rgba(255,255,255,.1); }
+.vb .spot-name { font-size:18px; font-weight:800; color:#fff; }
+.vb .spot-tagline { font-size:12px; color:rgba(255,255,255,.45); font-weight:600; margin-top:2px; }
+.vb .spot-stats { display:flex; gap:28px; margin-left:auto; }
+.vb .spot-stat { text-align:right; }
+.vb .spot-val { font-size:18px; font-weight:800; color:#fff; letter-spacing:-.02em; }
+.vb .spot-lbl { font-size:10px; color:rgba(255,255,255,.35); font-weight:600; text-transform:uppercase; letter-spacing:.04em; margin-top:1px; }
+.vb .spot-div { width:1px; height:36px; background:rgba(255,255,255,.08); }
+.vb .spot-bullets { display:flex; gap:16px; }
+.vb .spot-bullet { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:rgba(255,255,255,.6); white-space:nowrap; }
+.vb .spot-bullet svg { color:#34D399; flex:none; }
+.vb .spot-cta { background:var(--primary); color:#fff; font-weight:800; font-size:14px; padding:12px 22px; border-radius:10px; border:none; cursor:pointer; white-space:nowrap; box-shadow:0 6px 20px rgba(27,86,210,.35); }
+
+/* B: filter unified bar */
+.vb .filter-unified { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:0; display:flex; align-items:stretch; overflow:hidden; box-shadow:0 1px 4px rgba(12,26,46,.06); }
+.vb .fu-item { flex:1; padding:10px 16px; border-right:1px solid var(--line); }
+.vb .fu-item:last-child { border-right:none; }
+.vb .fu-item.btn-col { padding:8px; flex:0 0 auto; }
+.vb .fu-label { font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px; }
+.vb .fu-select { width:100%; border:none; background:none; font-size:13.5px; font-weight:600; color:var(--ink); font-family:"Manrope",sans-serif; outline:none; cursor:pointer; }
+.vb .fu-btn { height:100%; padding:0 22px; background:var(--primary); color:#fff; font-weight:800; font-size:14px; border-radius:8px; border:none; cursor:pointer; }
+.vb .filter-meta { display:flex; align-items:center; gap:12px; padding:10px 0; }
+.vb .result-count { font-size:14px; font-weight:700; color:var(--ink-2); }
+.vb .result-count em { color:var(--primary); font-style:normal; }
+.vb .view-tabs { display:flex; gap:2px; background:var(--bg-2); border-radius:8px; padding:3px; margin-left:auto; }
+.vb .view-tab { font-size:12px; font-weight:700; padding:5px 12px; border-radius:6px; border:none; background:none; cursor:pointer; color:var(--muted); }
+.vb .view-tab.active { background:#fff; color:var(--ink); box-shadow:0 1px 3px rgba(12,26,46,.1); }
+
+/* B: comparison table */
+.vb .cmp-table { background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+.vb .cmp-thead { display:grid; grid-template-columns:2.2fr 1fr 1fr 1.1fr 1.3fr 1.2fr; gap:0; padding:12px 20px; background:var(--bg); border-bottom:1px solid var(--line); }
+.vb .th { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); display:flex; align-items:center; gap:4px; }
+.vb .th.sortable { cursor:pointer; }
+.vb .th.sortable:hover { color:var(--primary); }
+.vb .cmp-row { display:grid; grid-template-columns:2.2fr 1fr 1fr 1.1fr 1.3fr 1.2fr; gap:0; padding:16px 20px; border-bottom:1px solid var(--line); align-items:center; transition:background .1s; }
+.vb .cmp-row:last-child { border-bottom:none; }
+.vb .cmp-row:hover { background:var(--bg); }
+.vb .cmp-row.featured { background:#EBF2FF; border-left:3px solid var(--primary); }
+.vb .agent-col { display:flex; align-items:center; gap:12px; }
+.vb .ag-logo { width:40px; height:40px; border-radius:9px; flex:none; display:grid; place-items:center; font-weight:800; font-size:13px; color:#fff; }
+.vb .ag-name { font-size:15px; font-weight:700; color:var(--ink); }
+.vb .ag-meta { font-size:11.5px; color:var(--muted); font-weight:600; margin-top:1px; display:flex; align-items:center; gap:5px; }
+.vb .verified-dot { width:6px; height:6px; border-radius:50%; background:var(--success); display:inline-block; }
+.vb .cell-val { font-size:15px; font-weight:800; color:var(--ink); }
+.vb .cell-sub { font-size:11px; color:var(--muted); font-weight:500; margin-top:1px; }
+.vb .stars-b { color:var(--star); font-size:12px; }
+.vb .cmp-btn { background:var(--primary); color:#fff; font-size:12px; font-weight:700; padding:8px 16px; border-radius:8px; border:none; cursor:pointer; white-space:nowrap; }
+.vb .cmp-btn-ghost { background:none; color:var(--primary); font-size:12px; font-weight:700; padding:8px 12px; border-radius:8px; border:1px solid var(--primary); cursor:pointer; white-space:nowrap; margin-left:4px; }
+
+/* B: card grid */
+.vb .card-grid-b { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.vb .bcard { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px 20px 20px; display:flex; flex-direction:column; transition:border-color .15s, box-shadow .15s; }
+.vb .bcard:hover { border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-bg); }
+.vb .bcard.featured { border-color:var(--primary); border-width:1.5px; }
+.vb .bcard-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:12px; }
+.vb .bcard-logo { width:44px; height:44px; border-radius:9px; display:grid; place-items:center; font-weight:800; font-size:14px; color:#fff; flex:none; }
+.vb .bcard-badges { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+.vb .bcard-badge-top { font-size:10px; font-weight:800; color:var(--gold); background:var(--gold-bg); border:1px solid var(--gold-border); padding:2px 7px; border-radius:6px; }
+.vb .bcard-badge-check { font-size:10px; font-weight:800; color:var(--success); background:var(--success-bg); padding:2px 7px; border-radius:6px; }
+.vb .bcard-name { font-size:16px; font-weight:800; letter-spacing:-.02em; margin-bottom:2px; }
+.vb .bcard-kind { font-size:10px; font-weight:700; text-transform:uppercase; color:var(--muted); letter-spacing:.06em; margin-bottom:12px; }
+.vb .bcard-comm { font-size:24px; font-weight:800; letter-spacing:-.04em; color:var(--ink); }
+.vb .bcard-comm span { font-size:12px; color:var(--muted); font-weight:500; }
+.vb .bcard-divider { height:1px; background:var(--line); margin:12px 0; }
+.vb .bcard-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px 12px; margin-bottom:12px; }
+.vb .bstat-val { font-size:13px; font-weight:700; color:var(--ink); }
+.vb .bstat-lbl { font-size:10.5px; color:var(--muted); font-weight:600; margin-top:2px; }
+.vb .bcard-chips { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:14px; }
+.vb .bchip { font-size:11px; font-weight:600; padding:2px 7px; border-radius:5px; background:var(--bg-2); color:var(--ink-2); }
+.vb .bcard-btn { width:100%; background:var(--primary); color:#fff; font-weight:700; font-size:13.5px; border-radius:9px; padding:11px; border:none; cursor:pointer; margin-top:auto; transition:.15s; }
+.vb .bcard-btn:hover { background:var(--primary-dark); }
+
+/* B: how it works */
+.vb .how-section { background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:64px 0; }
+.vb .how-inner { max-width:1240px; margin:0 auto; padding:0 28px; }
+.vb .how-h2 { font-size:34px; font-weight:800; letter-spacing:-.035em; margin-bottom:8px; }
+.vb .how-sub { font-size:16px; color:var(--muted); margin-bottom:40px; }
+.vb .steps-b { display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+.vb .steps-b::before { content:""; position:absolute; top:28px; left:10%; width:80%; height:1px; background:var(--line); z-index:0; }
+.vb .step-b { position:relative; z-index:1; padding:0 20px; }
+.vb .step-b:first-child { padding-left:0; }
+.vb .step-b:last-child { padding-right:0; }
+.vb .step-num-b { width:56px; height:56px; border-radius:14px; background:var(--surface); border:1.5px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:800; color:var(--primary); margin-bottom:18px; position:relative; }
+.vb .step-b.done .step-num-b { background:var(--primary); border-color:var(--primary); color:#fff; }
+.vb .step-h4 { font-size:16px; font-weight:700; margin-bottom:8px; }
+.vb .step-p { font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* B: lead section */
+.vb .lead-section { padding:64px 0; background:var(--bg); }
+.vb .lead-inner { max-width:1240px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+.vb .lead-left { background:var(--navy); border-radius:20px; padding:40px; color:#fff; }
+.vb .lead-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,255,255,.35); margin-bottom:14px; }
+.vb .lead-h2 { font-size:30px; font-weight:800; letter-spacing:-.04em; line-height:1.1; margin-bottom:14px; }
+.vb .lead-desc { font-size:15px; color:rgba(255,255,255,.6); line-height:1.6; margin-bottom:22px; }
+.vb .lead-bullets { display:flex; flex-direction:column; gap:10px; }
+.vb .lead-bullet { display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600; color:rgba(255,255,255,.7); }
+.vb .lead-bullet svg { color:#34D399; flex:none; }
+.vb .lead-form-b { background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:32px; }
+.vb .lead-form-b h3 { font-size:20px; font-weight:700; margin-bottom:6px; }
+.vb .lead-form-b p { font-size:14px; color:var(--muted); margin-bottom:22px; }
+.vb .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.vb .form-field { display:flex; flex-direction:column; gap:5px; }
+.vb .form-field label { font-size:12px; font-weight:700; color:var(--ink-2); }
+.vb .form-field input { height:46px; border:1.5px solid var(--line); border-radius:10px; padding:0 14px; font-size:14px; font-weight:600; font-family:"Manrope",sans-serif; color:var(--ink); outline:none; transition:.15s; }
+.vb .form-field input:focus { border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-bg); }
+.vb .form-submit { width:100%; background:var(--primary); color:#fff; font-weight:800; font-size:15px; padding:14px; border-radius:11px; border:none; cursor:pointer; margin-top:6px; }
+.vb .form-note { font-size:11.5px; color:var(--muted); margin-top:8px; text-align:center; }
+
+/* Comparison layout wrapper */
+.comparison-wrap { max-width:1440px; margin:0 auto; padding:0 32px 48px; }
+.compare-sections { display:flex; flex-direction:column; gap:6px; }
+
+/* improvement callout */
+.vb .improve-tag {
+  position:absolute; z-index:50;
+  background:#059669; color:#fff; font-size:11px; font-weight:800;
+  padding:4px 10px; border-radius:6px; letter-spacing:.04em;
+  box-shadow:0 2px 8px rgba(5,150,105,.35);
+}
+
+/* Section wrapper for annotations */
+.annotated-wrap { position:relative; margin-bottom:0; }
+
+/* Audit verdict */
+.verdict { max-width:1440px; margin:0 auto; padding:0 32px 64px; }
+.verdict h2 { font-size:24px; font-weight:800; margin-bottom:24px; color:#E4EAF4; }
+.verdict-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.verdict-col h3 { font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; margin-bottom:16px; }
+.verdict-col.bad h3 { color:#F87171; }
+.verdict-col.good h3 { color:#34D399; }
+.verdict-item { display:flex; gap:12px; padding:14px 0; border-bottom:1px solid #1E2535; }
+.verdict-item:last-child { border-bottom:none; }
+.verdict-num { font-size:12px; font-weight:800; width:22px; height:22px; border-radius:6px; display:flex; align-items:center; justify-content:center; flex:none; margin-top:1px; }
+.verdict-col.bad .verdict-num { background:#3B1A1A; color:#F87171; }
+.verdict-col.good .verdict-num { background:#0D2A1A; color:#34D399; }
+.verdict-text h4 { font-size:13.5px; font-weight:700; color:#E4EAF4; margin-bottom:3px; }
+.verdict-text p { font-size:12.5px; color:#6B7A96; line-height:1.55; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="review-nav">
+  <div class="review-nav-inner">
+    <span class="review-title">Дизайн-ревью · МаршрутВЭД</span>
+    <button class="rv-tab active" onclick="show('a',this)">Версия A — текущий <span class="rv-badge-a">8 проблем</span></button>
+    <button class="rv-tab" onclick="show('b',this)">Версия B — новый концепт <span class="rv-badge-b">Редизайн</span></button>
+    <button class="rv-tab" onclick="show('audit',this)">Аудит · Вердикт</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     VERSION A — CURRENT
+══════════════════════════════════════ -->
+<div id="tab-a" class="review-section active">
+  <div class="rv-section-label">
+    <h2 style="color:#E4EAF4">Версия A — Текущий дизайн</h2>
+    <span class="rv-issue-count">8 критичных проблем</span>
+    <span style="font-size:12.5px;color:#6B7A96;margin-left:8px">Наведите на красный кружок чтобы увидеть проблему</span>
+  </div>
+  <div class="comparison-wrap">
+
+    <!-- A: Header -->
+    <div class="annotated-wrap">
+      <div class="va">
+        <div class="hdr">
+          <div class="hdr-inner">
+            <div class="logo">
+              <div class="logo-mark">
+                <svg viewBox="0 0 32 32" fill="none" width="18" height="18"><rect width="32" height="32" rx="7" fill="#2B7FFF"/><circle cx="16" cy="16" r="8.5" stroke="white" stroke-width="1" opacity=".32"/><path d="M16 8L18.2 16L16 13.8L13.8 16Z" fill="white"/></svg>
+              </div>
+              Маршрут·ВЭД
+            </div>
+            <nav class="nav-a">
+              <a href="#">Сравнение</a>
+              <a href="#">Как это работает</a>
+              <a href="#">Контакты</a>
+            </nav>
+            <div class="hdr-right">
+              <div class="hdr-phone">+7 495 120-50-50<span>Пн–Пт, 9:00–20:00 МСК</span></div>
+              <button class="btn-p">Подобрать маршрут</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rv-issue" style="top:20px;right:260px" data-tip="Проблема 1: телефон в шапке — лишний элемент, B2B клиенты не звонят по номеру из хедера">1</div>
+    </div>
+
+    <!-- A: Hero -->
+    <div class="annotated-wrap">
+      <div class="va">
+        <div class="hero">
+          <div class="wrap">
+            <div class="hero-banner">
+              <div class="hero-copy">
+                <div class="hero-h1">Платёж за рубеж — 21 агент, честное сравнение</div>
+                <p class="hero-sub">SWIFT ограничен? Сравните комиссии, сроки и маршруты 21 проверенного агента в одной таблице — и отправьте деньги уже сегодня.</p>
+              </div>
+              <div class="hero-art-col">
+                <div class="hero-art-placeholder">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  <span>SVG-анимация маршрутов</span>
+                </div>
+              </div>
+            </div>
+            <div class="finder-bar">
+              <div><label>Направление</label><select class="ctrl"><option>Импорт и экспорт</option></select></div>
+              <div><label>Страна</label><select class="ctrl"><option>Любая</option></select></div>
+              <div><label>Валюта</label><select class="ctrl"><option>Любая</option></select></div>
+              <div><label>Сумма, $</label><input class="ctrl" placeholder="50 000"></div>
+              <button class="btn-search">Подобрать</button>
+            </div>
+            <div class="proof-bar">
+              <div class="proof-stat"><div class="ps-val">500+</div><div class="ps-lbl">компаний подобрали маршрут</div></div>
+              <div class="proof-stat"><div class="ps-val">21</div><div class="ps-lbl">проверенных провайдеров</div></div>
+              <div class="proof-stat"><div class="ps-val">110+</div><div class="ps-lbl">стран и направлений</div></div>
+              <div class="proof-stat"><div class="ps-val">от 0,85%</div><div class="ps-lbl">минимальная комиссия</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rv-issue" style="top:60px;left:50%" data-tip="Проблема 2: синий градиент в скруглённой карточке — B2C паттерн (Revolut/Тинькофф). B2B требует авторитетности, не красоты">2</div>
+      <div class="rv-issue" style="top:220px;left:36%" data-tip="Проблема 3: finder-форма висит НИЖЕ hero, оторвана. Поиск должен быть ВНУТРИ hero — это главное действие страницы">3</div>
+    </div>
+
+    <!-- A: Trust strip -->
+    <div class="annotated-wrap">
+      <div class="va">
+        <div class="trust-strip">
+          <div class="trust-items">
+            <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Все агенты проверены · Валютный контроль ЦБ РФ</div>
+            <div class="trust-sep"></div>
+            <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Платёж от 108 минут · SWIFT T+1</div>
+            <div class="trust-sep"></div>
+            <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Фиксация курса ЦБ · без скрытых сборов</div>
+            <div class="trust-sep"></div>
+            <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 100+ юрисдикций · персональный менеджер</div>
+          </div>
+        </div>
+      </div>
+      <div class="rv-issue" style="top:8px;left:44%" data-tip="Проблема 4: trust strip выглядит слабо — текст мелкий, иконки маленькие, сливается с остальным фоном. Не читается за 2 секунды">4</div>
+    </div>
+
+    <!-- A: Compare section + featured card -->
+    <div class="annotated-wrap">
+      <div class="va" style="padding-bottom:24px">
+        <div class="section-hd" style="padding-top:36px">
+          <span class="eyebrow">21 провайдер</span>
+          <h2 style="font-size:36px;font-weight:800;letter-spacing:-.035em;margin:14px 0 10px">Выберите агента или банк и сравните условия честно</h2>
+          <p style="font-size:17px;color:#7B8698;max-width:580px">Реальные комиссии, минимальные суммы, сроки и доступные страны в одной таблице.</p>
+        </div>
+        <!-- Double filter system -->
+        <div style="padding:16px 24px 0;max-width:1240px;margin:0 auto">
+          <div class="cat-tabs">
+            <button class="active">Все предложения</button>
+            <button>Платёжные агенты</button>
+            <button>Банки для ВЭД</button>
+          </div>
+          <div class="filter-row">
+            <div><label>Страна</label><select class="ctrl"><option>Все страны</option></select></div>
+            <div><label>Валюта</label><select class="ctrl"><option>Все валюты</option></select></div>
+            <div><label>Направление</label><select class="ctrl"><option>Импорт и экспорт</option></select></div>
+            <div><label>Сумма, $</label><input class="ctrl" placeholder="любая"></div>
+            <button class="btn-reset">Сбросить</button>
+          </div>
+        </div>
+        <!-- Featured card -->
+        <div style="padding:16px 24px;max-width:1240px;margin:0 auto">
+          <div class="feat-card">
+            <div class="feat-col">
+              <div class="feat-badge">★ Выбор редакции</div>
+              <div class="feat-logo-row">
+                <div class="feat-logo"><svg viewBox="0 0 50 50" fill="none" width="30" height="30"><path d="M14 34L25 16L36 34" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div><div class="feat-kind">Платёжный агент</div><div class="feat-name">V ALTER</div></div>
+              </div>
+              <div class="feat-stars"><span>★★★★★</span></div>
+              <div class="feat-tagline" style="margin-top:8px">Платёж за 108 мин · курс ЦБ · любая юрисдикция</div>
+            </div>
+            <div class="feat-col feat-col-mid">
+              <div class="feat-comm">0,85%</div>
+              <div class="feat-comm-lbl">комиссия · всё включено</div>
+              <div class="feat-stats-grid">
+                <div><div class="feat-stat-val">T+1 / T+3</div><div class="feat-stat-lbl">Срок платежа</div></div>
+                <div><div class="feat-stat-val">от $50 000</div><div class="feat-stat-lbl">Мин. сумма</div></div>
+                <div><div class="feat-stat-val">T+1</div><div class="feat-stat-lbl">ПД / SWIFT</div></div>
+                <div><div class="feat-stat-val">9+</div><div class="feat-stat-lbl">Стран</div></div>
+                <div><div class="feat-stat-val">Курс ЦБ</div><div class="feat-stat-lbl">Фиксация</div></div>
+                <div><div class="feat-stat-val">Импорт · Экспорт</div><div class="feat-stat-lbl">Направление</div></div>
+              </div>
+            </div>
+            <div class="feat-col feat-cta-col">
+              <button class="feat-btn">Оставить заявку →</button>
+              <div style="margin-top:14px;display:flex;flex-direction:column;gap:9px">
+                <div class="feat-bullet"><span class="feat-bullet-icon">✓</span> Платёж за 108 минут — быстрее любого конкурента</div>
+                <div class="feat-bullet"><span class="feat-bullet-icon">✓</span> 0,85% всё включено — без скрытых комиссий</div>
+                <div class="feat-bullet"><span class="feat-bullet-icon">✓</span> Фиксация курса ЦБ РФ · 100+ юрисдикций</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rv-issue" style="top:120px;left:300px" data-tip="Проблема 5: две системы фильтрации (табы + форма) — пользователь не знает с чего начать. Нужна одна унифицированная строка">5</div>
+      <div class="rv-issue" style="top:260px;right:32px" data-tip="Проблема 6: featured-карточка V ALTER — тёмно-синий блок внутри тёмно-синей страницы (hero). Нет контраста, визуальная каша">6</div>
+    </div>
+
+    <!-- A: Card grid sample -->
+    <div class="annotated-wrap">
+      <div class="va">
+        <div class="card-grid">
+          <!-- Card 1 -->
+          <div class="acard">
+            <div class="acard-stripe" style="background:#1565C0"></div>
+            <div class="acard-body">
+              <div class="acard-head">
+                <div><div class="acard-kind">Платёжный агент</div><div class="acard-name">EastPay</div></div>
+                <div class="acard-logo" style="background:#1565C0">EP</div>
+              </div>
+              <div class="acard-commission">от 0,35%<span>комиссия</span></div>
+              <div class="acard-stats">
+                <div><div class="astat-val">от $1 000</div><div class="astat-lbl">Мин. сумма</div></div>
+                <div><div class="astat-val">1–3 дня</div><div class="astat-lbl">Срок платежа</div></div>
+                <div><div class="astat-val">акт + инвойс</div><div class="astat-lbl">Срок ПД/SWIFT</div></div>
+                <div><div class="astat-val">Импорт · Экспорт</div><div class="astat-lbl">Направление</div></div>
+              </div>
+              <div class="acard-chips"><span class="chip">AED</span><span class="chip">CNY</span><span class="chip">EUR</span><span class="chip">+4</span></div>
+              <div class="acard-chips"><span class="chip">Китай</span><span class="chip">ОАЭ</span><span class="chip">+7</span></div>
+              <button class="acard-btn">Оставить заявку</button>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="acard">
+            <div class="acard-stripe" style="background:#1B2A4A"></div>
+            <div class="acard-body">
+              <div class="acard-head">
+                <div><div class="acard-kind">Платёжный агент</div><div class="acard-name">A7</div></div>
+                <div class="acard-logo" style="background:#1B2A4A;font-size:18px;color:#FF7A30">A7</div>
+              </div>
+              <div class="acard-commission">до 0,3%<span>+ НДС</span></div>
+              <div class="acard-stats">
+                <div><div class="astat-val">от $100</div><div class="astat-lbl">Мин. сумма</div></div>
+                <div><div class="astat-val">день в день</div><div class="astat-lbl">Срок платежа</div></div>
+                <div><div class="astat-val">в день платежа</div><div class="astat-lbl">Срок ПД/SWIFT</div></div>
+                <div><div class="astat-val">Импорт · Экспорт</div><div class="astat-lbl">Направление</div></div>
+              </div>
+              <div class="acard-chips"><span class="chip">AED</span><span class="chip">CNY</span><span class="chip">EUR</span><span class="chip">USD</span></div>
+              <div class="acard-chips"><span class="chip">Китай</span><span class="chip">ОАЭ</span><span class="chip">+6</span></div>
+              <button class="acard-btn">Оставить заявку</button>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="acard">
+            <div class="acard-stripe" style="background:#6A1B9A"></div>
+            <div class="acard-body">
+              <div class="acard-head">
+                <div><div class="acard-kind">Платёжный агент</div><div class="acard-name">DIRECTLA</div></div>
+                <div class="acard-logo" style="background:#6A1B9A;font-size:12px">DIR</div>
+              </div>
+              <div class="acard-commission">от 0,7%<span>комиссия</span></div>
+              <div class="acard-stats">
+                <div><div class="astat-val">от $100</div><div class="astat-lbl">Мин. сумма</div></div>
+                <div><div class="astat-val">1–3 дня</div><div class="astat-lbl">Срок платежа</div></div>
+                <div><div class="astat-val">акт + инвойс</div><div class="astat-lbl">Срок ПД/SWIFT</div></div>
+                <div><div class="astat-val">Импорт · Экспорт</div><div class="astat-lbl">Направление</div></div>
+              </div>
+              <div class="acard-chips"><span class="chip">AED</span><span class="chip">CNY</span><span class="chip">EUR</span><span class="chip">USDT</span></div>
+              <div class="acard-chips"><span class="chip">Мальта</span><span class="chip">ОАЭ</span><span class="chip">+4</span></div>
+              <button class="acard-btn">Оставить заявку</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rv-issue" style="top:16px;left:50%" data-tip="Проблема 7: карточки — вид по умолчанию. B2B покупатели мыслят таблицами, не каталогом. По умолчанию должна быть таблица">7</div>
+    </div>
+
+    <!-- A: Steps -->
+    <div class="annotated-wrap">
+      <div class="va">
+        <div class="steps-section">
+          <div class="steps-wrap">
+            <div class="steps-h2">Как подобрать маршрут за 4 шага</div>
+            <div class="steps">
+              <div class="step"><div class="step-num">1</div><h4>Опишите сделку</h4><p>Направление, страна, валюта и сумма. Нужна минута — система сразу покажет подходящих агентов.</p></div>
+              <div class="step"><div class="step-num">2</div><h4>Сравните условия</h4><p>Комиссии, сроки и документы по каждому агенту — честно, в одной таблице.</p></div>
+              <div class="step"><div class="step-num">3</div><h4>Оставьте заявку</h4><p>Выбрали агента — оставляете контакты. Менеджер перезванивает в течение рабочего часа.</p></div>
+              <div class="step"><div class="step-num">4</div><h4>Проводите платёж</h4><p>Агент ведёт сделку от первого документа до получения ПД и SWIFT-подтверждения.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rv-issue" style="top:50px;left:50%" data-tip="Проблема 8: 4 одинаковых белых блока — нет визуального движения, нет связи между шагами, нет иерархии. Шаги не ощущаются как прогресс">8</div>
+    </div>
+
+  </div><!-- /comparison-wrap -->
+</div><!-- /tab-a -->
+
+
+<!-- ══════════════════════════════════════
+     VERSION B — NEW CONCEPT
+══════════════════════════════════════ -->
+<div id="tab-b" class="review-section">
+  <div class="rv-section-label">
+    <h2 style="color:#E4EAF4">Версия B — Новый концепт</h2>
+    <span style="background:#0D2A1A;color:#34D399;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px">8 кардинальных изменений</span>
+  </div>
+  <div class="comparison-wrap">
+
+    <!-- B: Header -->
+    <div class="vb">
+      <div class="hdr">
+        <div class="hdr-inner">
+          <div class="logo">
+            <div class="logo-mark">
+              <svg viewBox="0 0 32 32" fill="none" width="18" height="18"><rect width="32" height="32" rx="7" fill="#1B56D2"/><circle cx="16" cy="16" r="8.5" stroke="white" stroke-width="1" opacity=".32"/><path d="M16 8L18.2 16L16 13.8L13.8 16Z" fill="white"/><path d="M16 24L18.2 16L16 18.2L13.8 16Z" fill="rgba(255,255,255,.28)"/><circle cx="16" cy="16" r="1.8" fill="white"/></svg>
+            </div>
+            Маршрут·ВЭД
+          </div>
+          <nav class="nav-b">
+            <a href="#">Сравнение</a>
+            <a href="#">Как работает</a>
+            <a href="#">Контакты</a>
+          </nav>
+          <div class="hdr-right">
+            <button class="btn-ghost-b">Войти</button>
+            <button class="btn-primary-b">Подобрать агента</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:#0B1628;color:#34D399;font-size:11px;font-weight:800;padding:4px 12px;text-transform:uppercase;letter-spacing:.07em">✓ Изменение 1 — Тёмный хедер. Телефон убран. Чистые 2 действия: войти + CTA</div>
+
+    <!-- B: Hero (full navy bleed with inline finder) -->
+    <div class="vb">
+      <div class="hero">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <div class="hero-label"><span></span>21 агент · Китай, ОАЭ, Турция, ЕС</div>
+            <div class="hero-h1">Платежи за рубеж — <em>выберите лучший маршрут</em></div>
+            <p class="hero-sub">SWIFT ограничен? Сравните 21 проверенного агента — комиссии, сроки и маршруты в одной таблице. Бесплатно, без регистрации.</p>
+            <div class="hero-btns">
+              <button class="hero-btn-main">Сравнить агентов</button>
+              <button class="hero-btn-sec">Как это работает</button>
+            </div>
+            <div class="hero-proof">
+              <div class="hproof-item"><div class="hproof-val">0,85%</div><div class="hproof-lbl">мин. комиссия</div></div>
+              <div class="hproof-item"><div class="hproof-val">108 мин</div><div class="hproof-lbl">скорость платежа</div></div>
+              <div class="hproof-item"><div class="hproof-val">500+</div><div class="hproof-lbl">компаний выбрали</div></div>
+            </div>
+          </div>
+          <!-- Right: inline comparison preview -->
+          <div class="hero-preview">
+            <div class="hp-label">Топ агентов прямо сейчас</div>
+            <div class="hp-row top">
+              <div class="hp-logo" style="background:#1A2D4A">
+                <svg viewBox="0 0 50 50" fill="none" width="22" height="22"><path d="M14 34L25 16L36 34" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div style="flex:1"><div class="hp-name">V ALTER <span class="hp-top-badge">★ Топ</span></div><div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">Платёж за 108 мин · курс ЦБ</div></div>
+              <div><div class="hp-comm">0,85%<small>всё включено</small></div></div>
+              <div class="hp-speed">108 мин</div>
+            </div>
+            <div class="hp-row normal">
+              <div class="hp-logo" style="background:#1B2A4A;font-size:14px;color:#FF7A30;font-weight:800">A7</div>
+              <div style="flex:1"><div class="hp-name">A7</div><div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">День в день · ПСБ</div></div>
+              <div><div class="hp-comm">0,3%<small>+ НДС</small></div></div>
+              <div class="hp-speed">1 день</div>
+            </div>
+            <div class="hp-row normal">
+              <div class="hp-logo" style="background:#1565C0;font-size:11px;font-weight:800">EAST</div>
+              <div style="flex:1"><div class="hp-name">EastPay</div><div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">110+ стран · крипто</div></div>
+              <div><div class="hp-comm">0,35%<small>от суммы</small></div></div>
+              <div class="hp-speed">1–3 дня</div>
+            </div>
+            <div class="hp-finder">
+              <select style="flex:1;background:none;border:none;font-size:13px;font-weight:600;color:rgba(255,255,255,.6);font-family:Manrope,sans-serif;outline:none"><option>Страна: Китай</option></select>
+              <select style="flex:1;background:none;border:none;font-size:13px;font-weight:600;color:rgba(255,255,255,.6);font-family:Manrope,sans-serif;outline:none"><option>Валюта: CNY</option></select>
+              <button class="hp-finder-btn">Подобрать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:#0B1628;color:#34D399;font-size:11px;font-weight:800;padding:4px 12px;text-transform:uppercase;letter-spacing:.07em">✓ Изменение 2 — Hero полная ширина navy. Слева: headline + proof-stats. Справа: инлайн-превью сравнения + finder прямо в hero</div>
+
+    <!-- B: Spotlight (V ALTER horizontal band) -->
+    <div class="vb">
+      <div class="spotlight">
+        <div class="spotlight-inner">
+          <span class="spotlight-badge">★ Лидер рейтинга 2026</span>
+          <div class="spot-logo">
+            <svg viewBox="0 0 50 50" fill="none" width="24" height="24"><path d="M14 34L25 16L36 34" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="spot-name">V ALTER</div>
+            <div class="spot-tagline">Платёжный агент · v-alter.ru · Проверен ЦБ РФ</div>
+          </div>
+          <div class="spot-div"></div>
+          <div class="spot-bullets">
+            <div class="spot-bullet"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>108 минут</div>
+            <div class="spot-bullet"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>0,85% включено</div>
+            <div class="spot-bullet"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Курс ЦБ</div>
+            <div class="spot-bullet"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>100+ юрисдикций</div>
+          </div>
+          <div class="spot-div"></div>
+          <div class="spot-stats">
+            <div class="spot-stat"><div class="spot-val">5.0</div><div class="spot-lbl">Рейтинг</div></div>
+            <div class="spot-stat"><div class="spot-val">350</div><div class="spot-lbl">Отзывов</div></div>
+            <div class="spot-stat"><div class="spot-val">$50K+</div><div class="spot-lbl">Мин. сумма</div></div>
+          </div>
+          <button class="spot-cta">Оставить заявку</button>
+        </div>
+      </div>
+    </div>
+    <div style="background:#0B1628;color:#34D399;font-size:11px;font-weight:800;padding:4px 12px;text-transform:uppercase;letter-spacing:.07em">✓ Изменение 3 — V ALTER не карточка в сетке. Горизонтальная полоса-спотлайт прямо под hero. Занимает всю ширину, органично в navy-теме</div>
+
+    <!-- B: Compare section (table-first) -->
+    <div class="vb" style="background:var(--bg);padding:40px 0 32px">
+      <div style="max-width:1240px;margin:0 auto;padding:0 28px">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px">
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">21 провайдер</div>
+            <div style="font-size:30px;font-weight:800;letter-spacing:-.035em;color:var(--ink)">Сравните условия в одной таблице</div>
+          </div>
+          <div style="font-size:14px;color:var(--muted);max-width:340px;text-align:right;line-height:1.55">Комиссии, сроки и маршруты. Нажмите на заголовок колонки для сортировки.</div>
+        </div>
+        <!-- Unified filter bar -->
+        <div class="filter-unified" style="margin-bottom:12px">
+          <div class="fu-item"><div class="fu-label">Тип</div><select class="fu-select"><option>Все предложения</option><option>Агенты</option><option>Банки</option></select></div>
+          <div class="fu-item"><div class="fu-label">Страна</div><select class="fu-select"><option>Любая страна</option><option>Китай</option><option>ОАЭ</option><option>Турция</option></select></div>
+          <div class="fu-item"><div class="fu-label">Валюта</div><select class="fu-select"><option>Любая валюта</option><option>CNY</option><option>USD</option><option>EUR</option></select></div>
+          <div class="fu-item"><div class="fu-label">Сумма, $</div><input type="text" placeholder="любая" style="width:100%;border:none;background:none;font-size:13.5px;font-weight:600;font-family:Manrope,sans-serif;outline:none;color:#0C1A2E"></div>
+          <div class="fu-item btn-col"><button class="fu-btn">Найти</button></div>
+        </div>
+        <div class="filter-meta">
+          <div class="result-count"><em>21</em> предложение подходит</div>
+          <div class="view-tabs" style="margin-left:auto">
+            <button class="view-tab active">Таблица</button>
+            <button class="view-tab">Карточки</button>
+          </div>
+        </div>
+        <!-- Table -->
+        <div class="cmp-table">
+          <div class="cmp-thead">
+            <div class="th">Провайдер</div>
+            <div class="th sortable">Комиссия ↕</div>
+            <div class="th sortable">Мин. сумма ↕</div>
+            <div class="th sortable">Срок платежа ↕</div>
+            <div class="th">Валюты / Страны</div>
+            <div class="th"></div>
+          </div>
+          <!-- Featured row -->
+          <div class="cmp-row featured">
+            <div class="agent-col">
+              <div class="ag-logo" style="background:#0F1B35">
+                <svg viewBox="0 0 50 50" fill="none" width="22" height="22"><path d="M14 34L25 16L36 34" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <div class="ag-name">V ALTER <span style="background:#EBF2FF;color:#1B56D2;font-size:10px;font-weight:800;padding:2px 7px;border-radius:5px;margin-left:4px">★ Лидер</span></div>
+                <div class="ag-meta"><span class="verified-dot"></span> Проверен ЦБ РФ · 5.0 ★ · 350 отзывов</div>
+              </div>
+            </div>
+            <div><div class="cell-val">0,85%</div><div class="cell-sub">всё включено</div></div>
+            <div><div class="cell-val">$50 000</div><div class="cell-sub">минимум</div></div>
+            <div><div class="cell-val">108 минут</div><div class="cell-sub">SWIFT T+1/T+3</div></div>
+            <div><div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">CNY</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">USD</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">EUR</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">+5</span></div><div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:4px"><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">Китай</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">ОАЭ</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">+7</span></div></div>
+            <div style="display:flex;gap:6px"><button class="cmp-btn">Заявка</button><button class="cmp-btn-ghost">Детали</button></div>
+          </div>
+          <div class="cmp-row">
+            <div class="agent-col">
+              <div class="ag-logo" style="background:#1B2A4A;color:#FF7A30;font-size:14px;font-weight:800">A7</div>
+              <div>
+                <div class="ag-name">A7</div>
+                <div class="ag-meta"><span class="verified-dot"></span> Учреждён с ПАО ПСБ · 5.0 ★</div>
+              </div>
+            </div>
+            <div><div class="cell-val">0,3%</div><div class="cell-sub">+ НДС</div></div>
+            <div><div class="cell-val">$100</div><div class="cell-sub">минимум</div></div>
+            <div><div class="cell-val">день в день</div><div class="cell-sub">в день платежа</div></div>
+            <div><div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">AED</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">CNY</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">EUR</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">+3</span></div></div>
+            <div style="display:flex;gap:6px"><button class="cmp-btn">Заявка</button><button class="cmp-btn-ghost">Детали</button></div>
+          </div>
+          <div class="cmp-row">
+            <div class="agent-col">
+              <div class="ag-logo" style="background:#1565C0;font-size:11px;font-weight:800">EAST</div>
+              <div>
+                <div class="ag-name">EastPay</div>
+                <div class="ag-meta"><span class="verified-dot"></span> Проверен · 4.9 ★ · 42 отзыва</div>
+              </div>
+            </div>
+            <div><div class="cell-val">0,35%</div><div class="cell-sub">от суммы</div></div>
+            <div><div class="cell-val">$1 000</div><div class="cell-sub">минимум</div></div>
+            <div><div class="cell-val">1–3 дня</div><div class="cell-sub">акт + инвойс</div></div>
+            <div><div style="display:flex;flex-wrap:wrap;gap:3px"><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">AED</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">CNY</span><span style="font-size:11px;background:#EDF1F8;color:#2C3E57;padding:2px 6px;border-radius:5px;font-weight:600">+5</span></div></div>
+            <div style="display:flex;gap:6px"><button class="cmp-btn">Заявка</button><button class="cmp-btn-ghost">Детали</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:#0B1628;color:#34D399;font-size:11px;font-weight:800;padding:4px 12px;text-transform:uppercase;letter-spacing:.07em">✓ Изменения 4+5 — Единая строка фильтров. Таблица по умолчанию (не карточки). V ALTER выделен строкой с акцентом</div>
+
+    <!-- B: Cards (secondary view) -->
+    <div class="vb" style="background:var(--bg);padding:8px 0 32px">
+      <div style="max-width:1240px;margin:0 auto;padding:0 28px">
+        <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:.06em">Вид карточек (вторичный режим)</div>
+        <div class="card-grid-b">
+          <div class="bcard">
+            <div class="bcard-head">
+              <div class="bcard-logo" style="background:#1565C0">EP</div>
+              <div class="bcard-badges"><span class="bcard-badge-check">✓ Проверен</span></div>
+            </div>
+            <div class="bcard-kind">Платёжный агент</div>
+            <div class="bcard-name">EastPay</div>
+            <div class="bcard-comm">0,35% <span>комиссия</span></div>
+            <div class="bcard-divider"></div>
+            <div class="bcard-stats">
+              <div><div class="bstat-val">от $1 000</div><div class="bstat-lbl">Мин. сумма</div></div>
+              <div><div class="bstat-val">1–3 дня</div><div class="bstat-lbl">Срок платежа</div></div>
+              <div><div class="bstat-val">акт + инвойс</div><div class="bstat-lbl">ПД / SWIFT</div></div>
+              <div><div class="bstat-val">Импорт · Экспорт</div><div class="bstat-lbl">Направление</div></div>
+            </div>
+            <div class="bcard-chips"><span class="bchip">AED</span><span class="bchip">CNY</span><span class="bchip">EUR</span><span class="bchip">+4</span></div>
+            <button class="bcard-btn">Оставить заявку</button>
+          </div>
+          <div class="bcard featured">
+            <div class="bcard-head">
+              <div class="bcard-logo" style="background:#1B2A4A;color:#FF7A30;font-size:16px;font-weight:800">A7</div>
+              <div class="bcard-badges"><span class="bcard-badge-top">★ Топ выбор</span></div>
+            </div>
+            <div class="bcard-kind">Платёжный агент</div>
+            <div class="bcard-name">A7</div>
+            <div class="bcard-comm">0,3% <span>+ НДС</span></div>
+            <div class="bcard-divider"></div>
+            <div class="bcard-stats">
+              <div><div class="bstat-val">от $100</div><div class="bstat-lbl">Мин. сумма</div></div>
+              <div><div class="bstat-val">день в день</div><div class="bstat-lbl">Срок платежа</div></div>
+              <div><div class="bstat-val">в день</div><div class="bstat-lbl">ПД / SWIFT</div></div>
+              <div><div class="bstat-val">Импорт · Экспорт</div><div class="bstat-lbl">Направление</div></div>
+            </div>
+            <div class="bcard-chips"><span class="bchip">AED</span><span class="bchip">CNY</span><span class="bchip">EUR</span><span class="bchip">USD</span></div>
+            <button class="bcard-btn">Оставить заявку</button>
+          </div>
+          <div class="bcard">
+            <div class="bcard-head">
+              <div class="bcard-logo" style="background:#6A1B9A;font-size:11px">DIR</div>
+              <div class="bcard-badges"><span class="bcard-badge-check">✓ Проверен</span></div>
+            </div>
+            <div class="bcard-kind">Платёжный агент</div>
+            <div class="bcard-name">DIRECTLA</div>
+            <div class="bcard-comm">0,7% <span>комиссия</span></div>
+            <div class="bcard-divider"></div>
+            <div class="bcard-stats">
+              <div><div class="bstat-val">от $100</div><div class="bstat-lbl">Мин. сумма</div></div>
+              <div><div class="bstat-val">1–3 дня</div><div class="bstat-lbl">Срок платежа</div></div>
+              <div><div class="bstat-val">акт + инвойс</div><div class="bstat-lbl">ПД / SWIFT</div></div>
+              <div><div class="bstat-val">Импорт · Экспорт</div><div class="bstat-lbl">Направление</div></div>
+            </div>
+            <div class="bcard-chips"><span class="bchip">AED</span><span class="bchip">CNY</span><span class="bchip">USDT</span></div>
+            <button class="bcard-btn">Оставить заявку</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:#0B1628;color:#34D399;font-size:11px;font-weight:800;padding:4px 12px;text-transform:uppercase;letter-spacing:.07em">✓ Изменение 6 — Карточки: нет цветной полоски, нет теней, граница вместо тени. Чище, информативнее</div>
+
+    <!-- B: How it works (connected steps) -->
+    <div class="vb">
+      <div class="how-section">
+        <div class="how-inner">
+          <div class="how-h2">Как подобрать маршрут</div>
+          <div class="how-sub">4 шага от запроса до отправки платежа</div>
+          <div class="steps-b">
+            <div class="step-b done">
+              <div class="step-num-b">✓</div>
+              <div class="step-h4">Опишите сделку</div>
+              <p class="step-p">Страна, валюта и сумма — займёт 30 секунд. Фильтр сразу покажет подходящих агентов.</p>
+            </div>
+            <div class="step-b">
+              <div class="step-num-b" style="color:var(--primary);font-weight:800">2</div>
+              <div class="step-h4">Сравните условия</div>
+              <p class="step-p">Комиссии, сроки и документы в одной таблице. Сортируйте по любому параметру.</p>
+            </div>
+            <div class="step-b">
+              <div class="step-num-b" style="color:var(--primary);font-weight:800">3</div>
+              <div class="step-h4">Оставьте заявку</div>
+              <p class="step-p">Телефон и имя — менеджер перезвонит в течение часа с расчётом по сделке.</p>
+            </div>
+            <div class="step-b">
+              <div class="step-num-b" style="color:var(--primary);font-weight:800">4</div>
+              <div class="step-h4">Платёж ушёл</div>
+              <p class="step-p">Агент ведёт от первого документа до SWIFT-подтверждения. ПД у вас в тот же день.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:#0B1628;color:#34D399;font-size:11px;font-weight:800;padding:4px 12px;text-transform:uppercase;letter-spacing:.07em">✓ Изменение 7 — Шаги соединены горизонтальной линией. Шаг 1 помечен как выполненный. Визуальный прогресс очевиден</div>
+
+    <!-- B: Lead form -->
+    <div class="vb">
+      <div class="lead-section">
+        <div class="lead-inner">
+          <div class="lead-left">
+            <div class="lead-eyebrow">Бесплатный подбор</div>
+            <div class="lead-h2">Подберём агента под вашу сделку — за 15 минут</div>
+            <p class="lead-desc">Расскажите о платеже: страна, сумма, валюта. Пришлём 2–3 проверенных агента с точным расчётом комиссии.</p>
+            <div class="lead-bullets">
+              <div class="lead-bullet"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Ответ в течение 1 рабочего часа</div>
+              <div class="lead-bullet"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Только агенты с валютным контролем</div>
+              <div class="lead-bullet"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Без обязательств и скрытых условий</div>
+            </div>
+          </div>
+          <div class="lead-form-b">
+            <h3>Получить подборку агентов</h3>
+            <p>Заполните 2 поля — остальное уточним по телефону</p>
+            <div class="form-row">
+              <div class="form-field"><label>Имя</label><input type="text" placeholder="Иван"></div>
+              <div class="form-field"><label>Телефон</label><input type="tel" placeholder="+7 (___) ___-__-__"></div>
+            </div>
+            <button class="form-submit">Получить подборку бесплатно</button>
+            <div class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой данных</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:#0B1628;color:#34D399;font-size:11px;font-weight:800;padding:4px 12px;text-transform:uppercase;letter-spacing:.07em">✓ Изменение 8 — Форма: 4 поля → 2. Левая часть — карточка navy (не просто текст). Кнопка: конкретное обещание, не просто "Отправить"</div>
+
+  </div><!-- /comparison-wrap -->
+</div><!-- /tab-b -->
+
+
+<!-- ══════════════════════════════════════
+     AUDIT TAB
+══════════════════════════════════════ -->
+<div id="tab-audit" class="review-section">
+  <div class="rv-section-label" style="padding-bottom:32px">
+    <h2 style="color:#E4EAF4">Аудит · Вердикт эксперта</h2>
+  </div>
+  <div class="verdict">
+    <div class="verdict-grid">
+      <div class="verdict-col bad">
+        <h3>8 Критичных проблем (Версия A)</h3>
+        <div class="verdict-item"><div class="verdict-num">1</div><div class="verdict-text"><h4>Hero — B2C паттерн в B2B контексте</h4><p>Синий градиент в скруглённой карточке — это дизайн Revolut и Тинькофф. CFO и импортёры воспринимают его как потребительский продукт. B2B требует тёмного, авторитетного фона и конкретных данных, не иллюстраций.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">2</div><div class="verdict-text"><h4>Поиск/Finder оторван от Hero</h4><p>Форма подбора висит ниже hero как «футер баннера». Главное действие страницы должно быть ВНУТРИ hero — пользователь должен увидеть его в первые 2 секунды без скролла.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">3</div><div class="verdict-text"><h4>Двойная система фильтрации</h4><p>Табы (Все / Агенты / Банки) + 4-колоночная форма фильтров = два разных паттерна рядом. Пользователь не понимает с чего начать. Нужна одна унифицированная строка.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">4</div><div class="verdict-text"><h4>V ALTER featured card — визуальная каша</h4><p>Тёмно-синяя карточка расположена сразу после тёмно-синего trust strip и синих кнопок. Нет контраста. Карточка «тонет» на странице вместо того чтобы выделяться.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">5</div><div class="verdict-text"><h4>Карточки как дефолтный вид</h4><p>B2B покупатели мыслят таблицами, а не галереями. Карточки — это Amazon и App Store. Для сравнения финансовых условий нужна таблица с сортировкой. Карточки — опциональный вид.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">6</div><div class="verdict-text"><h4>Типографика: 800 везде</h4><p>font-weight: 800 используется для заголовков, подписей, кнопок, меток, бейджей. Нет иерархии — глаз не знает за что «держаться». Нужно: 800 только для display/H1/H2, остальное 600 и 500.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">7</div><div class="verdict-text"><h4>Шаги — 4 одинаковых острова</h4><p>Четыре белые карточки с синими цифрами. Нет визуального прогресса, нет связи между ними. Пользователь не ощущает «путь» — просто 4 блока с текстом.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">8</div><div class="verdict-text"><h4>Форма: 4 поля = слишком много трения</h4><p>Имя + Телефон + Telegram + Компания/ИНН — это допрос, не лид-форма. Для первого контакта достаточно телефона и имени. Всё остальное уточняется при звонке.</p></div></div>
+      </div>
+      <div class="verdict-col good">
+        <h3>8 Решений (Версия B)</h3>
+        <div class="verdict-item"><div class="verdict-num">1</div><div class="verdict-text"><h4>Полная navy-тема от хедера до сгиба</h4><p>Header + Hero — единый тёмно-синий блок. Ниже — светлый фон. Это «Above the fold» с авторитетом финансового сервиса. Паттерн: Bloomberg, Refinitiv, SAP.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">2</div><div class="verdict-text"><h4>Finder + preview прямо в Hero</h4><p>Правая колонка hero показывает мини-таблицу топ-агентов с финдером снизу. Пользователь сразу видит результат ещё до взаимодействия. Паттерн: Google Flights, Kayak.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">3</div><div class="verdict-text"><h4>V ALTER — горизонтальная «spotlight» полоса</h4><p>Прямо под hero, в той же navy-теме. Занимает всю ширину. Выглядит как «закреплённый выбор от команды», а не как рекламный баннер. Органично, не навязчиво.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">4</div><div class="verdict-text"><h4>Единая строка фильтров</h4><p>Один горизонтальный бар: Тип | Страна | Валюта | Сумма | [Найти]. Компактно, понятно, один паттерн взаимодействия. Паттерн: Booking.com search bar.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">5</div><div class="verdict-text"><h4>Таблица по умолчанию, карточки опционально</h4><p>Таблица с сортируемыми колонками = как Excel для B2B. V ALTER выделен синей подсветкой строки. Карточки доступны по кнопке, но не дефолт.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">6</div><div class="verdict-text"><h4>Карточки: нет полоски, нет теней — только граница</h4><p>Плоский дизайн с hover-эффектом через border. Читаемее, современнее, лучше масштабируется. Все карточки идентичны по структуре — честное сравнение.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">7</div><div class="verdict-text"><h4>Шаги соединены линией, первый — выполнен</h4><p>Горизонтальная линия между шагами создаёт прогресс. Шаг 1 помечен как «выполненный» (пользователь уже открыл сайт = сделал шаг). Психологически снижает барьер.</p></div></div>
+        <div class="verdict-item"><div class="verdict-num">8</div><div class="verdict-text"><h4>Форма: 2 поля, конкретная CTA</h4><p>Только Имя + Телефон. Кнопка «Получить подборку бесплатно» — обещание конкретного результата, а не просто «Отправить». Конверсия будет выше.</p></div></div>
+      </div>
+    </div>
+    <div style="margin-top:40px;background:#141B2B;border:1px solid #1E2B42;border-radius:16px;padding:28px">
+      <div style="font-size:18px;font-weight:800;color:#E4EAF4;margin-bottom:12px">Итоговое заключение</div>
+      <p style="font-size:14.5px;color:#6B7A96;line-height:1.7;max-width:800px">Текущий дизайн функционален, но ориентирован на B2C паттерны. Основная проблема — <strong style="color:#F87171">несоответствие между аудиторией (CFO, импортёры, финдиры) и визуальным языком (ярко, градиентно, карточки как каталог)</strong>. Версия B решает это через тёмную авторитетную тему, таблицу как основной инструмент сравнения, упрощённый путь к конверсии и правильное позиционирование V ALTER как горизонтального спотлайта.</p>
+      <div style="margin-top:20px;display:flex;gap:24px;flex-wrap:wrap">
+        <div style="background:#0D2A1A;border:1px solid rgba(52,211,153,.15);border-radius:10px;padding:14px 20px">
+          <div style="font-size:12px;font-weight:700;color:#34D399;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Реализовать немедленно</div>
+          <div style="font-size:13px;color:#6B7A96;line-height:1.6">Navy hero · Таблица дефолт · Единый фильтр · V ALTER spotlight · Форма 2 поля</div>
+        </div>
+        <div style="background:#1A1A0D;border:1px solid rgba(245,158,11,.15);border-radius:10px;padding:14px 20px">
+          <div style="font-size:12px;font-weight:700;color:#F59E0B;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Следующий этап</div>
+          <div style="font-size:13px;color:#6B7A96;line-height:1.6">Типографическая иерархия · Шаги с прогрессом · Мобильная адаптация</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(tab, el) {
+  document.querySelectorAll('.review-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.rv-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
