@@ -1,56 +1,76 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0F1B35"/>
-      <stop offset="1" stop-color="#162442"/>
+      <stop offset="0" stop-color="#071F6E"/>
+      <stop offset="0.5" stop-color="#0F3FB5"/>
+      <stop offset="1" stop-color="#2B7FFF"/>
     </linearGradient>
-    <linearGradient id="panel" x1="780" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0F1B35" stop-opacity="0"/>
-      <stop offset="1" stop-color="#1a3260" stop-opacity=".9"/>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="rgba(255,255,255,0.08)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.03)"/>
     </linearGradient>
   </defs>
+
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect x="760" y="0" width="440" height="630" fill="url(#panel)"/>
-  <!-- Decorative circles right -->
-  <circle cx="980" cy="315" r="220" stroke="rgba(43,127,255,.12)" stroke-width="1.5" fill="none"/>
-  <circle cx="980" cy="315" r="160" stroke="rgba(43,127,255,.08)" stroke-width="1" fill="none"/>
-  <!-- Compass decoration right -->
-  <circle cx="980" cy="315" r="90" stroke="rgba(43,127,255,.2)" stroke-width="1.5" fill="none"/>
-  <path d="M980 228 L985 315 L980 303 L975 315 Z" fill="white" opacity=".85"/>
-  <path d="M980 402 L985 315 L980 327 L975 315 Z" fill="rgba(255,255,255,.25)"/>
-  <circle cx="980" cy="315" r="7" fill="white" opacity=".6"/>
-  <text x="980" y="214" font-family="Manrope,Arial,sans-serif" font-size="14" font-weight="800" fill="rgba(43,127,255,.8)" text-anchor="middle">N</text>
+
+  <!-- Decorative rings top-right -->
+  <circle cx="1100" cy="-20" r="360" stroke="rgba(255,255,255,.07)" stroke-width="1.5" fill="none"/>
+  <circle cx="1100" cy="-20" r="260" stroke="rgba(255,255,255,.06)" stroke-width="1" fill="none"/>
+  <circle cx="1100" cy="-20" r="160" stroke="rgba(255,255,255,.05)" stroke-width="1" fill="none"/>
+  <!-- Ring bottom-left -->
+  <circle cx="-40" cy="660" r="280" stroke="rgba(255,255,255,.05)" stroke-width="1" fill="none"/>
+
+  <!-- Route lines -->
+  <path d="M 80 520 C 280 340 520 420 760 260" stroke="rgba(255,255,255,.09)" stroke-width="1.2" stroke-dasharray="5 9" fill="none"/>
+  <path d="M 160 560 C 400 320 680 400 980 180" stroke="rgba(255,255,255,.07)" stroke-width="1" stroke-dasharray="4 8" fill="none"/>
+
+  <!-- Node dots -->
+  <circle cx="80" cy="520" r="4" fill="rgba(255,255,255,.2)"/>
+  <circle cx="760" cy="260" r="4" fill="rgba(255,255,255,.2)"/>
+  <circle cx="760" cy="260" r="14" fill="rgba(255,255,255,.07)"/>
+  <circle cx="980" cy="180" r="3" fill="rgba(255,255,255,.15)"/>
+
   <!-- Logo mark -->
-  <rect x="64" y="54" width="60" height="60" rx="14" fill="#2B7FFF"/>
-  <circle cx="94" cy="84" r="18" stroke="white" stroke-width="1.2" fill="none" opacity=".35"/>
-  <path d="M94 68 L97 84 L94 80.5 L91 84 Z" fill="white"/>
-  <path d="M94 100 L97 84 L94 87.5 L91 84 Z" fill="rgba(255,255,255,.28)"/>
-  <circle cx="94" cy="84" r="2.5" fill="white"/>
+  <rect x="64" y="56" width="52" height="52" rx="12" fill="#0F1B35"/>
+  <path d="M76 88 L76 75 Q76 74 77 74 L103 74 Q104 74 104 75 L104 88" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <line x1="72" y1="88" x2="108" y2="88" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="72" y1="88" x2="72" y2="93" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="108" y1="88" x2="108" y2="93" stroke="white" stroke-width="2" stroke-linecap="round"/>
+
   <!-- Brand name -->
-  <text x="140" y="78" font-family="Manrope,Arial,sans-serif" font-size="34" font-weight="800" fill="white" letter-spacing="-0.5">МаршрутВЭД</text>
-  <text x="140" y="103" font-family="Manrope,Arial,sans-serif" font-size="14" font-weight="600" fill="rgba(255,255,255,.4)" letter-spacing="2">АГРЕГАТОР ПЛАТЁЖНЫХ АГЕНТОВ</text>
+  <text x="128" y="82" font-family="Manrope,Arial,sans-serif" font-size="32" font-weight="800" fill="white" letter-spacing="0.5">Дом</text>
+  <text x="186" y="82" font-family="Manrope,Arial,sans-serif" font-size="32" font-weight="800" fill="#7EB8FF" letter-spacing="0.5"> ВЭД</text>
+  <text x="128" y="100" font-family="Manrope,Arial,sans-serif" font-size="13" font-weight="600" fill="rgba(255,255,255,.35)" letter-spacing="2">АГРЕГАТОР ПЛАТЁЖНЫХ АГЕНТОВ</text>
+
   <!-- Main headline -->
-  <text x="64" y="220" font-family="Manrope,Arial,sans-serif" font-size="62" font-weight="800" fill="white" letter-spacing="-2">Платёж за рубеж —</text>
-  <text x="64" y="296" font-family="Manrope,Arial,sans-serif" font-size="62" font-weight="800" fill="#2B7FFF" letter-spacing="-2">честное сравнение</text>
+  <text x="64" y="210" font-family="Manrope,Arial,sans-serif" font-size="66" font-weight="800" fill="white" letter-spacing="-2">Платёж за рубеж —</text>
+  <text x="64" y="290" font-family="Manrope,Arial,sans-serif" font-size="66" font-weight="800" fill="#7EB8FF" letter-spacing="-2">честное сравнение</text>
+
   <!-- Sub -->
-  <text x="64" y="356" font-family="Manrope,Arial,sans-serif" font-size="22" font-weight="600" fill="rgba(255,255,255,.6)">Комиссии, сроки и маршруты в одной таблице</text>
-  <!-- Stats bar -->
-  <rect x="64" y="412" width="660" height="112" rx="16" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-  <text x="112" y="458" font-family="Manrope,Arial,sans-serif" font-size="34" font-weight="800" fill="white">0,85%</text>
-  <text x="112" y="488" font-family="Manrope,Arial,sans-serif" font-size="13" font-weight="600" fill="rgba(255,255,255,.45)" letter-spacing=".5">мин. комиссия</text>
-  <line x1="240" y1="432" x2="240" y2="504" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-  <text x="268" y="458" font-family="Manrope,Arial,sans-serif" font-size="34" font-weight="800" fill="white">108 мин</text>
-  <text x="268" y="488" font-family="Manrope,Arial,sans-serif" font-size="13" font-weight="600" fill="rgba(255,255,255,.45)" letter-spacing=".5">скорость платежа</text>
-  <line x1="432" y1="432" x2="432" y2="504" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-  <text x="460" y="458" font-family="Manrope,Arial,sans-serif" font-size="34" font-weight="800" fill="white">21</text>
-  <text x="460" y="488" font-family="Manrope,Arial,sans-serif" font-size="13" font-weight="600" fill="rgba(255,255,255,.45)" letter-spacing=".5">агент проверен</text>
-  <line x1="532" y1="432" x2="532" y2="504" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-  <text x="560" y="458" font-family="Manrope,Arial,sans-serif" font-size="34" font-weight="800" fill="white">110+</text>
-  <text x="560" y="488" font-family="Manrope,Arial,sans-serif" font-size="13" font-weight="600" fill="rgba(255,255,255,.45)" letter-spacing=".5">стран и направлений</text>
-  <!-- Right side geography -->
-  <text x="980" y="200" font-family="Manrope,Arial,sans-serif" font-size="18" font-weight="700" fill="rgba(255,255,255,.7)" text-anchor="middle">Китай · ОАЭ · Турция</text>
-  <text x="980" y="228" font-family="Manrope,Arial,sans-serif" font-size="18" font-weight="600" fill="rgba(255,255,255,.4)" text-anchor="middle">Европа · Азия · СНГ</text>
+  <text x="64" y="350" font-family="Manrope,Arial,sans-serif" font-size="22" font-weight="600" fill="rgba(255,255,255,.6)">17 проверенных агентов и банков. Подбор бесплатно — за 3 минуты.</text>
+
+  <!-- Stats card -->
+  <rect x="64" y="400" width="680" height="110" rx="16" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+
+  <text x="116" y="447" font-family="Manrope,Arial,sans-serif" font-size="36" font-weight="800" fill="white">0,85%</text>
+  <text x="116" y="474" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,.4)" letter-spacing="1">МИН. КОМИССИЯ</text>
+
+  <line x1="250" y1="420" x2="250" y2="490" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+
+  <text x="278" y="447" font-family="Manrope,Arial,sans-serif" font-size="36" font-weight="800" fill="white">день в день</text>
+  <text x="278" y="474" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,.4)" letter-spacing="1">СКОРОСТЬ ПЛАТЕЖА</text>
+
+  <line x1="530" y1="420" x2="530" y2="490" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+
+  <text x="558" y="447" font-family="Manrope,Arial,sans-serif" font-size="36" font-weight="800" fill="white">17</text>
+  <text x="558" y="474" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,.4)" letter-spacing="1">АГЕНТОВ ПРОВЕРЕНО</text>
+
+  <line x1="640" y1="420" x2="640" y2="490" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+
+  <text x="668" y="447" font-family="Manrope,Arial,sans-serif" font-size="36" font-weight="800" fill="white">180+</text>
+  <text x="668" y="474" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,.4)" letter-spacing="1">СТРАН</text>
+
   <!-- URL -->
-  <text x="64" y="592" font-family="Manrope,Arial,sans-serif" font-size="15" font-weight="600" fill="rgba(255,255,255,.25)">marshrut-ved.ru · агрегатор платёжных агентов для ВЭД</text>
+  <text x="64" y="584" font-family="Manrope,Arial,sans-serif" font-size="15" font-weight="600" fill="rgba(255,255,255,.22)">domved.ru · агрегатор платёжных агентов для ВЭД</text>
 </svg>
