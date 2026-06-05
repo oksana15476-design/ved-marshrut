@@ -135,23 +135,18 @@ img { display: block; max-width: 100%; }
 .hero { padding: 28px 0 0; }
 .hero-banner {
   border-radius: 28px; overflow: hidden; position: relative;
-  background: linear-gradient(140deg, #0A2E9F 0%, #1356C8 38%, #1F6FE8 68%, #3A8FFF 100%);
+  background: linear-gradient(145deg, #071F6E 0%, #0F3FB5 30%, #1A5FD8 58%, #2B7FFF 80%, #5099FF 100%);
 }
-/* Light orbs */
 .hero-banner::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 680px 420px at 88% -15%, rgba(255,255,255,.13) 0%, transparent 65%),
-    radial-gradient(ellipse 420px 340px at -8% 105%,  rgba(43,127,255,.35) 0%, transparent 60%),
-    radial-gradient(ellipse 300px 200px at 50% 110%,  rgba(80,160,255,.18) 0%, transparent 55%);
-  z-index: 0;
-}
-/* Dot grid texture */
-.hero-banner::after {
   content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.6) 30%, rgba(0,0,0,.6) 70%, transparent 100%);
+  background:
+    radial-gradient(ellipse 700px 500px at 95%  -5%,  rgba(255,255,255,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 500px 400px at  0% 110%,  rgba(20,90,220,.50)  0%, transparent 55%),
+    radial-gradient(ellipse 350px 250px at 50% 120%,  rgba(100,170,255,.22) 0%, transparent 50%);
+}
+.hero-deco-svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
 }
 .hero-banner-copy {
   padding: 52px 24px 40px; color: #fff;
@@ -685,6 +680,30 @@ select.control {
 <section class="hero">
   <div class="wrap">
     <div class="hero-banner">
+      <!-- Decorative background layer -->
+      <svg class="hero-deco-svg" aria-hidden="true" viewBox="0 0 1200 460" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <!-- Rings top-right -->
+        <circle cx="1160" cy="-40" r="380" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/>
+        <circle cx="1160" cy="-40" r="270" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <circle cx="1160" cy="-40" r="165" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+        <!-- Ring bottom-left -->
+        <circle cx="-30" cy="480" r="240" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+        <circle cx="-30" cy="480" r="150" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+        <!-- Route lines (dashed) -->
+        <path d="M 60 380 C 250 200 500 280 720 160" stroke="rgba(255,255,255,.09)" stroke-width="1.2" stroke-dasharray="5 9"/>
+        <path d="M 140 420 C 360 180 640 260 950 100" stroke="rgba(255,255,255,.07)" stroke-width="1" stroke-dasharray="4 8"/>
+        <path d="M 300 440 C 550 300 750 350 1050 200" stroke="rgba(255,255,255,.06)" stroke-width="1" stroke-dasharray="3 7"/>
+        <!-- Node dots -->
+        <circle cx="60"  cy="380" r="3.5" fill="rgba(255,255,255,.18)"/>
+        <circle cx="720" cy="160" r="3.5" fill="rgba(255,255,255,.18)"/>
+        <circle cx="140" cy="420" r="2.5" fill="rgba(255,255,255,.13)"/>
+        <circle cx="950" cy="100" r="2.5" fill="rgba(255,255,255,.13)"/>
+        <circle cx="300" cy="440" r="2"   fill="rgba(255,255,255,.10)"/>
+        <circle cx="1050" cy="200" r="2"  fill="rgba(255,255,255,.10)"/>
+        <!-- Small accent glow -->
+        <circle cx="720" cy="160" r="14" fill="rgba(255,255,255,.06)"/>
+        <circle cx="950" cy="100" r="10" fill="rgba(255,255,255,.05)"/>
+      </svg>
       <div class="hero-banner-copy">
         <div class="hero-eyebrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
