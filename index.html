@@ -940,18 +940,9 @@ select.control {
           <h3>Оставить заявку</h3>
           <div class="modal-context" id="leadContext" style="display:none"></div>
           <div class="field">
-            <label for="lName">Имя</label>
-            <input class="control" id="lName" type="text" placeholder="Как к вам обращаться" required>
-            <div class="hint">Укажите имя</div>
-          </div>
-          <div class="field">
-            <label for="lPhone">Телефон</label>
-            <input class="control" id="lPhone" type="tel" placeholder="+7 (___) ___-__-__" required>
-            <div class="hint">Введите корректный номер</div>
-          </div>
-          <div class="field">
-            <label for="lTelegram">Telegram</label>
-            <input class="control" id="lTelegram" type="text" placeholder="@username (необязательно)">
+            <label for="lPhone">Telegram или телефон</label>
+            <input class="control" id="lPhone" type="text" placeholder="@username или +7..." required>
+            <div class="hint">Введите контакт</div>
           </div>
           <div class="field">
             <label for="lCompany">Компания / ИНН</label>
@@ -1037,18 +1028,9 @@ select.control {
     <form id="modalForm">
       <div class="modal-context" id="modalContext" style="display:none"></div>
       <div class="field">
-        <label for="mName">Имя</label>
-        <input class="control" id="mName" type="text" placeholder="Как к вам обращаться" required>
-        <div class="hint">Укажите имя</div>
-      </div>
-      <div class="field">
-        <label for="mPhone">Телефон</label>
-        <input class="control" id="mPhone" type="tel" placeholder="+7 (___) ___-__-__" required>
-        <div class="hint">Введите корректный номер</div>
-      </div>
-      <div class="field">
-        <label for="mTelegram">Telegram</label>
-        <input class="control" id="mTelegram" type="text" placeholder="@username (необязательно)">
+        <label for="mPhone">Telegram или телефон</label>
+        <input class="control" id="mPhone" type="text" placeholder="@username или +7..." required>
+        <div class="hint">Введите контакт</div>
       </div>
       <input type="hidden" id="mCountry" name="country">
       <input type="hidden" id="mCurrency" name="currency">
