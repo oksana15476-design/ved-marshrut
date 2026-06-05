@@ -1572,7 +1572,7 @@ function handleLogoError(img) {
             ${a.verified ? sealHTML() : ""}
           </div>
         </div>
-        ${(()=>{const t=agentTags(a);return t.length?`<div class="acard-tags">${t.map(x=>`<span class="acard-tag">${esc(x)}</span>`).join('')}</div>`:''})()}
+        ${(()=>{if(a.recommended)return'';const t=agentTags(a);return t.length?`<div class="acard-tags">${t.map(x=>`<span class="acard-tag">${esc(x)}</span>`).join('')}</div>`:''})()}
         <div class="acard-rating">
           <div class="acard-stars">${starsHTML(a.rating)}</div>
           <span class="acard-rating-val">${a.rating}</span>
