@@ -1539,11 +1539,20 @@ window.DICT = {
 <script>
 /* ============ APP LOGIC ============ */
 
-/* Global fallback for Clearbit logo errors */
+/* Logo fallback chain: local file → Clearbit → SVG mark */
 function handleLogoError(img) {
   const c = img.parentElement;
   if (!c) return;
   const id = c.dataset.agentId;
+  const clearbit = c.dataset.clearbit;
+
+  // First fallback: try Clearbit if not already tried
+  if (clearbit && img.src.indexOf('logo.clearbit.com') === -1) {
+    img.src = clearbit;
+    return;
+  }
+
+  // Final fallback: SVG mark or initials
   const a = (window.AGENTS || []).find(x => x.id === id);
   if (!a) { img.style.display = 'none'; return; }
   const isLight = a.color === '#fff' || a.color === '#ffffff';
@@ -1621,11 +1630,10 @@ function handleLogoError(img) {
   }
 
   function agentLogo(a) {
-    const src = a.logoFile
-      ? `logos/${a.logoFile}`
-      : `https://logo.clearbit.com/${a.site}?size=128`;
-    return `<div class="agent-logo agent-logo-smart" style="background:#fff;padding:5px;border:1.5px solid var(--line);box-sizing:border-box" data-agent-id="${a.id}">
-      <img src="${src}" alt="${esc(a.name)}" loading="lazy" decoding="async"
+    const localFile = a.logoFile || `${a.id}.png`;
+    const clearbit = `https://logo.clearbit.com/${a.site}?size=128`;
+    return `<div class="agent-logo agent-logo-smart" style="background:#fff;padding:5px;border:1.5px solid var(--line);box-sizing:border-box" data-agent-id="${a.id}" data-clearbit="${clearbit}">
+      <img src="logos/${localFile}" alt="${esc(a.name)}" loading="lazy" decoding="async"
         style="width:100%;height:100%;object-fit:contain;border-radius:4px"
         onerror="handleLogoError(this)">
     </div>`;
