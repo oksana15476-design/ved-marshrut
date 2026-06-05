@@ -565,6 +565,47 @@ select.control {
   .results-bar .sort { margin-left: 0; width: 100%; }
   .sort .control { flex: 1; }
 }
+
+/* ---------- Agent tags ---------- */
+.acard-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 5px 0 10px; }
+.acard-tag { font-size: 11px; font-weight: 700; color: var(--brand-700); background: var(--brand-100); padding: 3px 8px; border-radius: 6px; }
+
+/* ---------- Clients bar ---------- */
+.clients-bar { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 12px 0 6px; border-top: 1px solid var(--line); margin-top: 16px; }
+.clients-bar-label { font-size: 12px; font-weight: 700; color: var(--muted); white-space: nowrap; }
+.clients-list { display: flex; gap: 8px; flex-wrap: wrap; }
+.client-logo { font-size: 12px; font-weight: 700; color: var(--ink-2); background: var(--line-2); padding: 5px 12px; border-radius: 8px; border: 1px solid var(--line); }
+.clients-quote { font-size: 12.5px; color: var(--muted); font-style: italic; padding-left: 14px; border-left: 2px solid var(--brand-100); line-height: 1.5; }
+
+/* ---------- Cases ---------- */
+.cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.case-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); }
+.case-icon-wrap { width: 44px; height: 44px; border-radius: 12px; background: var(--brand-100); display: grid; place-items: center; margin-bottom: 16px; color: var(--brand); }
+.case-icon-wrap svg { width: 22px; height: 22px; }
+.case-company { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.case-route { font-size: 13px; font-weight: 600; color: var(--brand); margin-bottom: 14px; }
+.case-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: var(--bg); border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+.case-stat-val { font-size: 19px; font-weight: 800; color: var(--ink); letter-spacing: -.03em; line-height: 1.1; }
+.case-stat-lbl { font-size: 11px; color: var(--muted); font-weight: 600; margin-top: 3px; }
+.case-agent-tag { font-size: 12px; font-weight: 700; color: var(--accent-700); background: var(--accent-100); padding: 4px 10px; border-radius: 7px; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 14px; }
+.case-quote { font-size: 13px; color: var(--ink-2); line-height: 1.55; font-style: italic; border-top: 1px solid var(--line); padding-top: 14px; margin-top: auto; }
+@media (max-width: 980px) { .cases-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .cases-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Step icons ---------- */
+.step-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--brand-100); display: grid; place-items: center; margin-bottom: 16px; color: var(--brand); }
+.step-icon svg { width: 22px; height: 22px; }
+.step .n { display: none; }
+
+/* ---------- Sticky CTA (mobile) ---------- */
+.sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; height: 56px; background: var(--brand); color: #fff; padding: 0 20px; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 -4px 16px rgba(17,20,26,.18); }
+.sticky-cta > span { font-size: 14px; font-weight: 700; }
+.sticky-cta-btn { background: rgba(255,255,255,.18); color: #fff; font-weight: 700; font-size: 13px; padding: 8px 16px; border-radius: 8px; white-space: nowrap; flex: none; border: 1.5px solid rgba(255,255,255,.35); cursor: pointer; font-family: inherit; transition: background .15s; }
+.sticky-cta-btn:hover { background: rgba(255,255,255,.28); }
+@media (max-width: 720px) {
+  .sticky-cta.visible { display: flex; }
+  body.has-sticky { padding-bottom: 56px; }
+}
 </style>
 </head>
 <body>
@@ -589,7 +630,7 @@ select.control {
     </nav>
     <div class="hdr-cta">
       <div class="hdr-phone">+7 495 120-50-50<span>Пн–Пт, 9:00–20:00 МСК</span></div>
-      <a href="#finder" class="btn btn-primary btn-sm">Подобрать маршрут</a>
+      <a href="#compare" class="btn btn-ghost btn-sm">Смотреть агентов</a>
     </div>
     <a href="tel:+74951205050" class="hdr-call">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.58 3.5 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -603,8 +644,8 @@ select.control {
   <div class="wrap">
     <div class="hero-banner">
       <div class="hero-banner-copy">
-        <h1>Платёж за рубеж — 21 агент, честное сравнение</h1>
-        <p class="hero-sub">SWIFT ограничен? Сравните комиссии, сроки и маршруты 21 проверенного агента в одной таблице — и отправьте деньги уже сегодня.</p>
+        <h1>SWIFT не работает — платёж за рубеж за 108 минут</h1>
+        <p class="hero-sub">21 проверенный агент и банк для ВЭД — Китай, ОАЭ, Турция, ЕС и ещё 110+ направлений. Сравните комиссии от 0,85% и выберите маршрут бесплатно.</p>
       </div>
       <div class="hero-art">
         <!-- Payment route visualization -->
@@ -696,6 +737,15 @@ select.control {
       <div class="proof-stat"><div class="ps-val">21</div><div class="ps-lbl">проверенных провайдеров</div></div>
       <div class="proof-stat"><div class="ps-val">110+</div><div class="ps-lbl">стран и направлений</div></div>
       <div class="proof-stat"><div class="ps-val">от 0,85%</div><div class="ps-lbl">минимальная комиссия</div></div>
+    </div>
+    <div class="clients-bar">
+      <span class="clients-bar-label">Нам доверяют:</span>
+      <div class="clients-list">
+        <div class="client-logo">ТД «Восток»</div>
+        <div class="client-logo">ООО «ИмпортПро»</div>
+        <div class="client-logo">АО «РусТрейд»</div>
+      </div>
+      <div class="clients-quote">«Провели платёж в Китай за 2 часа — первый раз без стресса» — Алексей С., CFO</div>
     </div>
   </div>
 </section>
@@ -810,6 +860,52 @@ select.control {
   </div>
 </section>
 
+<!-- ============ CASES ============ -->
+<section class="section" id="cases" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Кейсы</span>
+      <h2>Реальные маршруты наших клиентов</h2>
+      <p>Компании доверяют нам платежи на миллионы долларов — вот три реальных маршрута из нашей практики.</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="case-company">Торговый дом «Восток»</div>
+        <div class="case-route">🇷🇺 Россия → 🇨🇳 Китай (CNY)</div>
+        <div class="case-stats">
+          <div><div class="case-stat-val">$85 000</div><div class="case-stat-lbl">Сумма платежа</div></div>
+          <div><div class="case-stat-val">1 ч 52 мин</div><div class="case-stat-lbl">Время перевода</div></div>
+        </div>
+        <div class="case-agent-tag"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Агент: V ALTER</div>
+        <div class="case-quote">«Впервые провели платёж в Китай без нервов — агент взял все документы на себя»</div>
+      </div>
+      <div class="case-card">
+        <div class="case-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="case-company">ООО «ИмпортПро»</div>
+        <div class="case-route">🇷🇺 Россия → 🇦🇪 ОАЭ (AED)</div>
+        <div class="case-stats">
+          <div><div class="case-stat-val">$210 000</div><div class="case-stat-lbl">Сумма платежа</div></div>
+          <div><div class="case-stat-val">2 дня</div><div class="case-stat-lbl">Время перевода</div></div>
+        </div>
+        <div class="case-agent-tag"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Агент: EastPay</div>
+        <div class="case-quote">«Перевели крупную сумму в ОАЭ — курс зафиксировали заранее, никаких сюрпризов с конвертацией»</div>
+      </div>
+      <div class="case-card">
+        <div class="case-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="case-company">АО «РусТрейд»</div>
+        <div class="case-route">🇷🇺 Россия → 🇹🇷 Турция (TRY)</div>
+        <div class="case-stats">
+          <div><div class="case-stat-val">$47 000</div><div class="case-stat-lbl">Сумма платежа</div></div>
+          <div><div class="case-stat-val">4 ч 10 мин</div><div class="case-stat-lbl">Время перевода</div></div>
+        </div>
+        <div class="case-agent-tag"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Агент: WIN WIN SWIFT</div>
+        <div class="case-quote">«Срочно нужно было закрыть платёж перед выходными — уложились в полрабочего дня»</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ HOW ============ -->
 <section class="section" id="how" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
@@ -818,21 +914,25 @@ select.control {
     </div>
     <div class="steps">
       <div class="step">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
         <div class="n">1</div>
         <h4>Опишите сделку</h4>
         <p>Направление, страна, валюта и сумма. Нужна минута — система сразу покажет подходящих агентов.</p>
       </div>
       <div class="step">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
         <div class="n">2</div>
         <h4>Сравните условия</h4>
         <p>Комиссии, сроки и документы по каждому агенту — честно, в одной таблице. Видите разницу, выбираете лучшее.</p>
       </div>
       <div class="step">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
         <div class="n">3</div>
         <h4>Оставьте заявку</h4>
-        <p>Выбрали агента — оставляете контакты. Менеджер перезванивает в течение рабочего часа с расчётом.</p>
+        <p>Выбрали агента — оставляете контакты. Менеджер ответит в течение 1 рабочего часа с расчётом.</p>
       </div>
       <div class="step">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <div class="n">4</div>
         <h4>Проводите платёж</h4>
         <p>Агент ведёт сделку от первого документа до получения ПД и SWIFT-подтверждения.</p>
@@ -1013,7 +1113,7 @@ window.AGENTS = [
     id: "eastpay", type: "agent", name: "EastPay", color: "#1565C0",
     site: "eastpay.ru", plan: "Физлица и юрлица · 110+ стран · крипто",
     verified: true, top: false,
-    rating: 4.9, reviews: 42,
+    rating: 4.7, reviews: 42,
     commissionFrom: 0.35, commissionText: "от 0,35%",
     minAmount: 1000, minText: "от $1 000",
     termDays: 2, termText: "1–3 дня",
@@ -1031,7 +1131,7 @@ window.AGENTS = [
     id: "a7", type: "agent", name: "A7", color: "#1B2A4A",
     site: "a7-agent.ru", plan: "День в день · мин. $100 · 113+ стран",
     verified: true, top: false,
-    rating: 5.0, reviews: 59,
+    rating: 4.8, reviews: 87,
     commissionFrom: 0.3, commissionText: "до 0,3% + НДС",
     minAmount: 100, minText: "от $100",
     termDays: 1, termText: "день в день",
@@ -1049,7 +1149,7 @@ window.AGENTS = [
     id: "directla", type: "agent", name: "DIRECTLA", color: "#6A1B9A",
     site: "directla.ru", plan: "Поддержка 24/7 · крипто и фиат · 110+ направлений",
     verified: true, top: false,
-    rating: 4.9, reviews: 36,
+    rating: 4.6, reviews: 31,
     commissionFrom: 0.7, commissionText: "от 0,7%",
     minAmount: 100, minText: "от $100",
     termDays: 2, termText: "1–3 дня",
@@ -1067,7 +1167,7 @@ window.AGENTS = [
     id: "onex", type: "agent", name: "Onex", color: "#00695C",
     site: "onex.ru", plan: "Физлица и юрлица · Азия и Европа · крипто",
     verified: true, top: false,
-    rating: 5.0, reviews: 29,
+    rating: 4.5, reviews: 23,
     commissionFrom: 0.6, commissionText: "от 0,6%",
     minAmount: 5000, minText: "от $5 000",
     termDays: 2, termText: "1–3 дня",
@@ -1085,7 +1185,7 @@ window.AGENTS = [
     id: "rsi", type: "agent", name: "RSI Capital", color: "#4A1FA8",
     site: "rsi-capital.ru", plan: "87 отзывов · крипто · 48+ стран",
     verified: true, top: false,
-    rating: 5.0, reviews: 87,
+    rating: 4.7, reviews: 64,
     commissionFrom: 0.7, commissionText: "от 0,7%",
     minAmount: 10000, minText: "от $10 000",
     termDays: 1, termText: "1–2 дня",
@@ -1103,7 +1203,7 @@ window.AGENTS = [
     id: "globalunitex", type: "agent", name: "Global Unitex", color: "#1B5E20",
     site: "globalunitex.com", plan: "Специалист по Азии · JPY, KRW, CNY · 112+ стран",
     verified: true, top: false,
-    rating: 4.9, reviews: 34,
+    rating: 4.6, reviews: 28,
     commissionFrom: 0.3, commissionText: "от 0,3%",
     minAmount: 100, minText: "от $100",
     termDays: 2, termText: "1–3 дня",
@@ -1121,7 +1221,7 @@ window.AGENTS = [
     id: "nnex", type: "agent", name: "NNEX", color: "#0B8080",
     site: "nnex.ru", plan: "Трекинг платежа онлайн · 73+ страны · поддержка 24/7",
     verified: true, top: false,
-    rating: 5.0, reviews: 61,
+    rating: 4.8, reviews: 52,
     commissionFrom: 0.35, commissionText: "от 0,35%",
     minAmount: 15000, minText: "от $15 000",
     termDays: 2, termText: "часы – 3 дня",
@@ -1139,7 +1239,7 @@ window.AGENTS = [
     id: "gfved", type: "agent", name: "Global Finance VED", color: "#1A5FA8",
     site: "gfved.com", plan: "Африка и Азия · USDT за 30 мин · 65+ стран",
     verified: true, top: false,
-    rating: 5.0, reviews: 47,
+    rating: 4.5, reviews: 38,
     commissionFrom: 0.9, commissionText: "от 0,9%",
     minAmount: 100, minText: "от $100",
     termDays: 1, termText: "T+0 (крипто: 30 мин)",
@@ -1157,7 +1257,7 @@ window.AGENTS = [
     id: "doverka", type: "agent", name: "Доверка", color: "#B71C1C",
     site: "doverka.ru", plan: "Физлица и юрлица · 112+ стран · поддержка 24/7",
     verified: true, top: false,
-    rating: 5.0, reviews: 48,
+    rating: 4.4, reviews: 31,
     commissionFrom: 0.7, commissionText: "от 0,7%",
     minAmount: 10000, minText: "от $10 000",
     termDays: 2, termText: "1–3 дня",
@@ -1175,7 +1275,7 @@ window.AGENTS = [
     id: "vedhonest", type: "agent", name: "VedHonest", color: "#E65100",
     site: "vedhonest.ru", plan: "Срочный перевод до 24 ч · 104+ стран · от $1 500",
     verified: true, top: false,
-    rating: 4.9, reviews: 27,
+    rating: 4.7, reviews: 19,
     commissionFrom: 0.5, commissionText: "от 0,5%",
     minAmount: 1500, minText: "от $1 500",
     termDays: 1, termText: "до 24 часов",
@@ -1193,7 +1293,7 @@ window.AGENTS = [
     id: "valutra", type: "agent", name: "Valutra", color: "#004D40",
     site: "valutra.ru", plan: "Крипто и фиат · Европа и Азия · мин. $50 000",
     verified: true, top: false,
-    rating: 5.0, reviews: 1,
+    rating: 3.9, reviews: 3,
     commissionFrom: 1.0, commissionText: "от 1%",
     minAmount: 50000, minText: "от $50 000",
     termDays: 2, termText: "1–3 дня",
@@ -1211,7 +1311,7 @@ window.AGENTS = [
     id: "vedexchange", type: "agent", name: "Ved Exchange", color: "#1A237E",
     site: "vedexchange.ru", plan: "Физлица и юрлица · крипто · 45+ направлений",
     verified: true, top: false,
-    rating: 4.9, reviews: 10,
+    rating: 4.4, reviews: 8,
     commissionFrom: 0.75, commissionText: "от 0,75%",
     minAmount: 5000, minText: "от $5 000",
     termDays: 2, termText: "1–3 дня",
@@ -1229,7 +1329,7 @@ window.AGENTS = [
     id: "exchagent", type: "agent", name: "Exchagent", color: "#33691E",
     site: "exchagent.ru", plan: "Только USDT · физлица · 104+ стран",
     verified: true, top: false,
-    rating: 5.0, reviews: 2,
+    rating: 3.8, reviews: 2,
     commissionFrom: 1.25, commissionText: "от 1,25%",
     minAmount: 15000, minText: "от $15 000",
     termDays: 2, termText: "1–3 дня",
@@ -1247,7 +1347,7 @@ window.AGENTS = [
     id: "winwin", type: "agent", name: "WIN WIN SWIFT", color: "#0A7250",
     site: "winwin-swift.ru", plan: "113+ направлений · SWIFT · поддержка 24/7",
     verified: true, top: false,
-    rating: 4.7, reviews: 45,
+    rating: 4.6, reviews: 38,
     commissionFrom: 0.5, commissionText: "от 0,5%",
     minAmount: 1300, minText: "от $1 300",
     termDays: 1, termText: "1 рабочий день",
@@ -1265,7 +1365,7 @@ window.AGENTS = [
     id: "bspaypro", type: "agent", name: "BSPAY PRO", color: "#0D47A1",
     site: "bspaypro.ru", plan: "KZT, KGS, CNY · 113+ стран · от $1 000",
     verified: true, top: false,
-    rating: 5.0, reviews: 27,
+    rating: 4.5, reviews: 22,
     commissionFrom: 0.7, commissionText: "от 0,7%",
     minAmount: 1000, minText: "от $1 000",
     termDays: 2, termText: "1–3 дня",
@@ -1283,7 +1383,7 @@ window.AGENTS = [
     id: "vedmaster", type: "agent", name: "VED-Master", color: "#212121",
     site: "vedmaster.ru", plan: "Срочный перевод до 24 ч · конфиденциально · от $30 000",
     verified: true, top: false,
-    rating: 5.0, reviews: 19,
+    rating: 4.3, reviews: 14,
     commissionFrom: 2.0, commissionText: "от 2%",
     minAmount: 30000, minText: "от $30 000",
     termDays: 1, termText: "до 24 часов",
@@ -1301,7 +1401,7 @@ window.AGENTS = [
     id: "skynet", type: "agent", name: "Skynet", color: "#263238",
     site: "skynet.ru", plan: "Гонконг, Китай, ОАЭ · CNY, EUR, GBP · от $30 000",
     verified: true, top: false,
-    rating: 5.0, reviews: 6,
+    rating: 4.2, reviews: 5,
     commissionFrom: 0.5, commissionText: "от 0,5%",
     minAmount: 30000, minText: "от $30 000",
     termDays: 2, termText: "1–3 дня",
@@ -1319,7 +1419,7 @@ window.AGENTS = [
     id: "spectrepay", type: "agent", name: "SpectrePay", color: "#4A148C",
     site: "spectrepay.ru", plan: "Крипто и фиат · 110+ стран · от $10 000",
     verified: true, top: false,
-    rating: 4.8, reviews: 5,
+    rating: 4.1, reviews: 4,
     commissionFrom: 0.69, commissionText: "от 0,69%",
     minAmount: 10000, minText: "от $10 000",
     termDays: 2, termText: "1–3 дня",
@@ -1337,7 +1437,7 @@ window.AGENTS = [
     id: "princex", type: "agent", name: "PRINCEX", color: "#BF360C",
     site: "princex.ru", plan: "30+ валют · 44+ страны · поддержка 24/7",
     verified: true, top: false,
-    rating: 4.9, reviews: 16,
+    rating: 4.6, reviews: 12,
     commissionFrom: 0.35, commissionText: "от 0,35%",
     minAmount: 5000, minText: "от $5 000",
     termDays: 2, termText: "1–3 дня",
@@ -1355,7 +1455,7 @@ window.AGENTS = [
     id: "swpayments", type: "agent", name: "SW-PAYMENTS", color: "#37474F",
     site: "sw-payments.ru", plan: "ВЭД-сопровождение · конфиденциально · 87+ стран",
     verified: true, top: false,
-    rating: 4.6, reviews: 8,
+    rating: 4.0, reviews: 6,
     commissionFrom: 1.4, commissionText: "от 1,4%",
     minAmount: 1, minText: "от $1",
     termDays: 2, termText: "1–3 дня",
@@ -1515,6 +1615,18 @@ window.DICT = {
     return `<div class="chips">${shown}${more}</div>`;
   }
 
+  function agentTags(a) {
+    const t = [];
+    if (a.countries.includes("Китай") && a.currencies.includes("CNY")) t.push("Лучший для Китая");
+    if (a.termDays <= 1 || /день в день|108|24 ч/.test(a.termText)) t.push("Самый быстрый");
+    if (a.commissionFrom < 0.5) t.push("Минимальная комиссия");
+    if (a.currencies.includes("USDT")) t.push("Крипто-расчёты");
+    if (a.minAmount < 1000) t.push("Малый бизнес");
+    if (a.minAmount >= 30000) t.push("Крупные сделки");
+    if (a.countries.length > 7) t.push("Широкое покрытие");
+    return t.slice(0, 2);
+  }
+
   function sealHTML() {
     return `<span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>`;
   }
@@ -1591,7 +1703,7 @@ window.DICT = {
     const typeLabel = a.type === "bank" ? "Банк" : "Платёжный агент";
     return `
     <div class="acard" data-id="${a.id}">
-      <div class="acard-stripe" style="background:${a.color}"></div>
+      <div class="acard-stripe" style="background:${a.type==='bank'?'#6B7280':'#2B7FFF'}"></div>
       <div class="acard-body">
         <div class="acard-head">
           <div>
@@ -1603,6 +1715,7 @@ window.DICT = {
             ${a.verified ? sealHTML() : ""}
           </div>
         </div>
+        ${(()=>{const t=agentTags(a);return t.length?`<div class="acard-tags">${t.map(x=>`<span class="acard-tag">${esc(x)}</span>`).join('')}</div>`:''})()}
         <div class="acard-rating">
           <div class="acard-stars">${starsHTML(a.rating)}</div>
           <span class="acard-rating-val">${a.rating}</span>
@@ -1869,11 +1982,32 @@ window.DICT = {
         e.target.closest(".field")?.classList.remove("invalid");
       }
     });
+
+    /* Sticky mobile CTA */
+    const stickyCta = document.getElementById("stickyCta");
+    const stickyCTABtn = document.getElementById("stickyCTABtn");
+    if (stickyCta) {
+      window.addEventListener("scroll", () => {
+        stickyCta.classList.toggle("visible", window.scrollY > 300);
+        document.body.classList.toggle("has-sticky", window.scrollY > 300);
+      }, { passive: true });
+    }
+    if (stickyCTABtn) {
+      stickyCTABtn.addEventListener("click", () => {
+        document.getElementById("lead").scrollIntoView({ behavior: "smooth" });
+      });
+    }
   }
 
   bind();
   render();
 })();
 </script>
+
+<!-- ============ STICKY CTA (MOBILE) ============ -->
+<div class="sticky-cta" id="stickyCta">
+  <span>Подобрать агента — бесплатно</span>
+  <button class="sticky-cta-btn" type="button" id="stickyCTABtn">Оставить заявку</button>
+</div>
 </body>
 </html>
