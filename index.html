@@ -1132,7 +1132,7 @@ window.AGENTS = [
     svgMark: '<text x="25" y="26" fill="white" font-size="12" font-weight="800" text-anchor="middle" font-family="Manrope,sans-serif">EAST</text><text x="25" y="39" fill="rgba(255,255,255,0.7)" font-size="10" font-weight="700" text-anchor="middle" font-family="Manrope,sans-serif">PAY</text>',
   },
   {
-    id: "a7", type: "agent", name: "A7", color: "#1B2A4A",
+    id: "a7", type: "agent", name: "A7", color: "#fff",
     site: "a7-agent.ru", plan: "День в день · мин. $100 · 113+ стран",
     verified: true, top: false,
     rating: 4.8, reviews: 87,
@@ -1147,7 +1147,7 @@ window.AGENTS = [
     manager: true, currencyControl: true,
     limits: "До $1 000 000 000 · 113+ стран",
     statusText: "Учреждён с ПАО ПСБ",
-    svgMark: '<text x="25" y="33" fill="#FF7A30" font-size="20" font-weight="900" text-anchor="middle" font-family="Manrope,sans-serif" letter-spacing="-1">A7</text>',
+    svgMark: '<defs><linearGradient id="a7g" x1="0.5" y1="0" x2="0.5" y2="1"><stop offset="0%" stop-color="#D4A520"/><stop offset="100%" stop-color="#9B7510"/></linearGradient></defs><path d="M 5 47 L 22 4 L 35 47 L 28 47 L 22 22 L 16 47 Z" fill="#D91B3C"/><path d="M 20 4 L 46 4 L 46 13 L 33 47 L 26 47 L 39 13 L 20 13 Z" fill="url(#a7g)"/>',
   },
   {
     id: "directla", type: "agent", name: "DIRECTLA", color: "#6A1B9A",
@@ -1544,7 +1544,9 @@ function handleLogoError(img) {
   const id = c.dataset.agentId;
   const a = (window.AGENTS || []).find(x => x.id === id);
   if (!a) { img.style.display = 'none'; return; }
-  c.style.cssText = `background:${a.color};padding:0;border:none`;
+  const isLight = a.color === '#fff' || a.color === '#ffffff';
+  c.style.cssText = `background:${a.color};padding:${isLight?'4px':'0'};border:${isLight?'1.5px solid #E7EBF1':'none'}`;
+
   if (a.svgMark) {
     c.innerHTML = `<svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">${a.svgMark}</svg>`;
   } else {
