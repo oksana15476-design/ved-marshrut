@@ -1025,8 +1025,9 @@ window.AGENTS = [
     commissionFrom: 0.85, commissionText: "0,85% всё включено",
     minAmount: 50000, minText: "от $50 000",
     termDays: 1, termText: "день в день",
-    docDays: 1, docText: "1 день",
-    countries: ["Китай", "Гонконг", "Япония", "Корея", "Вьетнам", "ЕС", "ОАЭ", "Турция", "Таиланд", "США", "Индия", "Бразилия", "Весь мир"],
+    docDays: 1, docText: "от 1 часа",
+    coverageText: "180+",
+    countries: ["Китай", "Гонконг", "Япония", "Корея", "Вьетнам", "ЕС", "ОАЭ", "Турция", "Таиланд", "США", "Индия", "Бразилия"],
     currencies: ["CNY", "USD", "EUR", "AED", "JPY", "THB", "VND", "любая"],
     flow: ["import", "export"], deals: ["Электроника", "Продукты питания", "Сельхозтовары", "Сырьё", "Пищевая промышленность", "Туроператоры"],
     docs: "Договор + памятка → список документов → подписание и отправка сканов/оригиналов", jurisdiction: "100+ компаний инфраструктуры по миру · ВТБ Шанхай",
@@ -1530,8 +1531,8 @@ function handleLogoError(img) {
           <div class="feat-stats-grid">
             <div class="feat-stat"><div class="fsv">${esc(a.termText)}</div><div class="fsl">Срок платежа</div></div>
             <div class="feat-stat"><div class="fsv">${esc(a.minText)}</div><div class="fsl">Мин. сумма</div></div>
-            <div class="feat-stat"><div class="fsv">${esc(a.docText)}</div><div class="fsl">Срок перевода</div></div>
-            <div class="feat-stat"><div class="fsv">${a.countries.length}+</div><div class="fsl">Стран покрытия</div></div>
+            <div class="feat-stat"><div class="fsv">${esc(a.docText)}</div><div class="fsl">Подготовка документов</div></div>
+            <div class="feat-stat"><div class="fsv">${esc(a.coverageText || (a.countries.length + '+'))}</div><div class="fsl">Стран покрытия</div></div>
             <div class="feat-stat"><div class="fsv">Курс ЦБ</div><div class="fsl">Фиксация курса</div></div>
             <div class="feat-stat"><div class="fsv">${a.flow.map(f=>f==="import"?"Импорт":"Экспорт").join(" · ")}</div><div class="fsl">Направление</div></div>
           </div>
