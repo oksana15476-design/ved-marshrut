@@ -315,6 +315,8 @@ select.control {
 .badge-top { background: var(--warn-100); color: #B66400; }
 .cell-big { font-weight: 800; font-size: 18px; }
 .cell-sub { font-size: 12.5px; color: var(--muted); font-weight: 600; margin-top: 1px; }
+/* Blur anonymous agent identity */
+.blur-id { filter: blur(6px) saturate(0); user-select: none; pointer-events: none; }
 .rating { display: flex; align-items: center; gap: 6px; font-weight: 800; }
 .rating .star { color: var(--star); width: 17px; height: 17px; }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; }
@@ -740,10 +742,10 @@ select.control {
       <div class="hero-banner-copy">
         <div class="hero-eyebrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          17 проверенных агентов и банков
+          Сервис подбора платёжных агентов · 17 маршрутов
         </div>
-        <h1>Платёж в Китай, ОАЭ или Турцию — выберите агента за 3 минуты</h1>
-        <p class="hero-sub">Честное сравнение комиссий, сроков и маршрутов. Подбор бесплатно — без звонков и обязательств.</p>
+        <h1>Подберём лучший маршрут платежа под вашу сделку</h1>
+        <p class="hero-sub">Сравниваем 17 агентов и банков по реальным условиям — без маркетинговых обещаний. Подбор анонимный и бесплатный: зарабатываем на вознаграждении агентов.</p>
       </div>
       <div class="hero-finder-tray">
         <form class="finder" id="finder">
@@ -767,17 +769,17 @@ select.control {
             <label for="fAmount">Сумма платежа, $</label>
             <input class="control" id="fAmount" type="text" inputmode="numeric" placeholder="50 000">
           </div>
-          <button type="submit" class="btn btn-primary">Подобрать</button>
-          <p class="finder-note">Подбор бесплатный и ни к чему не обязывает. Не передаём данные третьим лицам.</p>
+          <button type="submit" class="btn btn-primary">Подобрать маршрут</button>
+          <p class="finder-note">Бесплатно для вас · анонимный запрос · формируем индивидуальные условия напрямую с агентом.</p>
         </form>
       </div><!-- /hero-finder-tray -->
     </div><!-- /hero-banner -->
 
     <div class="proof-bar">
       <div class="proof-stat"><div class="ps-val">500+</div><div class="ps-lbl">компаний подобрали маршрут</div></div>
-      <div class="proof-stat"><div class="ps-val">17</div><div class="ps-lbl">проверенных агентов</div></div>
-      <div class="proof-stat"><div class="ps-val">110+</div><div class="ps-lbl">стран и направлений</div></div>
-      <div class="proof-stat"><div class="ps-val">от 0,85%</div><div class="ps-lbl">минимальная комиссия</div></div>
+      <div class="proof-stat"><div class="ps-val">17</div><div class="ps-lbl">проверенных агентов в базе</div></div>
+      <div class="proof-stat"><div class="ps-val">Бесплатно</div><div class="ps-lbl">для вас · зарабатываем на агентах</div></div>
+      <div class="proof-stat"><div class="ps-val">Анонимно</div><div class="ps-lbl">прямые контакты · инд. условия</div></div>
     </div>
   </div>
 </section>
@@ -1539,13 +1541,13 @@ function handleLogoError(img) {
           <div class="feat-rec-label"><svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Дом ВЭД рекомендует</div>
           <div class="feat-live"><span class="feat-live-dot"></span>Принимает заявки сейчас</div>
           <div class="feat-logo-row">
-            <div class="acard-logo-wrap">
+            <div class="acard-logo-wrap blur-id">
               ${agentLogo(a)}
               ${sealHTML()}
             </div>
             <div>
               <div class="feat-kind">Платёжный агент</div>
-              <div class="feat-name">${esc(a.name)}</div>
+              <div class="feat-name blur-id">${esc(a.name)}</div>
             </div>
           </div>
           <div class="feat-rating">
@@ -1573,11 +1575,11 @@ function handleLogoError(img) {
         </div>
         <div class="feat-col feat-cta">
           <div>
-            <button class="feat-btn" data-apply="${a.id}" type="button">Получить расчёт бесплатно →</button>
+            <button class="feat-btn" data-apply="${a.id}" type="button">Подобрать маршрут →</button>
             <div class="feat-bullets">
-              <div class="feat-bullet">${checkIcon()} Персональный менеджер ведёт вашу сделку от A до Я</div>
-              <div class="feat-bullet">${checkIcon()} 0,85% — всё включено, никаких скрытых комиссий</div>
-              <div class="feat-bullet">${checkIcon()} Курс ЦБ без наценки · 100+ юрисдикций по всему миру</div>
+              <div class="feat-bullet">${checkIcon()} Персональный менеджер ведёт сделку от A до Я</div>
+              <div class="feat-bullet">${checkIcon()} Индивидуальные условия · прямой контакт с агентом</div>
+              <div class="feat-bullet">${checkIcon()} Анонимный запрос · бесплатно для вас</div>
             </div>
             <div class="feat-mini-quote">
               <div class="feat-mini-quote-text">«Впервые провели платёж в Китай без нервов — агент взял все документы на себя»</div>
@@ -1599,9 +1601,9 @@ function handleLogoError(img) {
         <div class="acard-head">
           <div>
             <div class="acard-kind">${typeLabel}</div>
-            <div class="acard-name">${esc(a.name)}</div>
+            <div class="acard-name blur-id">${esc(a.name)}</div>
           </div>
-          <div class="acard-logo-wrap">
+          <div class="acard-logo-wrap blur-id">
             ${agentLogo(a)}
             ${a.verified ? sealHTML() : ""}
           </div>
@@ -1629,7 +1631,7 @@ function handleLogoError(img) {
           <div class="al">Страны</div>
           ${chips(a.countries, 3)}
         </div>
-        <button class="acard-btn" data-apply="${a.id}" type="button">Оставить заявку</button>
+        <button class="acard-btn" data-apply="${a.id}" type="button">Подобрать маршрут</button>
       </div>
     </div>`;
   }
@@ -1640,9 +1642,9 @@ function handleLogoError(img) {
     return `
     <div class="cmp-row ${open} ${leaderClass}" data-id="${a.id}">
       <div class="agent">
-        ${agentLogo(a)}
+        <div class="blur-id">${agentLogo(a)}</div>
         <div>
-          <div class="agent-name">${esc(a.name)}</div>
+          <div class="agent-name blur-id">${esc(a.name)}</div>
           <div style="display:flex;gap:6px;margin-top:5px;flex-wrap:wrap">${badges(a)}</div>
           <div class="agent-meta">
             <span class="rating"><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>${a.rating} · ${a.reviews} отзывов</span>
@@ -1660,7 +1662,7 @@ function handleLogoError(img) {
         </button>
       </div>
       <div class="cmp-actions">
-        <button class="btn btn-primary btn-sm${a.recommended ? ' btn-leader' : ''}" data-apply="${a.id}" type="button">Оставить заявку</button>
+        <button class="btn btn-primary btn-sm${a.recommended ? ' btn-leader' : ''}" data-apply="${a.id}" type="button">Подобрать маршрут</button>
         <button class="btn btn-ghost btn-sm" data-expand="${a.id}" type="button">Подробнее</button>
       </div>
     </div>
@@ -1880,8 +1882,8 @@ function handleLogoError(img) {
 
 <!-- ============ STICKY CTA (MOBILE) ============ -->
 <div class="sticky-cta" id="stickyCta">
-  <span>Подобрать агента — бесплатно</span>
-  <button class="sticky-cta-btn" type="button" id="stickyCTABtn">Оставить заявку</button>
+  <span>Подобрать маршрут — анонимно и бесплатно</span>
+  <button class="sticky-cta-btn" type="button" id="stickyCTABtn">Подобрать маршрут</button>
 </div>
 </body>
 </html>
