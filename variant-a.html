@@ -681,6 +681,14 @@ select.control {
 /* === ВАРИАНТ А: снимаем блюр — агенты видны === */
 .blur-id { filter: none !important; user-select: auto !important; pointer-events: auto !important; }
 .variant-label { display:inline-block; background:#FF8A00; color:#fff; font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:10px; }
+/* Методология */
+.methodology-bar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:18px; padding:12px 18px; background:#F0F5FF; border:1px solid #C5D8FF; border-radius:10px; font-size:12.5px; font-weight:700; color:#1A4DB5; }
+.methodology-bar span { display:flex; align-items:center; gap:5px; }
+.methodology-bar span::before { content:'✓'; font-size:11px; }
+/* Калькулятор-пример */
+.calc-example { display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; margin:14px auto 0; font-size:13.5px; font-weight:700; color:rgba(255,255,255,.9); background:rgba(0,0,0,.18); border-radius:10px; padding:10px 20px; max-width:560px; }
+.calc-example .calc-hi { color:#FFD166; }
+.calc-example .calc-lo { color:#7CFF9E; }
 </style>
 </head>
 <body>
@@ -751,10 +759,17 @@ select.control {
       <div class="hero-banner-copy">
         <div class="hero-eyebrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Агрегатор · 17 агентов и банков · открытые данные
+          Открытый агрегатор · 17 агентов · данные не спонсируются
         </div>
-        <h1>Сравните условия 17 платёжных агентов ВЭД</h1>
-        <p class="hero-sub">Комиссии, сроки, маршруты — открытые данные без маркетинговых обещаний. Выбирайте сами или оставьте заявку для точного расчёта.</p>
+        <h1>Комиссия расходится в 2× — найдите лучший маршрут за 2 минуты</h1>
+        <p class="hero-sub">Сравниваем 17 платёжных агентов по реальным данным — без маркетинговых обещаний. Выбирайте сами или оставьте заявку для точного расчёта.</p>
+        <div class="calc-example">
+          Платёж $100 000 в Китай:&nbsp;
+          <span class="calc-lo">от $850</span>
+          &nbsp;→&nbsp;
+          <span class="calc-hi">до $1 500</span>
+          &nbsp;— разница <strong>×1,7</strong>
+        </div>
       </div>
       <div class="hero-finder-tray">
         <form class="finder" id="finder">
@@ -779,16 +794,16 @@ select.control {
             <input class="control" id="fAmount" type="text" inputmode="numeric" placeholder="50 000">
           </div>
           <button type="submit" class="btn btn-primary">Подобрать маршрут</button>
-          <p class="finder-note">Мгновенная фильтрация · 17 агентов · данные обновлены 2025–2026</p>
+          <p class="finder-note">Данные не оплачены агентами · сортировка только по реальным комиссиям · обновлено 2025–2026</p>
         </form>
       </div><!-- /hero-finder-tray -->
     </div><!-- /hero-banner -->
 
     <div class="proof-bar">
-      <div class="proof-stat"><div class="ps-val">17</div><div class="ps-lbl">агентов и банков для сравнения</div></div>
-      <div class="proof-stat"><div class="ps-val">от 0,3%</div><div class="ps-lbl">минимальная комиссия на рынке</div></div>
-      <div class="proof-stat"><div class="ps-val">180+</div><div class="ps-lbl">стран покрытия у лучших агентов</div></div>
-      <div class="proof-stat"><div class="ps-val">Открыто</div><div class="ps-lbl">реальные данные без обещаний</div></div>
+      <div class="proof-stat"><div class="ps-val">17</div><div class="ps-lbl">агентов проверены в 2025 году</div></div>
+      <div class="proof-stat"><div class="ps-val">×2,1</div><div class="ps-lbl">разброс комиссий между агентами</div></div>
+      <div class="proof-stat"><div class="ps-val">180+</div><div class="ps-lbl">стран покрытия у лучших</div></div>
+      <div class="proof-stat"><div class="ps-val">0₽</div><div class="ps-lbl">скрытых платежей от агентов нам</div></div>
     </div>
   </div>
 </section>
@@ -844,6 +859,12 @@ select.control {
     <!-- Card view (default) -->
     <div class="cmp-cards is-hidden" id="cmpCards"></div>
 
+    <div class="methodology-bar">
+      <span>Данные не оплачены агентами</span>
+      <span>Сортировка только по реальным показателям</span>
+      <span>3 агента исключены из базы в 2025 году</span>
+      <span>Обновлено: июнь 2025</span>
+    </div>
     <p class="cmp-note">Условия приведены для сравнения по публичным данным на 2025–2026 и могут отличаться. Оставьте заявку — подберём точные индивидуальные условия под вашу конкретную сделку.</p>
   </div>
 </section>
@@ -934,15 +955,15 @@ select.control {
   <div class="wrap">
     <div class="lead">
       <div class="lead-copy">
-        <h2>Не хотите выбирать сами? Подберём за вас</h2>
-        <p>Вы видите все данные, но мы знаем нюансы — реальные скрытые условия, надёжность агентов, опыт по вашей товарной группе. Пришлём точный расчёт.</p>
+        <h2>Видите данные — но знаете, кто надёжен прямо сейчас?</h2>
+        <p>Публичные комиссии — это витрина. Мы отслеживаем: у кого участились задержки, кто потерял СРО-членство, кто лучше работает с вашим товаром. Пришлём расчёт с проверенным агентом.</p>
         <div class="ll">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           Менеджер ответит в течение 1 рабочего часа
         </div>
         <div class="ll">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          Все агенты проверены — работают с валютным контролем
+          Исключаем агентов с потерей лицензии · 3 убрали в 2025 году
         </div>
       </div>
       <div class="lead-form">
