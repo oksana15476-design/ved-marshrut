@@ -779,7 +779,7 @@ select.control {
     <div class="proof-bar">
       <div class="proof-stat"><div class="ps-val">500+</div><div class="ps-lbl">компаний подобрали маршрут</div></div>
       <div class="proof-stat"><div class="ps-val">17</div><div class="ps-lbl">проверенных агентов в базе</div></div>
-      <div class="proof-stat"><div class="ps-val">Бесплатно</div><div class="ps-lbl">для вас · зарабатываем на агентах</div></div>
+      <div class="proof-stat"><div class="ps-val">Бесплатно</div><div class="ps-lbl">для вас · агентское вознаграждение</div></div>
       <div class="proof-stat"><div class="ps-val">Анонимно</div><div class="ps-lbl">прямые контакты · инд. условия</div></div>
     </div>
   </div>
@@ -836,7 +836,7 @@ select.control {
     <!-- Card view (default) -->
     <div class="cmp-cards is-hidden" id="cmpCards"></div>
 
-    <p class="cmp-note">Условия (комиссии и сроки) указаны для сравнения по публичным данным на 2025–2026 и могут отличаться. Перед сделкой уточняйте актуальные тарифы у банка или платёжного агента.</p>
+    <p class="cmp-note">Условия приведены для сравнения по публичным данным на 2025–2026 и могут отличаться. Оставьте заявку — подберём точные индивидуальные условия под вашу конкретную сделку.</p>
   </div>
 </section>
 
@@ -897,19 +897,19 @@ select.control {
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
         <div class="n">1</div>
         <h4>Опишите сделку</h4>
-        <p>Направление, страна, валюта и сумма. Нужна минута — система сразу покажет подходящих агентов.</p>
+        <p>Направление, страна, валюта и сумма. Нужна минута — покажем диапазон условий по вашему маршруту.</p>
       </div>
       <div class="step">
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
         <div class="n">2</div>
-        <h4>Сравните условия</h4>
-        <p>Комиссии, сроки и документы по каждому агенту — честно, в одной таблице. Видите разницу, выбираете лучшее.</p>
+        <h4>Мы анализируем рынок</h4>
+        <p>Сравниваем реальные условия 17 агентов без маркетинговых обещаний — комиссии, сроки и документы под ваш конкретный маршрут.</p>
       </div>
       <div class="step">
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
         <div class="n">3</div>
-        <h4>Оставьте заявку</h4>
-        <p>Выбрали агента — оставляете контакты. Менеджер ответит в течение 1 рабочего часа с расчётом.</p>
+        <h4>Получите подбор</h4>
+        <p>Оставьте контакт — подберём лучшего агента под специфику вашей сделки и пришлём индивидуальный расчёт в течение часа.</p>
       </div>
       <div class="step">
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
@@ -934,12 +934,12 @@ select.control {
         </div>
         <div class="ll">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          Только агенты с валютным контролем ЦБ РФ
+          Все агенты проверены — работают с валютным контролем
         </div>
       </div>
       <div class="lead-form">
         <form id="leadForm">
-          <h3>Оставить заявку</h3>
+          <h3>Подобрать маршрут</h3>
           <div class="modal-context" id="leadContext" style="display:none"></div>
           <div class="field">
             <label for="lPhone">Telegram или телефон</label>
@@ -954,7 +954,7 @@ select.control {
           <input type="hidden" id="lCurrency" name="currency">
           <input type="hidden" id="lFlow" name="flow">
           <input type="hidden" id="lAmount" name="amount">
-          <button type="submit" class="btn btn-primary btn-block">Получить маршруты</button>
+          <button type="submit" class="btn btn-primary btn-block">Получить подбор маршрута</button>
           <p class="finder-foot">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
         </form>
         <div class="lead-ok" id="leadOk">
@@ -1591,7 +1591,7 @@ function handleLogoError(img) {
             <span class="feat-rating-cnt">${a.reviews.toLocaleString("ru-RU")} отзывов</span>
           </div>
           ${a.tags && a.tags.length ? `<div class="feat-tags">${a.tags.map(t=>`<span class="feat-tag">${esc(t)}</span>`).join('')}</div>` : ''}
-          <div class="feat-tagline">${esc(a.plan)}</div>
+          <div class="feat-tagline">180+ стран · 100% покрытие географии · день в день</div>
           <div class="feat-chips">${a.currencies.slice(0,5).map(c=>`<span class="feat-chip">${esc(c)}</span>`).join("")}${a.currencies.length > 5 ? `<span class="feat-chip">+${a.currencies.length-5}</span>` : ""}</div>
         </div>
         <div class="feat-col feat-col-mid">
@@ -1614,7 +1614,7 @@ function handleLogoError(img) {
             <div class="feat-bullets">
               <div class="feat-bullet">${checkIcon()} Персональный менеджер ведёт сделку от A до Я</div>
               <div class="feat-bullet">${checkIcon()} Индивидуальные условия · прямой контакт с агентом</div>
-              <div class="feat-bullet">${checkIcon()} Анонимный запрос · бесплатно для вас</div>
+              <div class="feat-bullet">${checkIcon()} Минимальная комиссия на рынке · фиксация курса ЦБ</div>
             </div>
             <div class="feat-mini-quote">
               <div class="feat-mini-quote-text">«Впервые провели платёж в Китай без нервов — агент взял все документы на себя»</div>
