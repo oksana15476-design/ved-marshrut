@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Вариант В — Гибрид | Дом ВЭД</title>
-<meta name="description" content="Сравните 17 платёжных агентов и банков для ВЭД — комиссии, сроки, маршруты. Комиссии от 0,85%. Китай, ОАЭ, Турция, ЕС. Подбор бесплатно за 3 минуты.">
+<title>Агент ВЭД дешевле рынка — объёмные условия | Дом ВЭД</title>
+<meta name="description" content="Консьерж-подбор агента ВЭД с объёмными условиями: экономия 15–20% к публичной цене. 17 проверенных агентов, 3 исключены в 2025. Бесплатно — зарабатываем на агентском вознаграждении.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.svg">
+<link rel="canonical" href="https://oksana15476-design.github.io/ved-marshrut/variant-c.html">
 <!-- OG / Social sharing -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Дом ВЭД">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:url" content="https://oksana15476-design.github.io/ved-marshrut/">
-<meta property="og:title" content="Дом ВЭД — сравните 17 платёжных агентов для ВЭД">
-<meta property="og:description" content="Комиссии от 0,85%. 17 проверенных агентов и банков — Китай, ОАЭ, Турция, ЕС и ещё 110+ направлений. Подбор бесплатно за 3 минуты.">
+<meta property="og:url" content="https://oksana15476-design.github.io/ved-marshrut/variant-c.html">
+<meta property="og:title" content="Агент ВЭД дешевле рынка — объёмные условия | Дом ВЭД">
+<meta property="og:description" content="Консьерж-подбор: объёмные условия от 17 агентов, экономия 15–20%. 3 исключены в 2025. Для вас бесплатно.">
 <meta property="og:image" content="https://oksana15476-design.github.io/ved-marshrut/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
@@ -778,13 +779,19 @@ select.control {
   .direct-vs-grid { grid-template-columns: 1fr; }
   .compare-help { flex-direction: column; align-items: flex-start; }
 }
+/* === PRODUCTION: notice-bar === */
+.notice-bar { padding: 9px 16px; text-align: center; font-size: 12.5px; font-weight: 700; letter-spacing: .01em; position: relative; z-index: 99; line-height: 1.5; }
+.notice-bar--trust { background: #1A3A6B; color: rgba(255,255,255,.92); }
+.notice-bar--risk  { background: #7C2D00; color: rgba(255,255,255,.92); }
+.notice-bar--value { background: #0D5E3F; color: rgba(255,255,255,.92); }
+.nb-dot { opacity: .5; }
 </style>
 </head>
 <body>
 
-<!-- VARIANT LABEL -->
-<div style="background:#16B364;color:#fff;text-align:center;padding:8px 16px;font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;position:relative;z-index:999;">
-  ✦ ВАРИАНТ В — Гибрид: психология Б + прозрачность А + исправления по анализу
+<!-- NOTICE BAR -->
+<div class="notice-bar notice-bar--value">
+  ✓ Объёмные условия от агентов&nbsp;<span class="nb-dot">·</span>&nbsp;экономия 15–20% к публичной цене&nbsp;<span class="nb-dot">·</span>&nbsp;для вас бесплатно
 </div>
 
 <!-- ============ HEADER ============ -->
@@ -851,7 +858,7 @@ select.control {
           Консьерж-подбор · 17 проверенных агентов · условия лучше рынка
         </div>
         <h1>Проведём платёж безопасно и дешевле, чем вы договоритесь напрямую</h1>
-        <p class="hero-sub">Работаем с 17 агентами напрямую — получаем объёмные условия, которые агент не даст единичному клиенту. Мониторим надёжность ежемесячно. Бесплатно для вас.</p>
+        <p class="hero-sub">Мы договариваемся от имени 500+ клиентов — агенты дают нам объёмные rate, которые вам не получить напрямую. Экономия 15–20% к публичной цене. Ни одного агента в базе, не прошедшего ежемесячную проверку. Бесплатно для вас.</p>
         <div class="hero-risk-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           3 агента потеряли лицензию в 2025 — в нашей базе только активные
@@ -1120,7 +1127,7 @@ select.control {
           <input type="hidden" id="lCurrency" name="currency">
           <input type="hidden" id="lFlow" name="flow">
           <input type="hidden" id="lAmount" name="amount">
-          <button type="submit" class="btn btn-primary btn-block">Получить подбор маршрута</button>
+          <button type="submit" class="btn btn-primary btn-block">Получить условия лучше рынка →</button>
           <p class="finder-foot">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
         </form>
         <div class="lead-ok" id="leadOk">

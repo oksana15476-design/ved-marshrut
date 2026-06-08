@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.svg">
+<link rel="canonical" href="https://oksana15476-design.github.io/ved-marshrut/">
 <!-- OG / Social sharing -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Дом ВЭД">
@@ -678,11 +679,23 @@ select.control {
   .sticky-cta.visible { display: flex; }
   body.has-sticky { padding-bottom: 56px; }
 }
+/* === PRODUCTION: notice-bar === */
+.notice-bar { padding: 9px 16px; text-align: center; font-size: 12.5px; font-weight: 700; letter-spacing: .01em; position: relative; z-index: 99; line-height: 1.5; }
+.notice-bar--trust { background: #1A3A6B; color: rgba(255,255,255,.92); }
+.notice-bar--risk  { background: #7C2D00; color: rgba(255,255,255,.92); }
+.notice-bar--value { background: #0D5E3F; color: rgba(255,255,255,.92); }
+.nb-dot { opacity: .5; }
+.cmp-card-ghost { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 32px; margin-top: 4px; border: 1.5px dashed rgba(15,63,181,.28); border-radius: var(--radius); background: linear-gradient(135deg, #EBF1FF 0%, #F5F8FF 100%); flex-wrap: wrap; }
+.cmp-card-ghost .ghost-title { font-size: 16px; font-weight: 800; color: var(--brand); }
+.cmp-card-ghost .ghost-sub { font-size: 13.5px; color: var(--muted); margin: 4px 0 0; }
 </style>
 </head>
 <body>
 
-<!-- ============ HEADER ============ -->
+<!-- NOTICE BAR -->
+<div class="notice-bar notice-bar--trust">
+  🔒 Независимый сервис&nbsp;<span class="nb-dot">·</span>&nbsp;данные не оплачены агентами&nbsp;<span class="nb-dot">·</span>&nbsp;3 агента исключены из базы в 2025
+</div>
 <header class="hdr">
   <div class="wrap hdr-inner">
     <a href="#" class="logo">
@@ -746,7 +759,7 @@ select.control {
           Сервис подбора платёжных агентов · 17 маршрутов
         </div>
         <h1>Подберём лучший маршрут платежа под вашу сделку</h1>
-        <p class="hero-sub">Сравниваем 17 агентов и банков по реальным условиям — без маркетинговых обещаний. Подбор анонимный и бесплатный: зарабатываем на вознаграждении агентов.</p>
+        <p class="hero-sub">17 агентов и банков — реальные комиссии, без рекламы и скрытых условий. Ни один агент нам не платит. Подбор бесплатный, анонимный — экономьте до 47 минут и сотни долларов комиссии.</p>
       </div>
       <div class="hero-finder-tray">
         <form class="finder" id="finder">
@@ -954,7 +967,7 @@ select.control {
           <input type="hidden" id="lCurrency" name="currency">
           <input type="hidden" id="lFlow" name="flow">
           <input type="hidden" id="lAmount" name="amount">
-          <button type="submit" class="btn btn-primary btn-block">Получить подбор маршрута</button>
+          <button type="submit" class="btn btn-primary btn-block">Подобрать маршрут бесплатно →</button>
           <p class="finder-foot">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
         </form>
         <div class="lead-ok" id="leadOk">
@@ -1736,7 +1749,8 @@ function handleLogoError(img) {
     if (state.layout === "cards") {
       table.classList.add("is-hidden");
       cards.classList.remove("is-hidden");
-      cards.innerHTML = list.length ? list.map(cardHTML).join("") : emptyHTML();
+      const ghostIdx = '<div class="cmp-card-ghost"><div><div class="ghost-title">Не нашли нужного маршрута?</div><p class="ghost-sub">Оставьте заявку — подберём с персональным расчётом</p></div><a href="#lead" class="btn btn-primary">Получить расчёт →</a></div>';
+      cards.innerHTML = list.length ? list.map(cardHTML).join("") + ghostIdx : emptyHTML();
     } else {
       cards.classList.add("is-hidden");
       table.classList.remove("is-hidden");

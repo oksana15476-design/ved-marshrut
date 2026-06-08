@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Вариант А — Прозрачный агрегатор | Дом ВЭД</title>
-<meta name="description" content="Сравните 17 платёжных агентов и банков для ВЭД — комиссии, сроки, маршруты. Комиссии от 0,85%. Китай, ОАЭ, Турция, ЕС. Подбор бесплатно за 3 минуты.">
+<title>Сравните 17 агентов ВЭД — комиссии от 0,85% | Дом ВЭД</title>
+<meta name="description" content="Открытый агрегатор 17 агентов ВЭД: сравните комиссии, сроки, маршруты. Данные независимы, не спонсированы. Китай, ОАЭ, Турция, ЕС — 180+ стран. Фильтрация по направлению, валюте, сумме.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.svg">
+<link rel="canonical" href="https://oksana15476-design.github.io/ved-marshrut/variant-a.html">
 <!-- OG / Social sharing -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Дом ВЭД">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:url" content="https://oksana15476-design.github.io/ved-marshrut/">
-<meta property="og:title" content="Дом ВЭД — сравните 17 платёжных агентов для ВЭД">
-<meta property="og:description" content="Комиссии от 0,85%. 17 проверенных агентов и банков — Китай, ОАЭ, Турция, ЕС и ещё 110+ направлений. Подбор бесплатно за 3 минуты.">
+<meta property="og:url" content="https://oksana15476-design.github.io/ved-marshrut/variant-a.html">
+<meta property="og:title" content="Сравните 17 агентов ВЭД — комиссии от 0,85% | Дом ВЭД">
+<meta property="og:description" content="Открытый агрегатор: 17 агентов ВЭД — комиссии, сроки, маршруты. Данные независимы. Китай, ОАЭ, Турция, ЕС. Подбор бесплатно.">
 <meta property="og:image" content="https://oksana15476-design.github.io/ved-marshrut/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
@@ -706,13 +707,19 @@ select.control {
 .calc-example { display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; margin:14px auto 0; font-size:13.5px; font-weight:700; color:rgba(255,255,255,.9); background:rgba(0,0,0,.18); border-radius:10px; padding:10px 20px; max-width:560px; }
 .calc-example .calc-hi { color:#FFD166; }
 .calc-example .calc-lo { color:#7CFF9E; }
+/* === PRODUCTION: notice-bar === */
+.notice-bar { padding: 9px 16px; text-align: center; font-size: 12.5px; font-weight: 700; letter-spacing: .01em; position: relative; z-index: 99; line-height: 1.5; }
+.notice-bar--trust { background: #1A3A6B; color: rgba(255,255,255,.92); }
+.notice-bar--risk  { background: #7C2D00; color: rgba(255,255,255,.92); }
+.notice-bar--value { background: #0D5E3F; color: rgba(255,255,255,.92); }
+.nb-dot { opacity: .5; }
 </style>
 </head>
 <body>
 
-<!-- VARIANT LABEL BAR -->
-<div style="background:#FF8A00;color:#fff;text-align:center;padding:8px 16px;font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;z-index:999;position:relative;">
-  ⚡ ВАРИАНТ А — Прозрачный агрегатор (агенты открыты, самообслуживание)
+<!-- NOTICE BAR -->
+<div class="notice-bar notice-bar--trust">
+  🔍 Независимый агрегатор&nbsp;<span class="nb-dot">·</span>&nbsp;данные не оплачены агентами&nbsp;<span class="nb-dot">·</span>&nbsp;3 агента исключены из базы в 2025
 </div>
 
 <!-- ============ HEADER ============ -->
@@ -1005,7 +1012,7 @@ select.control {
           <input type="hidden" id="lCurrency" name="currency">
           <input type="hidden" id="lFlow" name="flow">
           <input type="hidden" id="lAmount" name="amount">
-          <button type="submit" class="btn btn-primary btn-block">Получить подбор маршрута</button>
+          <button type="submit" class="btn btn-primary btn-block">Сравнить условия бесплатно →</button>
           <p class="finder-foot">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
         </form>
         <div class="lead-ok" id="leadOk">

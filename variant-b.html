@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Вариант Б — Консьерж-подбор | Дом ВЭД</title>
-<meta name="description" content="Сравните 17 платёжных агентов и банков для ВЭД — комиссии, сроки, маршруты. Комиссии от 0,85%. Китай, ОАЭ, Турция, ЕС. Подбор бесплатно за 3 минуты.">
+<title>Безопасный подбор агента ВЭД — защита от рисков | Дом ВЭД</title>
+<meta name="description" content="Персональный подбор агента ВЭД: 3 агента потеряли лицензию в 2025 — в базе только активные. Консьерж-сервис бесплатно, анонимно. Проводим платёж надёжно и безопасно.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="alternate icon" href="favicon.svg">
+<link rel="canonical" href="https://oksana15476-design.github.io/ved-marshrut/variant-b.html">
 <!-- OG / Social sharing -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Дом ВЭД">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:url" content="https://oksana15476-design.github.io/ved-marshrut/">
-<meta property="og:title" content="Дом ВЭД — сравните 17 платёжных агентов для ВЭД">
-<meta property="og:description" content="Комиссии от 0,85%. 17 проверенных агентов и банков — Китай, ОАЭ, Турция, ЕС и ещё 110+ направлений. Подбор бесплатно за 3 минуты.">
+<meta property="og:url" content="https://oksana15476-design.github.io/ved-marshrut/variant-b.html">
+<meta property="og:title" content="Безопасный подбор агента ВЭД | Дом ВЭД">
+<meta property="og:description" content="3 агента потеряли лицензию в 2025 — в базе только активные. Консьерж-подбор агента ВЭД, бесплатно, анонимно.">
 <meta property="og:image" content="https://oksana15476-design.github.io/ved-marshrut/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
@@ -702,13 +703,22 @@ select.control {
 /* Риск-баннер в герое */
 .hero-risk-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,120,0,.18); border:1px solid rgba(255,150,50,.35); border-radius:8px; padding:7px 14px; font-size:12.5px; font-weight:700; color:rgba(255,220,160,.95); margin-top:14px; }
 @media (max-width: 860px) { .why-us-grid { grid-template-columns: 1fr; } .direct-vs-grid { grid-template-columns: 1fr; } }
+/* === PRODUCTION: notice-bar === */
+.notice-bar { padding: 9px 16px; text-align: center; font-size: 12.5px; font-weight: 700; letter-spacing: .01em; position: relative; z-index: 99; line-height: 1.5; }
+.notice-bar--trust { background: #1A3A6B; color: rgba(255,255,255,.92); }
+.notice-bar--risk  { background: #7C2D00; color: rgba(255,255,255,.92); }
+.notice-bar--value { background: #0D5E3F; color: rgba(255,255,255,.92); }
+.nb-dot { opacity: .5; }
+.cmp-card-ghost { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 32px; margin-top: 4px; border: 1.5px dashed rgba(15,63,181,.28); border-radius: var(--radius); background: linear-gradient(135deg, #EBF1FF 0%, #F5F8FF 100%); flex-wrap: wrap; }
+.cmp-card-ghost .ghost-title { font-size: 16px; font-weight: 800; color: var(--brand); }
+.cmp-card-ghost .ghost-sub { font-size: 13.5px; color: var(--muted); margin: 4px 0 0; }
 </style>
 </head>
 <body>
 
-<!-- VARIANT LABEL BAR -->
-<div style="background:#145CD6;color:#fff;text-align:center;padding:8px 16px;font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;z-index:999;position:relative;">
-  🎯 ВАРИАНТ Б — Консьерж-подбор (блюр агентов, заявка → индивидуальный подбор)
+<!-- NOTICE BAR -->
+<div class="notice-bar notice-bar--risk">
+  ⚠ 3 агента ВЭД потеряли лицензию в 2025&nbsp;<span class="nb-dot">·</span>&nbsp;в базе только действующие&nbsp;<span class="nb-dot">·</span>&nbsp;проверяем ежемесячно
 </div>
 
 <!-- ============ HEADER ============ -->
@@ -775,7 +785,7 @@ select.control {
           Закрытый подбор · 17 активных агентов · 3 исключены в 2025
         </div>
         <h1>Найдём агента, который точно проведёт платёж — и не исчезнет с вашими деньгами</h1>
-        <p class="hero-sub">Рынок чистится: за 2025 год 3 агента прекратили работу без предупреждения. Мы ведём актуальный реестр — и подбираем только проверенных. Анонимно. Бесплатно.</p>
+        <p class="hero-sub">3 известных агента исчезли в 2025 — некоторые с деньгами клиентов на руках. Мы ежемесячно проверяем реестр и подбираем только тех, кто работает прямо сейчас. Анонимно. Бесплатно.</p>
         <div class="hero-risk-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           3 агента из известных выбыли в 2025 · проверяем реестр ежемесячно
@@ -1035,7 +1045,7 @@ select.control {
           <input type="hidden" id="lCurrency" name="currency">
           <input type="hidden" id="lFlow" name="flow">
           <input type="hidden" id="lAmount" name="amount">
-          <button type="submit" class="btn btn-primary btn-block">Получить подбор маршрута</button>
+          <button type="submit" class="btn btn-primary btn-block">Подобрать безопасного агента →</button>
           <p class="finder-foot">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
         </form>
         <div class="lead-ok" id="leadOk">
@@ -1817,7 +1827,8 @@ function handleLogoError(img) {
     if (state.layout === "cards") {
       table.classList.add("is-hidden");
       cards.classList.remove("is-hidden");
-      cards.innerHTML = list.length ? list.map(cardHTML).join("") : emptyHTML();
+      const ghostB = '<div class="cmp-card-ghost"><div><div class="ghost-title">Хотите видеть полные условия?</div><p class="ghost-sub">Оставьте заявку — подберём и раскроем детали</p></div><a href="#lead" class="btn btn-primary">Подобрать агента →</a></div>';
+      cards.innerHTML = list.length ? list.map(cardHTML).join("") + ghostB : emptyHTML();
     } else {
       cards.classList.add("is-hidden");
       table.classList.remove("is-hidden");
