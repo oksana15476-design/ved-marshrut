@@ -559,9 +559,10 @@ select.control {
 .modal-back { position: absolute; inset: 0; background: rgba(11,21,48,.55); backdrop-filter: blur(3px); }
 .modal-card {
   position: relative; background: var(--card); border-radius: var(--radius-lg);
-  padding: 30px; width: 100%; max-width: 460px; box-shadow: var(--shadow-lg); animation: pop .25s ease;
+  padding: 30px; width: 100%; max-width: 540px; box-shadow: var(--shadow-lg); animation: pop .25s ease;
 }
 @keyframes pop { from { transform: scale(.94) translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+.modal-fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .modal-card h3 { font-size: 23px; margin-bottom: 6px; }
 .modal-card .msub { color: var(--muted); font-size: 14.5px; margin-bottom: 20px; }
 .modal-close {
@@ -1023,26 +1024,60 @@ select.control {
     <button class="modal-close" data-close type="button">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <h3>Оставить заявку</h3>
-    <p class="msub">Оставьте контакты — менеджер перезвонит в течение часа и пришлёт расчёт по вашей сделке.</p>
-    <div class="modal-agent" id="modalAgent"></div>
+    <h3>Подобрать маршрут</h3>
+    <p class="msub">Уточните параметры сделки — подберём агента с лучшими условиями и свяжемся в течение часа.</p>
     <form id="modalForm">
-      <div class="modal-context" id="modalContext" style="display:none"></div>
+      <div class="modal-fields-grid">
+        <div class="field">
+          <label for="mFlow">Направление</label>
+          <select class="control" id="mFlow" name="flow">
+            <option value="">Импорт и экспорт</option>
+            <option value="import">Импорт (платим за рубеж)</option>
+            <option value="export">Экспорт (получаем из-за рубежа)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mCountry">Страна</label>
+          <select class="control" id="mCountry" name="country">
+            <option value="">Любая страна</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mCurrency">Валюта</label>
+          <select class="control" id="mCurrency" name="currency">
+            <option value="">Любая валюта</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mAmount">Сумма сделки</label>
+          <input class="control" id="mAmount" name="amount" type="text" placeholder="например $100 000">
+        </div>
+      </div>
       <div class="field">
-        <label for="mPhone">Telegram или телефон</label>
+        <label for="mGoods">Товарная группа</label>
+        <select class="control" id="mGoods" name="goods">
+          <option value="">Не указано</option>
+          <option>Электроника</option>
+          <option>Продовольствие</option>
+          <option>Сырьё и металлы</option>
+          <option>Машиностроение</option>
+          <option>Химия и фармацевтика</option>
+          <option>Услуги / роялти</option>
+          <option>Другое</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="mPhone">Telegram или телефон *</label>
         <input class="control" id="mPhone" type="text" placeholder="@username или +7..." required>
         <div class="hint">Введите контакт</div>
       </div>
-      <input type="hidden" id="mCountry" name="country">
-      <input type="hidden" id="mCurrency" name="currency">
-      <input type="hidden" id="mFlow" name="flow">
-      <input type="hidden" id="mAmount" name="amount">
-      <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+      <button type="submit" class="btn btn-primary btn-block">Получить подбор бесплатно</button>
+      <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5">Бесплатно для вас · анонимный запрос · не передаём данные третьим лицам</p>
     </form>
     <div class="lead-ok" id="modalOk">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      <h3>Заявка отправлена!</h3>
-      <p>Менеджер свяжется с вами в ближайшее время.</p>
+      <h3>Заявка принята!</h3>
+      <p>Подберём маршрут и свяжемся в течение часа.</p>
     </div>
   </div>
 </div>
@@ -1735,19 +1770,16 @@ function handleLogoError(img) {
 
   /* Modal */
   const modal = $("#modal");
-  function openModal(agentId) {
-    const a = AGENTS.find((x) => x.id === agentId);
+  function openModal() {
     $("#modalForm").reset();
     $("#modalForm").style.display = "";
     $("#modalOk").classList.remove("show");
     $$(".field", $("#modalForm")).forEach((f) => f.classList.remove("invalid"));
-    if (a) {
-      $("#modalAgent").innerHTML = `${agentLogo(a)}<div><div class="agent-name">${esc(a.name)}</div><div class="agent-meta">${esc(a.commissionText)} · ${esc(a.termText)}</div></div>`;
-      $("#modalAgent").style.display = "";
-    } else {
-      $("#modalAgent").style.display = "none";
-    }
-    fillDealContext($("#modalContext"), "m");
+    // Pre-fill from hero finder state
+    if (state.flow)     $("#mFlow").value     = state.flow;
+    if (state.country)  $("#mCountry").value  = state.country;
+    if (state.currency) $("#mCurrency").value = state.currency;
+    if (state.amount)   $("#mAmount").value   = "$" + state.amount.toLocaleString("ru-RU");
     modal.classList.add("show");
     document.body.style.overflow = "hidden";
   }
@@ -1783,6 +1815,8 @@ function handleLogoError(img) {
   function bind() {
     fillSelect($("#fCountry"), DICT.countries);
     fillSelect($("#fCurrency"), DICT.currencies);
+    fillSelect($("#mCountry"), DICT.countries);
+    fillSelect($("#mCurrency"), DICT.currencies);
 
     /* Category tabs */
     $$("#catTabs button").forEach((b) => b.addEventListener("click", () => {
@@ -1828,7 +1862,7 @@ function handleLogoError(img) {
         return;
       }
       const app = e.target.closest("[data-apply]");
-      if (app) { openModal(app.dataset.apply); return; }
+      if (app) { openModal(); return; }
       if (e.target.closest("[data-close]")) { closeModal(); return; }
     });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
@@ -1869,9 +1903,7 @@ function handleLogoError(img) {
       }, { passive: true });
     }
     if (stickyCTABtn) {
-      stickyCTABtn.addEventListener("click", () => {
-        document.getElementById("lead").scrollIntoView({ behavior: "smooth" });
-      });
+      stickyCTABtn.addEventListener("click", () => openModal());
     }
   }
 
