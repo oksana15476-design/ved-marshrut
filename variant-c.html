@@ -681,6 +681,9 @@ select.control {
 
 /* ============ VARIANT C — HYBRID STYLES ============ */
 
+/* BUG FIX: Remove blur — Variant C keeps agents fully visible */
+.blur-id { filter: none !important; user-select: auto !important; pointer-events: auto !important; }
+
 /* Hero — concierge CTA */
 .hero-concierge-cta {
   display: flex; flex-direction: column; align-items: center; gap: 14px;
@@ -740,6 +743,16 @@ select.control {
 }
 .methodology-bar span { display: inline-flex; align-items: center; gap: 4px; }
 .methodology-bar span::before { content: '✓'; font-size: 11px; }
+
+.cmp-card-ghost {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; padding: 22px 32px; margin-top: 4px;
+  border: 1.5px dashed rgba(15,63,181,.28); border-radius: var(--radius);
+  background: linear-gradient(135deg, #EBF1FF 0%, #F5F8FF 100%); flex-wrap: wrap;
+}
+.cmp-card-ghost .ghost-title { font-size: 16px; font-weight: 800; color: var(--brand); }
+.cmp-card-ghost .ghost-sub { font-size: 13.5px; color: var(--muted); margin: 4px 0 0; }
 
 /* Compare bottom CTA */
 .compare-help {
@@ -856,7 +869,7 @@ select.control {
       <div class="proof-stat"><div class="ps-val">500+</div><div class="ps-lbl">компаний уже подобрали маршрут</div></div>
       <div class="proof-stat"><div class="ps-val">~47 мин</div><div class="ps-lbl">среднее время до первого расчёта</div></div>
       <div class="proof-stat"><div class="ps-val">17</div><div class="ps-lbl">активных агентов · 3 исключены в 2025</div></div>
-      <div class="proof-stat"><div class="ps-val">Лучше</div><div class="ps-lbl">условия vs. прямое обращение · объём</div></div>
+      <div class="proof-stat"><div class="ps-val">Лучше рынка</div><div class="ps-lbl">объёмные условия от агентов</div></div>
     </div>
   </div>
 </section>
@@ -1889,7 +1902,8 @@ function handleLogoError(img) {
     if (state.layout === "cards") {
       table.classList.add("is-hidden");
       cards.classList.remove("is-hidden");
-      cards.innerHTML = list.length ? list.map(cardHTML).join("") : emptyHTML();
+      const ghostC = '<div class="cmp-card-ghost"><div><div class="ghost-title">Нет нужного маршрута?</div><p class="ghost-sub">Опишите сделку — подберём агента с объёмными условиями</p></div><a href="#lead" class="btn btn-primary">Оставить заявку →</a></div>';
+      cards.innerHTML = list.length ? list.map(cardHTML).join("") + ghostC : emptyHTML();
     } else {
       cards.classList.add("is-hidden");
       table.classList.remove("is-hidden");
