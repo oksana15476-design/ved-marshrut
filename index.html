@@ -2260,14 +2260,14 @@ function handleLogoError(img) {
     </div>
     <div class="cmp-detail">
       <div class="detail-grid">
-        <div class="detail-item"><div class="dt">Срок перевода</div><div class="dd">${esc(a.docText)}</div></div>
+        <div class="detail-item"><div class="dt">Срок перевода</div><div class="dd">${agOpen ? esc(a.docText) : `<span class="cell-locked">${esc(a.docText)}</span>`}</div></div>
         <div class="detail-item"><div class="dt">Направление</div><div class="dd">${a.flow.map((f) => (f === "import" ? "Импорт" : "Экспорт")).join(" · ")}</div></div>
         <div class="detail-item"><div class="dt">Типы сделок</div><div class="dd">${esc(a.deals.join(", "))}</div></div>
-        <div class="detail-item"><div class="dt">Документы</div><div class="dd">${esc(a.docs)}</div></div>
-        <div class="detail-item"><div class="dt">Юрисдикции / инфраструктура</div><div class="dd">${esc(a.jurisdiction)}</div></div>
+        <div class="detail-item"><div class="dt">Документы</div><div class="dd">${agOpen ? esc(a.docs) : `<span class="cell-locked">${esc(a.docs)}</span>`}</div></div>
+        <div class="detail-item"><div class="dt">Юрисдикции / инфраструктура</div><div class="dd">${agOpen ? esc(a.jurisdiction) : `<span class="cell-locked">${esc(a.jurisdiction)}</span>`}</div></div>
         <div class="detail-item"><div class="dt">Страны</div><div class="dd">${esc(a.countries.join(", "))}${a.coverageText ? ` <span style="color:var(--muted);font-weight:600">+ ещё ${parseInt(a.coverageText) - a.countries.length}+ стран</span>` : ""}</div></div>
         <div class="detail-item"><div class="dt">Валюты</div><div class="dd">${esc(a.currencies.join(", "))}</div></div>
-        <div class="detail-item"><div class="dt">Лимиты / ограничения</div><div class="dd">${esc(a.limits)}</div></div>
+        <div class="detail-item"><div class="dt">Лимиты / ограничения</div><div class="dd">${agOpen ? esc(a.limits) : `<span class="cell-locked">${esc(a.limits)}</span>`}</div></div>
         <div class="detail-item"><div class="dt">Персональный менеджер</div><div class="dd ${a.manager ? "good" : "bad"}">${a.manager ? "Да" : "Нет"}</div></div>
         <div class="detail-item"><div class="dt">Валютный контроль</div><div class="dd ${a.currencyControl ? "good" : "bad"}">${a.currencyControl ? "Сопровождение есть" : "Не предоставляется"}</div></div>
         <div class="detail-item"><div class="dt">Статус проверки</div><div class="dd ${a.verified ? "good" : ""}">${esc(a.statusText)}</div></div>
