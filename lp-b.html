@@ -7,7 +7,8 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet"></noscript>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
 :root {
@@ -196,10 +197,15 @@ select.control {
   .proof-stat:nth-child(4) { border-top: 1px solid var(--line); }
 }
 @media (max-width: 640px) {
+  .notice-bar { display: none; }
   .hero { padding: 12px 0 0; }
   .hero-banner { border-radius: 16px; }
-  .hero-copy { padding: 36px 20px 24px; }
-  .hero-form-tray { padding: 16px 16px 20px; }
+  .hero-eyebrow { display: none; }
+  .hero-copy { padding: 16px 20px 8px; }
+  .hero-sub { display: none; }
+  .hero-form-tray { padding: 8px 12px 16px; }
+  .hero-form-wrap { padding: 14px 14px 12px; }
+  .hero-form-title { display: none; }
   .hero-form-grid { grid-template-columns: 1fr; }
   .ftr-links { display: none; }
 }
@@ -215,7 +221,7 @@ select.control {
 <!-- Header: только лого и телефон -->
 <header class="hdr">
   <div class="wrap hdr-inner">
-    <a href="/" class="logo">
+    <div class="logo">
       <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="34" height="34" rx="8" fill="#0F1B35"/>
         <path d="M9 24 L9 11 Q9 10 10 10 L24 10 Q25 10 25 11 L25 24" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -224,7 +230,7 @@ select.control {
         <line x1="28" y1="24" x2="28" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
       </svg>
       <span class="logo-dom">Дом</span><span class="logo-ved">&thinsp;ВЭД</span>
-    </a>
+    </div>
     <div class="hdr-contact">
       <a href="tel:+74951205050" class="hdr-phone">
         +7 495 120-50-50
@@ -321,8 +327,6 @@ select.control {
   <div class="ftr-inner">
     <span class="ftr-copy">© 2026 Дом ВЭД — независимый сервис подбора агентов ВЭД</span>
     <div class="ftr-links">
-      <a href="/index.html">Все агенты</a>
-      <a href="/index.html#faq">FAQ</a>
       <a href="tel:+74951205050">+7 495 120-50-50</a>
     </div>
   </div>
