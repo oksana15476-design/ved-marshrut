@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сравним агентов ВЭД и подберём маршрут для платежа за границу | Дом ВЭД</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root {
+  --ink:        #11141A;
+  --ink-2:      #3A4250;
+  --muted:      #7B8698;
+  --line:       #E7EBF1;
+  --line-2:     #F1F4F8;
+  --bg:         #EEF2F7;
+  --card:       #FFFFFF;
+  --brand:      #2B7FFF;
+  --brand-700:  #145CD6;
+  --brand-100:  #E7F0FF;
+  --accent:     #16B364;
+  --accent-700: #0E9457;
+  --accent-100: #E2F6EC;
+  --warn:       #FF8A00;
+  --warn-100:   #FFF1DE;
+  --danger:     #E0463E;
+  --star:       #FFB020;
+  --radius:     16px;
+  --radius-sm:  11px;
+  --radius-lg:  24px;
+  --shadow-sm:  0 1px 2px rgba(17,20,26,.05), 0 2px 6px rgba(17,20,26,.04);
+  --shadow:     0 8px 26px rgba(17,20,26,.07);
+  --shadow-lg:  0 26px 60px rgba(17,20,26,.13);
+  --maxw: 1240px;
+  --font: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--font); color: var(--ink); background: var(--bg); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+h1,h2,h3,h4 { margin: 0; line-height: 1.05; }
+h1,h2 { font-weight: 800; letter-spacing: -0.035em; }
+h3,h4 { font-weight: 700; letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+/* --- Buttons --- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-weight: 800; font-size: 16px; border-radius: 12px; padding: 14px 24px; transition: transform .12s, box-shadow .2s, background .2s; white-space: nowrap; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--brand); color: #fff; box-shadow: 0 8px 20px rgba(43,127,255,.28); }
+.btn-primary:hover { background: var(--brand-700); }
+.btn-sm { padding: 10px 16px; font-size: 14px; border-radius: 10px; }
+.btn-block { width: 100%; }
+
+/* --- Notice bar --- */
+.notice-bar { padding: 9px 16px; text-align: center; font-size: 12.5px; font-weight: 700; letter-spacing: .01em; position: relative; z-index: 99; line-height: 1.5; }
+.notice-bar--trust { background: #1A3A6B; color: rgba(255,255,255,.92); }
+.nb-dot { opacity: .5; }
+
+/* --- Header --- */
+.hdr { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.9); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.hdr-inner { display: flex; align-items: center; gap: 28px; height: 72px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; letter-spacing: .01em; white-space: nowrap; }
+.logo .logo-dom { color: var(--ink); }
+.logo .logo-ved { color: var(--brand); }
+.logo .mark { width: 34px; height: 34px; flex: none; }
+.nav { display: flex; gap: 26px; margin-left: 8px; }
+.nav a { color: var(--ink-2); font-weight: 600; font-size: 15px; }
+.nav a:hover { color: var(--brand); }
+.hdr-cta { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.hdr-phone { font-weight: 800; font-size: 16px; color: var(--ink); text-align: right; }
+.hdr-phone span { display: block; font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: .03em; }
+.hdr-call { display: none; }
+
+/* --- Hero --- */
+.hero { padding: 28px 0 0; }
+.hero-banner { border-radius: 28px; overflow: hidden; position: relative; background: linear-gradient(145deg, #071F6E 0%, #0F3FB5 30%, #1A5FD8 58%, #2B7FFF 80%, #5099FF 100%); }
+.hero-banner::before { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 700px 500px at 95% -5%, rgba(255,255,255,.12) 0%, transparent 60%), radial-gradient(ellipse 500px 400px at 0% 110%, rgba(20,90,220,.50) 0%, transparent 55%), radial-gradient(ellipse 350px 250px at 50% 120%, rgba(100,170,255,.22) 0%, transparent 50%); }
+.hero-deco-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.hero-banner-copy { padding: 52px 24px 40px; color: #fff; text-align: center; max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.22); border-radius: 100px; padding: 6px 16px; font-size: 12px; font-weight: 700; color: rgba(255,255,255,.9); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(30px, 4vw, 48px); color: #fff; margin: 0 auto 16px; max-width: 22ch; }
+.hero-sub { color: rgba(255,255,255,.85); font-size: 17px; margin: 0 auto; max-width: 520px; line-height: 1.6; }
+.hero-risk-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 8px; padding: 6px 12px; font-size: 12.5px; font-weight: 700; color: rgba(255,255,255,.8); margin-top: 16px; }
+
+/* --- Finder --- */
+.hero-finder-tray { background: rgba(0,0,0,.18); border-top: 1px solid rgba(255,255,255,.12); padding: 22px 32px 28px; position: relative; z-index: 1; }
+.hero-finder-tray .finder { margin: 0; border-radius: 14px; box-shadow: 0 12px 40px rgba(10,30,80,.3); }
+.finder { position: relative; z-index: 3; margin: 0; background: var(--card); border-radius: 18px; box-shadow: var(--shadow-lg); border: 1px solid var(--line); padding: 16px; display: grid; grid-template-columns: 1.1fr 1fr 1fr .9fr auto; gap: 12px; align-items: end; }
+.finder .field { margin: 0; }
+.finder .field > label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; padding-left: 2px; }
+.finder .btn { height: 52px; }
+.finder-note { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); padding: 2px 2px 0; }
+.hero-form-label { grid-column: 1 / -1; font-size: 11.5px; font-weight: 700; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: -6px; }
+.field { margin-bottom: 14px; }
+.field > label { display: block; font-size: 13px; font-weight: 700; color: var(--ink-2); margin-bottom: 7px; }
+.control { width: 100%; height: 52px; border: 1.5px solid var(--line); border-radius: 12px; padding: 0 14px; font-size: 15px; font-family: inherit; color: var(--ink); font-weight: 600; background: #fff; transition: border-color .15s, box-shadow .15s; appearance: none; }
+select.control { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%237B8698' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 40px; cursor: pointer; }
+.control:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 4px var(--brand-100); }
+.control::placeholder { color: #9AA5BE; font-weight: 500; }
+.control.err { border-color: var(--danger); }
+.field .hint { font-size: 12px; color: var(--danger); margin-top: 5px; display: none; }
+.field.invalid .hint { display: block; }
+.field.invalid .control { border-color: var(--danger); }
+
+/* --- Proof bar --- */
+.proof-bar { display: flex; margin-top: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); }
+.proof-stat { flex: 1; padding: 14px 20px; text-align: center; }
+.proof-stat:not(:last-child) { border-right: 1px solid var(--line); }
+.ps-val { font-size: 21px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); line-height: 1.1; }
+.ps-lbl { font-size: 11.5px; color: var(--muted); font-weight: 600; margin-top: 3px; }
+
+/* --- Footer --- */
+.ftr { background: linear-gradient(115deg, #1E5FD8 0%, #2B7FFF 52%, #57A6FF 100%); color: rgba(255,255,255,.82); padding: 56px 0 30px; }
+.ftr-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 36px; }
+.ftr .logo { color: #fff; margin-bottom: 14px; }
+.ftr p { font-size: 14px; line-height: 1.7; max-width: 320px; color: rgba(255,255,255,.72); }
+.ftr h5 { color: #fff; font-size: 14px; font-weight: 800; margin-bottom: 14px; letter-spacing: .02em; }
+.ftr ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.ftr a { font-size: 14px; color: rgba(255,255,255,.72); }
+.ftr a:hover { color: #fff; }
+.ftr-bottom { border-top: 1px solid rgba(255,255,255,.18); margin-top: 40px; padding-top: 22px; font-size: 12.5px; color: rgba(255,255,255,.5); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+/* --- Modal --- */
+.modal { position: fixed; inset: 0; z-index: 100; display: none; place-items: center; padding: 24px; }
+.modal.show { display: grid; }
+.modal-back { position: absolute; inset: 0; background: rgba(11,21,48,.55); backdrop-filter: blur(3px); }
+.modal-card { position: relative; background: var(--card); border-radius: var(--radius-lg); padding: 30px; width: 100%; max-width: 540px; box-shadow: var(--shadow-lg); animation: pop .25s ease; }
+@keyframes pop { from { transform: scale(.94) translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+.modal-fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.modal-card h3 { font-size: 23px; margin-bottom: 6px; }
+.modal-card .msub { color: var(--muted); font-size: 14.5px; margin-bottom: 20px; }
+.modal-close { position: absolute; top: 18px; right: 18px; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; color: var(--muted); }
+.modal-close:hover { background: var(--line-2); color: var(--ink); }
+.lead-ok { display: none; text-align: center; padding: 30px 10px; }
+.lead-ok.show { display: block; }
+.lead-ok svg { width: 64px; height: 64px; color: var(--accent); margin-bottom: 14px; }
+.lead-ok h3 { font-size: 24px; margin-bottom: 8px; }
+.lead-ok p { color: var(--muted); }
+.modal-context { font-size: 13px; font-weight: 700; color: var(--brand); background: var(--brand-100); border-radius: 8px; padding: 7px 12px; margin-bottom: 14px; display: none; }
+.modal-context.show { display: block; }
+
+/* --- Responsive --- */
+@media (max-width: 1040px) {
+  .finder { grid-template-columns: 1fr 1fr; }
+  .finder .btn { grid-column: 1 / -1; }
+}
+@media (max-width: 980px) {
+  .hero-banner-copy { padding: 40px 24px 32px; }
+  .hero-finder-tray { padding: 16px 20px 22px; }
+  .ftr-grid { grid-template-columns: 1fr 1fr; }
+  .nav, .hdr-phone { display: none; }
+  .hdr-call { display: inline-flex; align-items: center; gap: 7px; background: var(--brand); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 14px; font-weight: 700; margin-left: auto; text-decoration: none; }
+  .hdr-call svg { width: 16px; height: 16px; }
+  .proof-bar { display: grid; grid-template-columns: 1fr 1fr; }
+  .proof-stat:nth-child(2) { border-right: none; }
+  .proof-stat:nth-child(3) { border-right: 1px solid var(--line); border-top: 1px solid var(--line); }
+  .proof-stat:nth-child(4) { border-top: 1px solid var(--line); }
+  .modal-fields-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .ftr-grid { grid-template-columns: 1fr; }
+  .hero { padding: 16px 0 0; }
+  .hero-banner { border-radius: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NOTICE BAR -->
+<div class="notice-bar notice-bar--trust">
+  ✓ 17 агентов проверены&nbsp;<span class="nb-dot">·</span>&nbsp;СРО-членство и сроки выплат — ежемесячный мониторинг&nbsp;<span class="nb-dot">·</span>&nbsp;подбор бесплатно для бизнеса
+</div>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="wrap hdr-inner">
+    <a href="/" class="logo">
+      <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="34" height="34" rx="8" fill="#0F1B35"/>
+        <path d="M9 24 L9 11 Q9 10 10 10 L24 10 Q25 10 25 11 L25 24" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="6" y1="24" x2="28" y2="24" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="6" y1="24" x2="6" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="28" y1="24" x2="28" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-dom">Дом</span><span class="logo-ved">&thinsp;ВЭД</span>
+    </a>
+    <nav class="nav">
+      <a href="/index.html#compare">Сравнение</a>
+      <a href="/index.html#safety">Безопасность</a>
+      <a href="/index.html#cases">Кейсы</a>
+      <a href="/index.html#how">Как работает</a>
+    </nav>
+    <div class="hdr-cta">
+      <div class="hdr-phone">
+        <a href="tel:+74951205050" style="font-weight:800;font-size:16px;">+7 495 120-50-50</a>
+        <span>Пн–Пт, 9:00–20:00 МСК</span>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openModal(); trackGoal('header_cta_click')">Подобрать агента</button>
+    </div>
+    <a href="tel:+74951205050" class="hdr-call">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.58 3.5 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Позвонить
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-banner">
+      <svg class="hero-deco-svg" aria-hidden="true" viewBox="0 0 1200 460" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <circle cx="1160" cy="-40" r="380" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/>
+        <circle cx="1160" cy="-40" r="270" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <circle cx="1160" cy="-40" r="165" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+        <circle cx="-30" cy="480" r="240" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+        <circle cx="-30" cy="480" r="150" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+        <path d="M 60 380 C 250 200 500 280 720 160" stroke="rgba(255,255,255,.09)" stroke-width="1.2" stroke-dasharray="5 9"/>
+        <path d="M 140 420 C 360 180 640 260 950 100" stroke="rgba(255,255,255,.07)" stroke-width="1" stroke-dasharray="4 8"/>
+        <path d="M 300 440 C 550 300 750 350 1050 200" stroke="rgba(255,255,255,.06)" stroke-width="1" stroke-dasharray="3 7"/>
+        <circle cx="60"  cy="380" r="3.5" fill="rgba(255,255,255,.18)"/>
+        <circle cx="720" cy="160" r="3.5" fill="rgba(255,255,255,.18)"/>
+        <circle cx="140" cy="420" r="2.5" fill="rgba(255,255,255,.13)"/>
+        <circle cx="950" cy="100" r="2.5" fill="rgba(255,255,255,.13)"/>
+        <circle cx="300" cy="440" r="2"   fill="rgba(255,255,255,.10)"/>
+        <circle cx="1050" cy="200" r="2"  fill="rgba(255,255,255,.10)"/>
+        <circle cx="720" cy="160" r="14" fill="rgba(255,255,255,.06)"/>
+        <circle cx="950" cy="100" r="10" fill="rgba(255,255,255,.05)"/>
+      </svg>
+      <div class="hero-banner-copy">
+        <div class="hero-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Независимый подбор · 17 агентов · данные не спонсируются
+        </div>
+        <h1>Сравним агентов ВЭД и подберём маршрут для платежа за границу</h1>
+        <p class="hero-sub">Сравним комиссии, сроки, маршруты и риски у 17 платёжных агентов. Подберём вариант под вашу сделку за 15 минут. Для вас бесплатно — мы зарабатываем на агентском вознаграждении.</p>
+        <div class="hero-risk-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Каждый агент проверен: СРО, выплаты, отзывы · актуальный реестр
+        </div>
+      </div>
+      <div class="hero-finder-tray">
+        <form class="finder" id="finder">
+          <div class="hero-form-label">Подобрать агента:</div>
+          <div class="field">
+            <label for="fCountry">Страна платежа</label>
+            <select class="control" id="fCountry"><option value="">Любая</option></select>
+          </div>
+          <div class="field">
+            <label for="fCurrency">Валюта</label>
+            <select class="control" id="fCurrency"><option value="">Любая</option></select>
+          </div>
+          <div class="field">
+            <label for="fAmount">Сумма платежа, $</label>
+            <input class="control" id="fAmount" type="text" inputmode="numeric" placeholder="50 000">
+          </div>
+          <div class="field">
+            <label for="fUrgency">Срочность</label>
+            <select class="control" id="fUrgency">
+              <option value="">Любая</option>
+              <option value="day">День в день</option>
+              <option value="2days">1–2 дня</option>
+              <option value="week">До недели</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Подобрать агента</button>
+          <p class="finder-note">Без спама. Передадим только релевантный маршрут и условия по вашей сделке.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="proof-bar">
+      <div class="proof-stat"><div class="ps-val">17</div><div class="ps-lbl">проверенных агентов в базе</div></div>
+      <div class="proof-stat"><div class="ps-val">~47 мин</div><div class="ps-lbl">среднее время до первого расчёта</div></div>
+      <div class="proof-stat"><div class="ps-val">Бесплатно</div><div class="ps-lbl">для вас · агентское вознаграждение</div></div>
+      <div class="proof-stat"><div class="ps-val">500+</div><div class="ps-lbl">компаний уже подобрали маршрут</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <div class="logo">
+          <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="34" height="34" rx="8" fill="rgba(255,255,255,.12)"/>
+            <path d="M9 24 L9 11 Q9 10 10 10 L24 10 Q25 10 25 11 L25 24" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="6" y1="24" x2="28" y2="24" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="6" y1="24" x2="6" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="28" y1="24" x2="28" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <span>Дом</span><span style="color:rgba(255,255,255,.6)">&thinsp;ВЭД</span>
+        </div>
+        <p>Независимый сервис подбора платёжных агентов для ВЭД. Сравниваем 17 агентов, подбираем безопасный маршрут платежа за границу. Для вас бесплатно.</p>
+      </div>
+      <div>
+        <h5>Сервис</h5>
+        <ul>
+          <li><a href="/index.html#compare">Сравнение агентов</a></li>
+          <li><a href="/index.html#how">Как это работает</a></li>
+          <li><a href="/index.html">Подбор маршрута</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Направления</h5>
+        <ul>
+          <li><a href="/index.html#compare">Платежи в Китай</a></li>
+          <li><a href="/index.html#compare">Платежи в ОАЭ</a></li>
+          <li><a href="/index.html#compare">Платежи в Турцию</a></li>
+          <li><a href="/index.html#compare">Экспортная выручка</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Контакты</h5>
+        <ul>
+          <li><a href="tel:+74951205050">+7 495 120-50-50</a></li>
+          <li><a href="mailto:hello@domved.ru">hello@domved.ru</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span>© 2026 Дом ВЭД. Информация на сайте не является публичной офертой.</span>
+      <span>Политика конфиденциальности · Условия использования</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-back" data-close></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close type="button">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h3>Подобрать маршрут</h3>
+    <p class="msub">Уточните параметры сделки — подберём агента с лучшими условиями и свяжемся в течение часа.</p>
+    <div class="modal-context" id="modalContext"></div>
+    <form id="modalForm">
+      <div class="modal-fields-grid">
+        <div class="field">
+          <label for="mFlow">Направление</label>
+          <select class="control" id="mFlow" name="flow">
+            <option value="">Импорт и экспорт</option>
+            <option value="import">Импорт (платим за рубеж)</option>
+            <option value="export">Экспорт (получаем из-за рубежа)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mCountry">Страна</label>
+          <select class="control" id="mCountry" name="country">
+            <option value="">Любая страна</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mCurrency">Валюта</label>
+          <select class="control" id="mCurrency" name="currency">
+            <option value="">Любая валюта</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mAmount">Сумма сделки</label>
+          <input class="control" id="mAmount" name="amount" type="text" placeholder="например $100 000">
+        </div>
+      </div>
+      <div class="field">
+        <label for="mPhone">Telegram или телефон *</label>
+        <input class="control" id="mPhone" type="text" placeholder="@username или +7..." required>
+        <div class="hint">Введите контакт</div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Получить подбор бесплатно</button>
+      <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5">Бесплатно для вас · контакт передаётся выбранному маршруту после вашего согласования</p>
+    </form>
+    <div class="lead-ok" id="modalOk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <h3>Заявка принята!</h3>
+      <p>Подберём маршрут и свяжемся в течение часа.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var YM_COUNTER_ID = null;
+function trackGoal(goalName, params) {
+  if (YM_COUNTER_ID && typeof window.ym === 'function') {
+    window.ym(YM_COUNTER_ID, 'reachGoal', goalName, params || {});
+  }
+  if (window.location.hostname === 'localhost' || window.location.hostname.includes('github.io')) {
+    console.debug('[goal]', goalName, params);
+  }
+}
+if (YM_COUNTER_ID) {
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+  ym(YM_COUNTER_ID,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+}
+
+var COUNTRIES = ["Австрия","Ангола","Бельгия","Гонконг","Дания","Египет","Иран","Индия","Казахстан","Китай","Корея","Кыргызстан","Мальта","ОАЭ","Сингапур","СНГ","Турция","ЕС","Япония","Южная Корея"];
+var CURRENCIES = ["AED","AMD","ARS","AZN","CAD","CHF","CNY","EUR","GBP","HKD","INR","JPY","KZT","RUB","TRY","USD","USDT"];
+
+function fillSelect(el, items) {
+  items.forEach(function(v) { var o = document.createElement("option"); o.value = o.textContent = v; el.appendChild(o); });
+}
+fillSelect(document.getElementById("fCountry"), COUNTRIES);
+fillSelect(document.getElementById("fCurrency"), CURRENCIES);
+fillSelect(document.getElementById("mCountry"), COUNTRIES);
+fillSelect(document.getElementById("mCurrency"), CURRENCIES);
+
+/* Modal */
+var modal = document.getElementById("modal");
+function openModal(ctx) {
+  document.getElementById("modalForm").reset();
+  document.getElementById("modalForm").style.display = "";
+  document.getElementById("modalOk").classList.remove("show");
+  var ctxEl = document.getElementById("modalContext");
+  if (ctx) { ctxEl.textContent = "Параметры: " + ctx; ctxEl.classList.add("show"); }
+  else { ctxEl.classList.remove("show"); }
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+  trackGoal("modal_open");
+}
+function closeModal() { modal.classList.remove("show"); document.body.style.overflow = ""; }
+
+/* Finder → modal */
+document.getElementById("finder").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var parts = [];
+  var country = document.getElementById("fCountry").value;
+  var currency = document.getElementById("fCurrency").value;
+  var amount = document.getElementById("fAmount").value;
+  var urgency = document.getElementById("fUrgency").value;
+  if (country) parts.push(country);
+  if (currency) parts.push(currency);
+  if (amount) parts.push("$" + amount);
+  if (urgency === "day") parts.push("день в день");
+  if (country && document.getElementById("mCountry")) document.getElementById("mCountry").value = country;
+  if (currency && document.getElementById("mCurrency")) document.getElementById("mCurrency").value = currency;
+  if (amount && document.getElementById("mAmount")) document.getElementById("mAmount").value = "$" + amount;
+  trackGoal("lp_b_route_check_submit");
+  openModal(parts.length ? parts.join(" · ") : null);
+});
+
+/* Delegated close */
+document.addEventListener("click", function(e) {
+  if (e.target.closest("[data-close]")) { closeModal(); }
+});
+document.addEventListener("keydown", function(e) { if (e.key === "Escape") closeModal(); });
+
+/* Modal form submit */
+document.getElementById("modalForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var phone = document.getElementById("mPhone");
+  var digits = phone.value.replace(/[^\d]/g, "");
+  var field = phone.closest(".field");
+  if (digits.length < 10 && !phone.value.trim().startsWith("@")) {
+    field.classList.add("invalid"); phone.classList.add("err"); return;
+  }
+  field.classList.remove("invalid"); phone.classList.remove("err");
+  this.style.display = "none";
+  document.getElementById("modalOk").classList.add("show");
+  trackGoal("lp_b_form_submit");
+});
+
+document.getElementById("mPhone").addEventListener("input", function() {
+  this.classList.remove("err");
+  this.closest(".field").classList.remove("invalid");
+});
+</script>
+</body>
+</html>
