@@ -1601,6 +1601,7 @@ window.AGENTS = [
     termDays: 1, termText: "день в день",
     docDays: 1, docText: "от 1 часа",
     coverageText: "180+",
+    allCountries: true,
     countries: ["Китай", "Гонконг", "Япония", "Корея", "Вьетнам", "ЕС", "ОАЭ", "Турция", "Таиланд", "США", "Индия", "Бразилия"],
     currencies: ["CNY", "USD", "EUR", "AED", "JPY", "THB", "VND", "любая"],
     flow: ["import", "export"], deals: ["Все отрасли B2B"],
@@ -2018,8 +2019,8 @@ function handleLogoError(img) {
   function getFiltered() {
     let list = AGENTS.filter((a) => {
       if (state.type && a.type !== state.type) return false;
-      if (state.country && !a.countries.includes(state.country)) return false;
-      if (state.currency && !a.currencies.includes(state.currency)) return false;
+      if (state.country && !a.allCountries && !a.countries.includes(state.country)) return false;
+      if (state.currency && !a.currencies.includes("любая") && !a.currencies.includes(state.currency)) return false;
       if (state.flow && !a.flow.includes(state.flow)) return false;
       if (state.amount && a.minAmount > state.amount) return false;
       if (state.urgency === "day" && a.termDays > 1) return false;
