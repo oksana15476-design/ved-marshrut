@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подобрать агента ВЭД для платежа за рубеж — бесплатно | Дом ВЭД</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root {
+  --ink:       #11141A;
+  --ink-2:     #3A4250;
+  --muted:     #7B8698;
+  --line:      #E7EBF1;
+  --bg:        #EEF2F7;
+  --card:      #FFFFFF;
+  --brand:     #2B7FFF;
+  --brand-700: #145CD6;
+  --brand-100: #E7F0FF;
+  --accent:    #16B364;
+  --accent-100:#E2F6EC;
+  --font: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Layout ---- */
+.page { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ---- Header ---- */
+.hdr {
+  height: 64px; background: var(--card);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center;
+  padding: 0 32px;
+  flex-shrink: 0;
+}
+.hdr-inner { width: 100%; max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.logo-mark {
+  width: 34px; height: 34px; background: var(--brand);
+  border-radius: 9px; display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 20px; height: 20px; }
+.logo-text { font-size: 17px; font-weight: 800; letter-spacing: -0.03em; }
+.hdr-phone { font-size: 15px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.hdr-phone:hover { color: var(--brand); }
+
+/* ---- Main ---- */
+.lp-main {
+  flex: 1;
+  display: flex; align-items: center;
+  padding: 32px;
+}
+.lp-grid {
+  max-width: 1120px; width: 100%; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 420px; gap: 64px; align-items: center;
+}
+
+/* ---- Copy ---- */
+.lp-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--brand-100); color: var(--brand);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 13px; font-weight: 700; letter-spacing: .01em;
+  margin-bottom: 20px;
+}
+.lp-eyebrow svg { width: 14px; height: 14px; flex: none; }
+.lp-h1 {
+  font-size: clamp(30px, 3.6vw, 48px);
+  font-weight: 800; letter-spacing: -0.04em;
+  line-height: 1.07; color: var(--ink);
+  margin-bottom: 18px;
+}
+.lp-h1 span { color: var(--brand); }
+.lp-sub {
+  font-size: 17px; color: var(--ink-2); line-height: 1.65;
+  max-width: 480px; margin-bottom: 32px;
+}
+.trust-list { display: flex; flex-direction: column; gap: 12px; }
+.trust-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 15px; font-weight: 600; color: var(--ink-2);
+}
+.trust-icon {
+  width: 26px; height: 26px; border-radius: 50%; flex: none;
+  background: var(--accent-100); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.trust-icon svg { width: 14px; height: 14px; }
+
+/* ---- Form card ---- */
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 40px rgba(17,20,26,.10);
+}
+.form-card-title { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px; }
+.form-card-sub { font-size: 14px; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 13px; font-weight: 700; color: var(--ink-2); margin-bottom: 6px; }
+.control {
+  width: 100%; padding: 13px 14px;
+  border: 1.5px solid var(--line); border-radius: 11px;
+  font-family: var(--font); font-size: 15px; color: var(--ink);
+  background: var(--card); outline: none;
+  transition: border-color .15s;
+  appearance: none; -webkit-appearance: none;
+}
+.control:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-100); }
+.control.err { border-color: #E0463E; }
+.hint { font-size: 12px; color: #E0463E; display: none; margin-top: 4px; }
+.field.invalid .hint { display: block; }
+.field.invalid .control { border-color: #E0463E; }
+.cta-btn {
+  width: 100%; padding: 16px;
+  background: var(--brand); color: #fff;
+  border: none; border-radius: 13px;
+  font-family: var(--font); font-size: 16px; font-weight: 800;
+  cursor: pointer; margin-top: 4px;
+  box-shadow: 0 6px 20px rgba(43,127,255,.32);
+  transition: background .15s, transform .1s;
+}
+.cta-btn:hover { background: var(--brand-700); }
+.cta-btn:active { transform: translateY(1px); }
+.form-disclaimer {
+  font-size: 12px; color: var(--muted); text-align: center;
+  margin-top: 12px; line-height: 1.55;
+}
+
+/* ---- Success ---- */
+.form-ok {
+  display: none; text-align: center; padding: 16px 0;
+}
+.form-ok.show { display: block; }
+.form-ok svg { color: var(--accent); width: 48px; height: 48px; margin-bottom: 12px; }
+.form-ok h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+.form-ok p { font-size: 15px; color: var(--muted); line-height: 1.55; }
+
+/* ---- Footer ---- */
+.lp-ftr {
+  background: var(--card); border-top: 1px solid var(--line);
+  padding: 20px 32px;
+  flex-shrink: 0;
+}
+.lp-ftr-inner {
+  max-width: 1120px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px;
+}
+.ftr-copy { font-size: 13px; color: var(--muted); }
+.ftr-links { display: flex; gap: 20px; }
+.ftr-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
+.ftr-links a:hover { color: var(--ink); }
+
+/* ---- Mobile ---- */
+@media (max-width: 840px) {
+  .lp-main { padding: 24px 20px; align-items: flex-start; }
+  .lp-grid { grid-template-columns: 1fr; gap: 32px; }
+  .trust-list { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+  .trust-item { font-size: 13.5px; }
+  .hdr { padding: 0 20px; }
+  .lp-ftr { padding: 16px 20px; }
+}
+@media (max-width: 480px) {
+  .trust-list { flex-direction: column; }
+  .form-card { padding: 24px 20px; }
+  .lp-h1 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- Header -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 2L3 7v10h5v-5h4v5h5V7L10 2z" fill="white" opacity=".9"/>
+          <circle cx="10" cy="10" r="2" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">Дом ВЭД</span>
+    </a>
+    <a href="tel:+74951205050" class="hdr-phone">+7 (495) 120-50-50</a>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="lp-main">
+  <div class="lp-grid">
+
+    <!-- Copy -->
+    <div class="lp-copy">
+      <div class="lp-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        17 агентов проверены · подбор бесплатно
+      </div>
+      <h1 class="lp-h1">Подберём агента ВЭД<br>для <span>платежа за рубеж</span></h1>
+      <p class="lp-sub">Сравниваем условия 17 проверенных агентов и банков — комиссии, сроки, страны. Первый расчёт за ~47 минут после заявки.</p>
+      <div class="trust-list">
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Китай, ОАЭ, Турция, ЕС и ещё 180+ стран
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Ответ за ~47 минут в рабочее время
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Бесплатно — зарабатываем на агентском вознаграждении
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="form-card">
+      <h2 class="form-card-title">Получить подбор агента</h2>
+      <p class="form-card-sub">Укажите параметры — подберём подходящий маршрут</p>
+      <form id="lpForm">
+        <div class="field">
+          <label for="lpCountry">Страна платежа</label>
+          <select class="control" id="lpCountry" name="country">
+            <option value="">Выберите страну</option>
+            <option>Китай</option><option>ОАЭ</option><option>Турция</option>
+            <option>Гонконг</option><option>Индия</option><option>Япония</option>
+            <option>Корея</option><option>Вьетнам</option><option>Таиланд</option>
+            <option>ЕС</option><option>США</option><option>Бразилия</option>
+            <option>Казахстан</option><option>Кыргызстан</option><option>СНГ</option>
+            <option>Другая страна</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="lpAmount">Сумма сделки</label>
+          <input class="control" id="lpAmount" name="amount" type="text" inputmode="numeric" placeholder="например $100 000">
+        </div>
+        <div class="field">
+          <label for="lpPhone">Телефон или Telegram *</label>
+          <input class="control" id="lpPhone" name="phone" type="text" placeholder="@username или +7..." required>
+          <div class="hint">Введите контакт для связи</div>
+        </div>
+        <button type="submit" class="cta-btn">Подобрать агента бесплатно →</button>
+        <p class="form-disclaimer">Бесплатно для вас · контакт передаётся после вашего согласования</p>
+      </form>
+      <div class="form-ok" id="lpOk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>Заявка принята!</h3>
+        <p>Подберём маршрут и свяжемся<br>в течение ~47 минут.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="lp-ftr">
+  <div class="lp-ftr-inner">
+    <span class="ftr-copy">© 2025 Дом ВЭД — независимый сервис подбора агентов</span>
+    <div class="ftr-links">
+      <a href="/index.html">Все агенты</a>
+      <a href="/index.html#faq">FAQ</a>
+      <a href="tel:+74951205050">+7 (495) 120-50-50</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+var YM_COUNTER_ID = null;
+function trackGoal(goalName, params) {
+  if (YM_COUNTER_ID && typeof window.ym === 'function') {
+    window.ym(YM_COUNTER_ID, 'reachGoal', goalName, params || {});
+  }
+  if (window.location.hostname === 'localhost' || window.location.hostname.includes('github.io')) {
+    console.debug('[goal]', goalName, params);
+  }
+}
+if (YM_COUNTER_ID) {
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+  ym(YM_COUNTER_ID,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+}
+
+document.getElementById("lpForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var phone = document.getElementById("lpPhone");
+  var digits = phone.value.replace(/[^\d]/g, "");
+  var field = phone.closest(".field");
+  if (digits.length < 10 && !phone.value.startsWith("@")) {
+    field.classList.add("invalid");
+    phone.classList.add("err");
+    return;
+  }
+  field.classList.remove("invalid");
+  this.style.display = "none";
+  document.getElementById("lpOk").classList.add("show");
+  trackGoal("lp_form_submit", {
+    country: document.getElementById("lpCountry").value,
+    amount: document.getElementById("lpAmount").value
+  });
+});
+
+document.getElementById("lpPhone").addEventListener("input", function() {
+  this.classList.remove("err");
+  this.closest(".field").classList.remove("invalid");
+});
+</script>
+</body>
+</html>
