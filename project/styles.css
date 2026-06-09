@@ -76,10 +76,8 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 .btn:active { transform: translateY(1px); }
-.btn-primary { background: var(--brand); color: #fff; box-shadow: 0 8px 20px rgba(43,127,255,.28); }
-.btn-primary:hover { background: var(--brand-700); }
-.btn-blue { background: var(--brand); color: #fff; box-shadow: 0 8px 20px rgba(43,127,255,.28); }
-.btn-blue:hover { background: var(--brand-700); }
+.btn-primary, .btn-blue { background: var(--brand); color: #fff; box-shadow: 0 8px 20px rgba(43,127,255,.28); }
+.btn-primary:hover, .btn-blue:hover { background: var(--brand-700); }
 .btn-green { background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(22,179,100,.28); }
 .btn-green:hover { background: var(--accent-700); }
 .btn-ghost { background: var(--card); color: var(--ink); border: 1.5px solid var(--line); box-shadow: var(--shadow-sm); }
@@ -178,7 +176,7 @@ select.control {
 
 .results-bar { display: flex; align-items: center; gap: 14px; margin: 26px 0 16px; flex-wrap: wrap; }
 .results-count { font-weight: 800; font-size: 17px; }
-.results-count span { color: var(--muted); font-weight: 600; }
+.results-count span { color: var(--ink); font-weight: 800; }
 .sort { margin-left: auto; display: flex; align-items: center; gap: 9px; }
 .sort label { font-size: 14px; color: var(--muted); font-weight: 600; }
 .sort .control { height: 42px; width: auto; min-width: 210px; }

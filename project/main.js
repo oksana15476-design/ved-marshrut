@@ -155,7 +155,7 @@
   function emptyHTML() {
     return `<div class="empty">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <h3 style="font-size:20px;color:var(--ink);margin-bottom:6px">Под эти параметры агентов не нашлось</h3>
+      <h3 style="font-size:20px;color:var(--ink);margin-bottom:6px">Под эти параметры провайдеров не нашлось</h3>
       <p>Попробуйте смягчить фильтры или оставьте заявку — подберём маршрут вручную.</p>
     </div>`;
   }
