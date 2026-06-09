@@ -16,117 +16,96 @@
   --ink-2:      #3A4250;
   --muted:      #7B8698;
   --line:       #E7EBF1;
-  --bg:         #EEF2F7;
   --card:       #FFFFFF;
   --brand:      #2B7FFF;
   --brand-700:  #145CD6;
   --brand-100:  #E7F0FF;
   --accent:     #16B364;
-  --accent-100: #E2F6EC;
+  --accent-700: #0E9457;
   --danger:     #E0463E;
-  --shadow-sm:  0 1px 2px rgba(17,20,26,.05), 0 2px 6px rgba(17,20,26,.04);
-  --shadow-lg:  0 26px 60px rgba(17,20,26,.13);
   --font: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font); color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-
-/* Notice bar */
-.notice-bar {
-  padding: 9px 16px; text-align: center;
-  font-size: 12.5px; font-weight: 700; letter-spacing: .01em;
-  background: #1A3A6B; color: rgba(255,255,255,.92); line-height: 1.5;
-}
-.nb-dot { opacity: .5; }
-
-/* Header — logo + phone only, no nav */
+/* ── Header ── */
 .hdr {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,.95); backdrop-filter: blur(14px);
+  background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
 .hdr-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  height: 68px;
+  max-width: 1120px; margin: 0 auto; padding: 0 28px;
+  display: flex; align-items: center; justify-content: space-between; height: 64px;
 }
-.logo {
-  display: flex; align-items: center; gap: 10px;
-  font-weight: 800; font-size: 20px; letter-spacing: .01em;
-}
-.logo .mark { width: 34px; height: 34px; flex: none; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; }
+.logo .mark { width: 32px; height: 32px; flex: none; }
 .logo-dom { color: var(--ink); }
 .logo-ved { color: var(--brand); }
-.hdr-contact { display: flex; align-items: center; gap: 20px; }
-.hdr-phone { font-weight: 800; font-size: 16px; color: var(--ink); }
-.hdr-phone small { display: block; font-size: 11px; font-weight: 600; color: var(--muted); text-align: right; }
-.hdr-call-btn {
+.hdr-phone { font-weight: 800; font-size: 15px; color: var(--ink); text-align: right; }
+.hdr-phone small { display: block; font-size: 11px; font-weight: 600; color: var(--muted); }
+.hdr-call {
   display: none; align-items: center; gap: 7px;
-  background: var(--brand); color: #fff;
-  padding: 10px 16px; border-radius: 10px;
-  font-size: 14px; font-weight: 700;
+  background: var(--brand); color: #fff; border-radius: 10px;
+  padding: 10px 16px; font-size: 14px; font-weight: 700;
 }
-.hdr-call-btn svg { width: 15px; height: 15px; }
+.hdr-call svg { width: 15px; height: 15px; }
 
-/* Hero */
-.hero { padding: 28px 0 0; }
-.hero-banner {
-  border-radius: 28px; overflow: hidden; position: relative;
-  background: linear-gradient(145deg, #071F6E 0%, #0F3FB5 30%, #1A5FD8 58%, #2B7FFF 80%, #5099FF 100%);
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, #091526 0%, #0D307A 40%, #1750C8 75%, #2B6EE8 100%);
+  padding: 0 0 0;
 }
-.hero-banner::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 700px 500px at 95% -5%, rgba(255,255,255,.12) 0%, transparent 60%),
-    radial-gradient(ellipse 500px 400px at 0% 110%, rgba(20,90,220,.50) 0%, transparent 55%);
+.hero-inner {
+  max-width: 1120px; margin: 0 auto; padding: 60px 28px 56px;
+  display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center;
 }
-.hero-deco-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-.hero-copy {
-  padding: 52px 24px 32px; color: #fff; text-align: center;
-  max-width: 680px; margin: 0 auto; position: relative; z-index: 1;
-}
+
+/* ── Copy ── */
+.hero-copy { color: #fff; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.22);
-  border-radius: 100px; padding: 6px 16px;
-  font-size: 12px; font-weight: 700; color: rgba(255,255,255,.9);
-  text-transform: uppercase; letter-spacing: .07em; margin-bottom: 20px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+  border-radius: 100px; padding: 6px 14px;
+  font-size: 11.5px; font-weight: 700; color: rgba(255,255,255,.8);
+  text-transform: uppercase; letter-spacing: .08em; margin-bottom: 22px;
 }
+.hero-eyebrow svg { width: 12px; height: 12px; flex: none; }
 .hero-h1 {
-  font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: -0.035em;
-  line-height: 1.07; color: #fff; margin-bottom: 16px;
+  font-size: clamp(30px, 3.4vw, 52px); font-weight: 800;
+  letter-spacing: -0.04em; line-height: 1.05; color: #fff; margin-bottom: 18px;
 }
 .hero-sub {
-  font-size: 17px; color: rgba(255,255,255,.85); line-height: 1.6;
-  max-width: 520px; margin: 0 auto;
+  font-size: 16.5px; color: rgba(255,255,255,.75); line-height: 1.65;
+  max-width: 440px; margin-bottom: 36px;
 }
+.trust-list { display: flex; flex-direction: column; gap: 13px; }
+.trust-item {
+  display: flex; align-items: center; gap: 11px;
+  font-size: 15px; font-weight: 600; color: rgba(255,255,255,.85);
+}
+.trust-check {
+  width: 24px; height: 24px; border-radius: 50%; flex: none;
+  background: rgba(22,179,100,.2); border: 1.5px solid rgba(22,179,100,.45);
+  display: flex; align-items: center; justify-content: center;
+}
+.trust-check svg { width: 11px; height: 11px; color: #4CE89A; }
 
-/* Lead form inside hero */
-.hero-form-tray {
-  background: rgba(0,0,0,.18); border-top: 1px solid rgba(255,255,255,.12);
-  padding: 22px 28px 28px; position: relative; z-index: 1;
+/* ── Form card ── */
+.form-card {
+  background: #fff; border-radius: 22px; padding: 30px;
+  box-shadow: 0 28px 70px rgba(0,0,0,.30);
 }
-.hero-form-wrap {
-  background: #fff; border-radius: 16px;
-  padding: 20px 20px 16px;
-  box-shadow: 0 12px 40px rgba(10,30,80,.30);
-  max-width: 720px; margin: 0 auto;
-}
-.hero-form-title {
-  font-size: 13px; font-weight: 700; color: var(--muted);
-  text-transform: uppercase; letter-spacing: .06em;
-  margin-bottom: 14px; padding-left: 2px;
-}
-.hero-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.field { position: relative; }
-.field label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; padding-left: 2px; }
+.form-card-title { font-size: 21px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 5px; }
+.form-card-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 22px; line-height: 1.5; }
+.field { margin-bottom: 13px; }
+.field label { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink-2); margin-bottom: 6px; }
 .control {
   width: 100%; height: 50px; border: 1.5px solid var(--line); border-radius: 11px;
   padding: 0 14px; font-size: 15px; font-family: inherit; color: var(--ink);
-  font-weight: 600; background: #fff;
+  font-weight: 600; background: #fff; outline: none;
   transition: border-color .15s, box-shadow .15s; appearance: none;
 }
 select.control {
@@ -134,93 +113,79 @@ select.control {
   background-repeat: no-repeat; background-position: right 13px center;
   padding-right: 40px; cursor: pointer;
 }
-.control:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 4px var(--brand-100); }
+.control:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-100); }
 .control::placeholder { color: #9AA5BE; font-weight: 500; }
 .field.invalid .control { border-color: var(--danger); }
 .field .hint { font-size: 12px; color: var(--danger); margin-top: 4px; display: none; }
 .field.invalid .hint { display: block; }
-.hero-form-phone { margin-bottom: 12px; }
-.hero-form-phone label { font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; display: block; padding-left: 2px; }
 .cta-btn {
-  width: 100%; height: 52px; background: var(--brand); color: #fff;
+  width: 100%; height: 54px; margin-top: 4px;
+  background: var(--accent); color: #fff;
   border-radius: 13px; font-size: 16px; font-weight: 800;
-  box-shadow: 0 6px 20px rgba(43,127,255,.32);
+  box-shadow: 0 8px 24px rgba(22,179,100,.38);
   transition: background .15s, transform .1s;
 }
-.cta-btn:hover { background: var(--brand-700); }
+.cta-btn:hover { background: var(--accent-700); }
 .cta-btn:active { transform: translateY(1px); }
-.form-note {
-  font-size: 12px; color: var(--muted); text-align: center;
-  margin-top: 10px; line-height: 1.5;
-}
+.form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 11px; line-height: 1.5; }
 
-/* Success state */
-.form-ok { display: none; text-align: center; padding: 20px 10px 10px; }
+/* ── Success ── */
+.form-ok { display: none; text-align: center; padding: 18px 0 8px; }
 .form-ok.show { display: block; }
-.form-ok svg { color: var(--accent); width: 52px; height: 52px; margin-bottom: 12px; }
-.form-ok h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
-.form-ok p { font-size: 15px; color: var(--muted); line-height: 1.55; }
+.form-ok svg { color: var(--accent); width: 50px; height: 50px; margin-bottom: 12px; }
+.form-ok h3 { font-size: 21px; font-weight: 800; margin-bottom: 8px; }
+.form-ok p { font-size: 14.5px; color: var(--muted); line-height: 1.55; }
 
-/* Proof bar */
-.proof-bar {
-  display: flex; margin-top: 16px;
-  background: var(--card); border: 1px solid var(--line);
-  border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm);
+/* ── Stats bar (inside hero, bottom) ── */
+.hero-stats {
+  border-top: 1px solid rgba(255,255,255,.12);
+  display: flex;
 }
-.proof-stat { flex: 1; padding: 14px 20px; text-align: center; }
-.proof-stat:not(:last-child) { border-right: 1px solid var(--line); }
-.ps-val { font-size: 21px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); line-height: 1.1; }
-.ps-lbl { font-size: 11.5px; color: var(--muted); font-weight: 600; margin-top: 3px; }
+.hs-item { flex: 1; padding: 22px 0; text-align: center; border-right: 1px solid rgba(255,255,255,.1); }
+.hs-item:last-child { border-right: none; }
+.hs-val { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -.03em; line-height: 1.1; }
+.hs-lbl { font-size: 11.5px; color: rgba(255,255,255,.55); font-weight: 600; margin-top: 3px; }
 
-/* Footer — minimal */
-.ftr {
-  border-top: 1px solid var(--line); background: var(--card);
-  padding: 18px 24px; margin-top: 32px;
-}
+/* ── Footer ── */
+.ftr { padding: 18px 28px; border-top: 1px solid var(--line); }
 .ftr-inner {
   max-width: 1120px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 8px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
 }
 .ftr-copy { font-size: 13px; color: var(--muted); }
-.ftr-links { display: flex; gap: 18px; }
-.ftr-links a { font-size: 13px; color: var(--muted); }
-.ftr-links a:hover { color: var(--ink); }
+.ftr-tel { font-size: 13px; color: var(--muted); }
+.ftr-tel:hover { color: var(--ink); }
 
-/* Mobile */
+/* ── Responsive ── */
 @media (max-width: 900px) {
   .hdr-phone { display: none; }
-  .hdr-call-btn { display: flex; }
-  .proof-bar { display: grid; grid-template-columns: 1fr 1fr; }
-  .proof-stat:nth-child(2) { border-right: none; }
-  .proof-stat:nth-child(3) { border-right: 1px solid var(--line); border-top: 1px solid var(--line); }
-  .proof-stat:nth-child(4) { border-top: 1px solid var(--line); }
+  .hdr-call { display: flex; }
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px 40px; }
+  .hero-sub { max-width: 100%; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; }
+  .hs-item:nth-child(2) { border-right: none; }
+  .hs-item:nth-child(3), .hs-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.1); }
+  .hs-item:nth-child(4) { border-right: none; }
 }
-@media (max-width: 640px) {
-  .notice-bar { display: none; }
-  .hero { padding: 12px 0 0; }
-  .hero-banner { border-radius: 16px; }
+@media (max-width: 540px) {
+  .hero-inner { padding: 28px 16px 32px; gap: 20px; }
   .hero-eyebrow { display: none; }
-  .hero-copy { padding: 16px 20px 8px; }
   .hero-sub { display: none; }
-  .hero-form-tray { padding: 8px 12px 16px; }
-  .hero-form-wrap { padding: 14px 14px 12px; }
-  .hero-form-title { display: none; }
-  .hero-form-grid { grid-template-columns: 1fr; }
-  .ftr-links { display: none; }
+  .trust-list { display: none; }
+  .hero-h1 { font-size: 27px; }
+  .form-card { padding: 20px 18px; }
+  .form-card-title { font-size: 18px; }
+  .form-card-sub { display: none; }
+  .hdr-inner { padding: 0 16px; }
+  .ftr { padding: 16px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Notice bar -->
-<div class="notice-bar">
-  ✓ 17 агентов проверены&nbsp;<span class="nb-dot">·</span>&nbsp;мониторинг СРО и сроков выплат&nbsp;<span class="nb-dot">·</span>&nbsp;подбор бесплатно для бизнеса
-</div>
-
-<!-- Header: только лого и телефон -->
+<!-- Header -->
 <header class="hdr">
-  <div class="wrap hdr-inner">
+  <div class="hdr-inner">
     <div class="logo">
       <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="34" height="34" rx="8" fill="#0F1B35"/>
@@ -231,104 +196,103 @@ select.control {
       </svg>
       <span class="logo-dom">Дом</span><span class="logo-ved">&thinsp;ВЭД</span>
     </div>
-    <div class="hdr-contact">
-      <a href="tel:+74951205050" class="hdr-phone">
-        +7 495 120-50-50
-        <small>Пн–Пт, 9:00–20:00 МСК</small>
-      </a>
-      <a href="tel:+74951205050" class="hdr-call-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.58 3.5 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Позвонить
-      </a>
-    </div>
+    <a href="tel:+74951205050" class="hdr-phone">
+      +7 495 120-50-50
+      <small>Пн–Пт, 9:00–20:00 МСК</small>
+    </a>
+    <a href="tel:+74951205050" class="hdr-call">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.58 3.5 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Позвонить
+    </a>
   </div>
 </header>
 
 <!-- Hero -->
 <section class="hero">
-  <div class="wrap">
-    <div class="hero-banner">
-      <!-- Deco -->
-      <svg class="hero-deco-svg" aria-hidden="true" viewBox="0 0 1200 460" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-        <circle cx="1160" cy="-40" r="380" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/>
-        <circle cx="1160" cy="-40" r="270" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-        <circle cx="1160" cy="-40" r="165" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-        <circle cx="-30" cy="480" r="240" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-        <path d="M 60 380 C 250 200 500 280 720 160" stroke="rgba(255,255,255,.09)" stroke-width="1.2" stroke-dasharray="5 9"/>
-        <path d="M 140 420 C 360 180 640 260 950 100" stroke="rgba(255,255,255,.07)" stroke-width="1" stroke-dasharray="4 8"/>
-        <circle cx="60"  cy="380" r="3.5" fill="rgba(255,255,255,.18)"/>
-        <circle cx="720" cy="160" r="3.5" fill="rgba(255,255,255,.18)"/>
-        <circle cx="950" cy="100" r="2.5" fill="rgba(255,255,255,.13)"/>
-        <circle cx="720" cy="160" r="14" fill="rgba(255,255,255,.06)"/>
-      </svg>
+  <div class="hero-inner">
 
-      <!-- Copy -->
-      <div class="hero-copy">
-        <div class="hero-eyebrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          17 агентов проверены · независимый подбор
-        </div>
-        <h1 class="hero-h1">Агент ВЭД для платежа<br>за рубеж — подберём бесплатно</h1>
-        <p class="hero-sub">Сравним комиссии, сроки и маршруты у 17 платёжных агентов. Подберём вариант под вашу сделку — ответим за ~47 минут в рабочее время.</p>
+    <!-- Copy -->
+    <div class="hero-copy">
+      <div class="hero-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Независимый подбор · данные не спонсируются
       </div>
-
-      <!-- Форма — один шаг, без модала -->
-      <div class="hero-form-tray">
-        <div class="hero-form-wrap">
-          <div class="hero-form-title">Подобрать агента</div>
-          <form id="lpForm">
-            <div class="hero-form-grid">
-              <div class="field">
-                <label for="fCountry">Страна платежа</label>
-                <select class="control" id="fCountry" name="country">
-                  <option value="">Выберите страну</option>
-                  <option>Китай</option><option>ОАЭ</option><option>Турция</option>
-                  <option>Гонконг</option><option>Индия</option><option>Япония</option>
-                  <option>Корея</option><option>Вьетнам</option><option>Таиланд</option>
-                  <option>ЕС</option><option>США</option><option>Бразилия</option>
-                  <option>Казахстан</option><option>Кыргызстан</option><option>СНГ</option>
-                  <option>Другая страна</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="fAmount">Сумма сделки</label>
-                <input class="control" id="fAmount" name="amount" type="text" inputmode="numeric" placeholder="например $100 000">
-              </div>
-            </div>
-            <div class="field hero-form-phone">
-              <label for="fPhone">Telegram или телефон *</label>
-              <input class="control" id="fPhone" name="phone" type="text" placeholder="@username или +7..." required>
-              <div class="hint">Введите контакт для связи</div>
-            </div>
-            <button type="submit" class="cta-btn">Подобрать агента бесплатно →</button>
-            <p class="form-note">Бесплатно · контакт передаётся выбранному агенту только после вашего согласования</p>
-          </form>
-          <div class="form-ok" id="lpOk">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <h3>Заявка принята!</h3>
-            <p>Подберём маршрут и свяжемся<br>в течение ~47 минут.</p>
+      <h1 class="hero-h1">Агент ВЭД<br>для платежа за рубеж —<br>подберём бесплатно</h1>
+      <p class="hero-sub">Сравниваем 17 проверенных агентов по комиссии, срокам и маршруту. Подберём вариант под вашу сделку — ответим за ~47 минут.</p>
+      <div class="trust-list">
+        <div class="trust-item">
+          <div class="trust-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
+          Китай, ОАЭ, Турция, ЕС и 180+ стран
+        </div>
+        <div class="trust-item">
+          <div class="trust-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Ответ за ~47 минут в рабочее время
+        </div>
+        <div class="trust-item">
+          <div class="trust-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Бесплатно — зарабатываем на агентском вознаграждении
         </div>
       </div>
     </div>
 
-    <!-- Proof bar -->
-    <div class="proof-bar">
-      <div class="proof-stat"><div class="ps-val">17</div><div class="ps-lbl">проверенных агентов в базе</div></div>
-      <div class="proof-stat"><div class="ps-val">~47 мин</div><div class="ps-lbl">среднее время до первого расчёта</div></div>
-      <div class="proof-stat"><div class="ps-val">Бесплатно</div><div class="ps-lbl">зарабатываем на агентском вознаграждении</div></div>
-      <div class="proof-stat"><div class="ps-val">500+</div><div class="ps-lbl">компаний уже подобрали маршрут</div></div>
+    <!-- Form card -->
+    <div class="form-card">
+      <h2 class="form-card-title">Получить подбор агента</h2>
+      <p class="form-card-sub">Укажите параметры — подберём подходящий маршрут</p>
+      <form id="lpForm">
+        <div class="field">
+          <label for="fCountry">Страна платежа</label>
+          <select class="control" id="fCountry" name="country">
+            <option value="">Выберите страну</option>
+            <option>Китай</option><option>ОАЭ</option><option>Турция</option>
+            <option>Гонконг</option><option>Индия</option><option>Япония</option>
+            <option>Корея</option><option>Вьетнам</option><option>Таиланд</option>
+            <option>ЕС</option><option>США</option><option>Бразилия</option>
+            <option>Казахстан</option><option>Кыргызстан</option><option>СНГ</option>
+            <option>Другая страна</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fAmount">Сумма сделки</label>
+          <input class="control" id="fAmount" name="amount" type="text" inputmode="numeric" placeholder="например $100 000">
+        </div>
+        <div class="field">
+          <label for="fPhone">Telegram или телефон *</label>
+          <input class="control" id="fPhone" name="phone" type="text" placeholder="@username или +7..." required>
+          <div class="hint">Введите контакт для связи</div>
+        </div>
+        <button type="submit" class="cta-btn">Подобрать агента бесплатно →</button>
+        <p class="form-note">Бесплатно · контакт передаётся агенту только после вашего согласования</p>
+      </form>
+      <div class="form-ok" id="lpOk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>Заявка принята!</h3>
+        <p>Подберём маршрут и свяжемся<br>в течение ~47 минут.</p>
+      </div>
     </div>
+
+  </div>
+
+  <!-- Stats bar -->
+  <div class="hero-stats">
+    <div class="hs-item"><div class="hs-val">17</div><div class="hs-lbl">агентов в базе</div></div>
+    <div class="hs-item"><div class="hs-val">~47 мин</div><div class="hs-lbl">до первого расчёта</div></div>
+    <div class="hs-item"><div class="hs-val">500+</div><div class="hs-lbl">компаний подобрали маршрут</div></div>
+    <div class="hs-item"><div class="hs-val">Бесплатно</div><div class="hs-lbl">агентское вознаграждение</div></div>
   </div>
 </section>
 
-<!-- Footer — минимальный -->
+<!-- Footer -->
 <footer class="ftr">
   <div class="ftr-inner">
     <span class="ftr-copy">© 2026 Дом ВЭД — независимый сервис подбора агентов ВЭД</span>
-    <div class="ftr-links">
-      <a href="tel:+74951205050">+7 495 120-50-50</a>
-    </div>
+    <a href="tel:+74951205050" class="ftr-tel">+7 495 120-50-50</a>
   </div>
 </footer>
 
