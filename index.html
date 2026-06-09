@@ -843,70 +843,6 @@ details.faq-item[open] summary { color: var(--brand); }
   .vs-table th:nth-child(2), .vs-table td:nth-child(2) { display: none; }
 }
 
-/* ========== CASHBACK BLOCK ========== */
-.cashback-section {
-  background: linear-gradient(135deg, #0D5E3F 0%, #0E7C5A 60%, #12A073 100%);
-  padding: 64px 0; color: #fff;
-}
-.cashback-inner {
-  display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
-}
-.cashback-copy h2 { font-size: clamp(26px, 3vw, 38px); color: #fff; margin-bottom: 12px; }
-.cashback-copy p { font-size: 17px; color: rgba(255,255,255,.82); line-height: 1.65; max-width: 580px; }
-.cashback-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
-  border-radius: 10px; padding: 8px 16px; margin-top: 20px;
-  font-size: 13.5px; font-weight: 700; color: rgba(255,255,255,.9);
-}
-.cashback-badge svg { width: 16px; height: 16px; flex: none; color: #7CFF9E; }
-.cashback-disclaimer {
-  font-size: 12px; color: rgba(255,255,255,.5); margin-top: 14px; line-height: 1.55;
-}
-.cashback-cta-btn {
-  background: #fff; color: #0D5E3F; font-weight: 800; font-size: 16px;
-  padding: 18px 32px; border-radius: 14px; white-space: nowrap; cursor: pointer;
-  font-family: inherit; border: none; box-shadow: 0 10px 30px rgba(0,0,0,.2);
-  transition: transform .12s, box-shadow .15s;
-}
-.cashback-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,.25); }
-@media (max-width: 720px) {
-  .cashback-inner { grid-template-columns: 1fr; }
-  .cashback-cta-btn { width: 100%; }
-}
-
-/* ========== COMPARE-WITH-CURRENT AGENT ========== */
-.compare-current-section {
-  background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  padding: 64px 0;
-}
-.compare-current-inner {
-  display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center;
-}
-.compare-current-copy h2 { font-size: clamp(24px, 3vw, 36px); margin-bottom: 12px; }
-.compare-current-copy p { color: var(--muted); font-size: 16px; line-height: 1.7; }
-.compare-current-bullets { margin-top: 20px; display: flex; flex-direction: column; gap: 11px; }
-.compare-current-bullet {
-  display: flex; align-items: flex-start; gap: 10px;
-  font-size: 14.5px; font-weight: 600; color: var(--ink-2);
-}
-.compare-current-bullet svg { color: var(--accent); width: 18px; height: 18px; flex: none; margin-top: 1px; }
-.compare-current-form {
-  background: var(--card); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow);
-}
-.compare-current-form h3 { font-size: 19px; margin-bottom: 6px; }
-.compare-current-form .form-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 20px; }
-.compare-current-submit {
-  width: 100%; background: var(--brand); color: #fff; font-weight: 800;
-  font-size: 15px; padding: 15px; border-radius: 11px; border: none; cursor: pointer;
-  font-family: inherit; transition: background .15s;
-  box-shadow: 0 6px 18px rgba(43,127,255,.28);
-}
-.compare-current-submit:hover { background: var(--brand-700); }
-@media (max-width: 768px) {
-  .compare-current-inner { grid-template-columns: 1fr; }
-}
 </style>
 </head>
 <body>
@@ -1186,28 +1122,6 @@ details.faq-item[open] summary { color: var(--brand); }
   </div>
 </section>
 
-<!-- ============ CASHBACK ============ -->
-<section class="cashback-section" id="cashback">
-  <div class="wrap">
-    <div class="cashback-inner">
-      <div class="cashback-copy">
-        <span class="eyebrow" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.2)">Кэшбэк за объём</span>
-        <h2 style="margin-top:16px">Кэшбэк за регулярные объёмы</h2>
-        <p>При регулярных платежах возможно снижение итоговой стоимости транзакций — мы делимся частью агентского вознаграждения. Индивидуальные условия согласовываются при первом контакте.</p>
-        <div class="cashback-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Для клиентов с регулярными операциями · условия индивидуально
-        </div>
-        <p class="cashback-disclaimer">* Кэшбэк доступен при выполнении условий по объёму. Точные параметры и размер возврата определяются индивидуально при согласовании. Финальные условия подтверждаются после проверки сделки.</p>
-      </div>
-      <div>
-        <button class="cashback-cta-btn" type="button" onclick="trackGoal('cashback_cta_click');document.getElementById('lead').scrollIntoView({behavior:'smooth',block:'start'})">
-          Узнать об условиях →
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ SAFETY ============ -->
 <section class="section" id="safety">
@@ -1331,60 +1245,6 @@ details.faq-item[open] summary { color: var(--brand); }
   </div>
 </section>
 
-<!-- ============ COMPARE WITH CURRENT AGENT ============ -->
-<section class="compare-current-section" id="compare-current">
-  <div class="wrap">
-    <div class="compare-current-inner">
-      <div class="compare-current-copy">
-        <span class="eyebrow">Уже работаете с агентом?</span>
-        <h2 style="margin-top:16px">Сравним с вашим текущим агентом</h2>
-        <p>Оставьте предварительные условия вашего агента — сравним с 17 другими из нашей базы и покажем, есть ли вариант дешевле или надёжнее. Это не значит, что придётся менять агента.</p>
-        <div class="compare-current-bullets">
-          <div class="compare-current-bullet">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Анонимно — агент не узнает о запросе
-          </div>
-          <div class="compare-current-bullet">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Сравниваем условия, сроки и надёжность маршрута
-          </div>
-          <div class="compare-current-bullet">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Предварительные условия — за ~47 минут
-          </div>
-        </div>
-      </div>
-      <div class="compare-current-form">
-        <h3>Сравнить с текущим агентом</h3>
-        <p class="form-sub">Укажите предварительные условия — подберём альтернативы</p>
-        <form id="compareCurrentForm">
-          <div class="field">
-            <label for="ccCommission">Текущая комиссия, %</label>
-            <input class="control" id="ccCommission" type="text" inputmode="decimal" placeholder="например 1,2%">
-          </div>
-          <div class="field">
-            <label for="ccCountry">Страна платежа</label>
-            <select class="control" id="ccCountry">
-              <option value="">Выберите страну</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="ccContact">Телефон или Telegram *</label>
-            <input class="control" id="ccContact" type="text" placeholder="@username или +7..." required>
-            <div class="hint">Введите контакт</div>
-          </div>
-          <button type="submit" class="compare-current-submit">Сравнить условия →</button>
-          <p style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">Бесплатно · контакт передаётся после вашего согласования</p>
-        </form>
-        <div class="lead-ok" id="compareCurrentOk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <h3>Запрос принят!</h3>
-          <p>Сравним с 17 агентами и пришлём результат в течение часа.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ FAQ ============ -->
 <section class="section" id="faq" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
@@ -2389,7 +2249,6 @@ function handleLogoError(img) {
     fillSelect($("#mCountry"), DICT.countries);
     fillSelect($("#mCurrency"), DICT.currencies);
     fillSelect($("#lCountrySelect"), DICT.countries);
-    fillSelect($("#ccCountry"), DICT.countries);
 
     /* Category tabs */
     $$("#catTabs button").forEach((b) => b.addEventListener("click", () => {
@@ -2502,17 +2361,7 @@ function handleLogoError(img) {
       if (_currentModalAgentId === "valter") trackGoal("agent_v_alter_submit");
     });
 
-    /* Compare-current form */
-    const ccForm = $("#compareCurrentForm");
-    if (ccForm) {
-      ccForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (!validateForm(e.target)) return;
-        e.target.style.display = "none";
-        $("#compareCurrentOk").classList.add("show");
-        trackGoal("compare_current_agent_click");
-      });
-    }
+
 
     /* Clear error on input */
     document.addEventListener("input", (e) => {
