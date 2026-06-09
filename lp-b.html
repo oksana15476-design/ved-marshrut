@@ -40,10 +40,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 1120px; margin: 0 auto; padding: 0 28px;
   display: flex; align-items: center; justify-content: space-between; height: 64px;
 }
-.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; }
-.logo .mark { width: 32px; height: 32px; flex: none; }
-.logo-dom { color: var(--ink); }
-.logo-ved { color: var(--brand); }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-mark {
+  width: 34px; height: 34px; background: var(--brand);
+  border-radius: 9px; display: flex; align-items: center; justify-content: center; flex: none;
+}
+.logo-mark svg { width: 20px; height: 20px; }
+.logo-text { font-size: 17px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
 .hdr-phone { font-weight: 800; font-size: 15px; color: var(--ink); text-align: right; }
 .hdr-phone small { display: block; font-size: 11px; font-weight: 600; color: var(--muted); }
 .hdr-call {
@@ -187,14 +190,13 @@ select.control {
 <header class="hdr">
   <div class="hdr-inner">
     <div class="logo">
-      <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="34" height="34" rx="8" fill="#0F1B35"/>
-        <path d="M9 24 L9 11 Q9 10 10 10 L24 10 Q25 10 25 11 L25 24" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <line x1="6" y1="24" x2="28" y2="24" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
-        <line x1="6" y1="24" x2="6" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
-        <line x1="28" y1="24" x2="28" y2="27" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-dom">Дом</span><span class="logo-ved">&thinsp;ВЭД</span>
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 2L3 7v10h5v-5h4v5h5V7L10 2z" fill="white" opacity=".9"/>
+          <circle cx="10" cy="10" r="2" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">Дом ВЭД</span>
     </div>
     <a href="tel:+74951205050" class="hdr-phone">
       +7 495 120-50-50
