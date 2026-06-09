@@ -720,14 +720,56 @@ select.control {
 
 /* ========== PAIN BLOCK ========== */
 .pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-.pain-card { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--danger); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow-sm); }
-.pain-card:nth-child(even) { border-left-color: var(--warn); }
+.pain-card { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--brand); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow-sm); }
+.pain-card:nth-child(even) { border-left-color: var(--accent); }
 .pain-icon { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; margin-bottom: 14px; }
-.pain-icon.red { background: var(--danger-100); color: var(--danger); }
-.pain-icon.orange { background: var(--warn-100); color: var(--warn); }
+.pain-icon.red { background: var(--brand-100); color: var(--brand); }
+.pain-icon.orange { background: var(--accent-100); color: var(--accent); }
 .pain-icon svg { width: 20px; height: 20px; }
 .pain-title { font-size: 16px; font-weight: 800; margin-bottom: 8px; color: var(--ink); }
 .pain-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* ========== LOCKED FIELDS / BLUR LEAD MAGNET ========== */
+.locked-blur {
+  filter: blur(5px);
+  user-select: none;
+  pointer-events: none;
+  border-radius: 4px;
+  display: inline-block;
+}
+.locked-field {
+  cursor: pointer;
+}
+.acard.has-locked-fields .locked-field:hover .locked-blur { filter: blur(3px); }
+.unlock-note {
+  margin-top: 12px; padding: 12px 14px;
+  background: #F4F8FF; border: 1px solid var(--brand-100);
+  border-radius: 12px; font-size: 13px; color: var(--ink-2); line-height: 1.55;
+}
+.unlock-note strong {
+  display: block; font-size: 13.5px; color: var(--ink); margin-bottom: 5px;
+}
+.unlock-btn {
+  margin-top: 10px; width: 100%;
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  background: var(--brand); color: #fff;
+  border-radius: 10px; padding: 11px 14px;
+  font-size: 13.5px; font-weight: 800;
+  cursor: pointer; font-family: inherit; border: none;
+  transition: background .15s, transform .1s;
+  box-shadow: 0 4px 14px rgba(43,127,255,.24);
+}
+.unlock-btn:hover { background: var(--brand-700); }
+.unlock-btn:active { transform: translateY(1px); }
+.unlock-btn svg { flex: none; }
+/* Table view locked cells */
+.cell-locked {
+  filter: blur(4px);
+  user-select: none;
+  pointer-events: none;
+  border-radius: 3px;
+  display: inline-block;
+}
 
 /* ========== WHY-US ========== */
 .why-us-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 40px; }
@@ -1487,8 +1529,8 @@ details.faq-item[open] summary { color: var(--brand); }
     <button class="modal-close" data-close type="button">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <h3>Подобрать маршрут</h3>
-    <p class="msub">Уточните параметры сделки — подберём агента с лучшими условиями и свяжемся в течение часа.</p>
+    <h3 id="modalTitle">Подобрать маршрут</h3>
+    <p class="msub" id="modalSub">Уточните параметры сделки — подберём агента с лучшими условиями и свяжемся в течение часа.</p>
     <form id="modalForm">
       <div class="modal-fields-grid">
         <div class="field">
@@ -1534,7 +1576,7 @@ details.faq-item[open] summary { color: var(--brand); }
         <input class="control" id="mPhone" type="text" placeholder="@username или +7..." required>
         <div class="hint">Введите контакт</div>
       </div>
-      <button type="submit" class="btn btn-primary btn-block">Получить подбор бесплатно</button>
+      <button type="submit" class="btn btn-primary btn-block" id="modalSubmitBtn">Получить подбор бесплатно</button>
       <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5">Бесплатно для вас · контакт передаётся выбранному маршруту после вашего согласования</p>
     </form>
     <div class="lead-ok" id="modalOk">
@@ -1943,6 +1985,7 @@ function handleLogoError(img) {
   const DICT = window.DICT || { countries: [], currencies: [] };
 
   let _currentModalAgentId = null;
+  let _currentModalMode = "apply";
 
   const state = {
     type: "",
@@ -2057,6 +2100,10 @@ function handleLogoError(img) {
     return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
   }
 
+  function isOpenAgent(a) {
+    return a.id === "valter";
+  }
+
   function featuredCardHTML(a) {
     return `
     <div class="acard is-recommended is-featured" data-id="${a.id}">
@@ -2117,9 +2164,12 @@ function handleLogoError(img) {
 
   function cardHTML(a) {
     if (a.recommended) return featuredCardHTML(a);
+    const open = isOpenAgent(a);
     const typeLabel = a.type === "bank" ? "Банк" : "Платёжный агент";
+    const lk = (val) => open ? esc(val) : `<span class="locked-blur">${esc(val)}</span>`;
+    const lockedClass = open ? "" : " has-locked-fields";
     return `
-    <div class="acard" data-id="${a.id}">
+    <div class="acard${lockedClass}" data-id="${a.id}">
       <div class="acard-stripe" style="background:${a.type==='bank'?'#6B7280':'#2B7FFF'}"></div>
       <div class="acard-body">
         <div class="acard-head">
@@ -2137,14 +2187,14 @@ function handleLogoError(img) {
           <span class="acard-rating-val">${a.rating}</span>
           <span class="acard-rating-cnt">${a.reviews.toLocaleString("ru-RU")} отзывов</span>
         </div>
-        <div class="acard-commission">
-          <span class="cv">${esc(a.commissionText)}</span>
+        <div class="acard-commission${open ? '' : ' locked-field'}"${open ? '' : ` data-unlock="${a.id}"`}>
+          <span class="cv">${lk(a.commissionText)}</span>
           <span class="cl">${a.commissionSub ? esc(a.commissionSub) : 'комиссия'}</span>
         </div>
         <div class="acard-stats">
-          <div class="astat"><div class="av">${esc(a.minText)}</div><div class="al">Мин. сумма</div></div>
-          <div class="astat"><div class="av">${esc(a.termText)}</div><div class="al">Срок платежа</div></div>
-          <div class="astat"><div class="av">${esc(a.docText)}</div><div class="al">Срок перевода</div></div>
+          <div class="astat"><div class="av${open ? '' : ' locked-field'}"${open ? '' : ` data-unlock="${a.id}"`}>${lk(a.minText)}</div><div class="al">Мин. сумма</div></div>
+          <div class="astat"><div class="av${open ? '' : ' locked-field'}"${open ? '' : ` data-unlock="${a.id}"`}>${lk(a.termText)}</div><div class="al">Срок платежа</div></div>
+          <div class="astat"><div class="av${open ? '' : ' locked-field'}"${open ? '' : ` data-unlock="${a.id}"`}>${lk(a.docText)}</div><div class="al">Срок перевода</div></div>
           <div class="astat"><div class="av">${a.flow.map(f=>f==="import"?"Импорт":"Экспорт").join(" · ")}</div><div class="al">Направление</div></div>
         </div>
         <div class="acard-chips-row">
@@ -2155,16 +2205,30 @@ function handleLogoError(img) {
           <div class="al">Страны</div>
           ${chips(a.countries, 3)}
         </div>
-        <button class="acard-btn" data-apply="${a.id}" type="button">Подобрать маршрут</button>
+        ${open
+          ? `<button class="acard-btn" data-apply="${a.id}" type="button">Подобрать маршрут</button>`
+          : `<div class="unlock-note">
+              <strong>Узнайте точные условия этого агента</strong>
+              Комиссия, минимальная сумма и сроки — после бесплатной заявки на подбор маршрута.
+              <button class="unlock-btn" data-unlock="${a.id}" type="button">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Узнать условия бесплатно
+              </button>
+            </div>`
+        }
       </div>
     </div>`;
   }
 
   function rowHTML(a) {
-    const open = state.expanded.has(a.id) ? "open" : "";
+    const expandOpen = state.expanded.has(a.id) ? "open" : "";
     const leaderClass = a.recommended ? "is-leader" : "";
+    const agOpen = isOpenAgent(a);
+    const lk = (val) => agOpen ? esc(val) : `<span class="cell-locked">${esc(val)}</span>`;
+    const unlockAttr = agOpen ? '' : ` data-unlock="${a.id}"`;
+    const lockedCls = agOpen ? '' : ' locked-field';
     return `
-    <div class="cmp-row ${open} ${leaderClass}" data-id="${a.id}">
+    <div class="cmp-row ${expandOpen} ${leaderClass}" data-id="${a.id}">
       <div class="agent">
         <div class="blur-id">${agentLogo(a)}</div>
         <div>
@@ -2175,9 +2239,9 @@ function handleLogoError(img) {
           </div>
         </div>
       </div>
-      <div><div class="cell-big">${esc(a.commissionText)}</div><div class="cell-sub">${a.commissionSub ? esc(a.commissionSub) : 'за перевод'}</div></div>
-      <div><div class="cell-big">${esc(a.minText)}</div><div class="cell-sub">мин. сумма</div></div>
-      <div><div class="cell-big">${esc(a.termText)}</div><div class="cell-sub">Срок: ${esc(a.docText)}</div></div>
+      <div class="${lockedCls}"${unlockAttr}><div class="cell-big">${lk(a.commissionText)}</div><div class="cell-sub">${a.commissionSub ? esc(a.commissionSub) : 'за перевод'}</div></div>
+      <div class="${lockedCls}"${unlockAttr}><div class="cell-big">${lk(a.minText)}</div><div class="cell-sub">мин. сумма</div></div>
+      <div class="${lockedCls}"${unlockAttr}><div class="cell-big">${lk(a.termText)}</div><div class="cell-sub">Срок: ${lk(a.docText)}</div></div>
       <div>
         ${chips(a.currencies, 4)}
         <div style="margin-top:6px">${chips(a.countries, 3)}</div>
@@ -2186,8 +2250,12 @@ function handleLogoError(img) {
         </button>
       </div>
       <div class="cmp-actions">
-        <button class="btn btn-primary btn-sm${a.recommended ? ' btn-leader' : ''}" data-apply="${a.id}" type="button">Подобрать маршрут</button>
-        <button class="btn btn-ghost btn-sm" data-expand="${a.id}" type="button">Подробнее</button>
+        ${agOpen
+          ? `<button class="btn btn-primary btn-sm${a.recommended ? ' btn-leader' : ''}" data-apply="${a.id}" type="button">Подобрать маршрут</button>
+             <button class="btn btn-ghost btn-sm" data-expand="${a.id}" type="button">Подробнее</button>`
+          : `<button class="btn btn-primary btn-sm" data-unlock="${a.id}" type="button">Узнать условия</button>
+             <button class="btn btn-ghost btn-sm" data-expand="${a.id}" type="button">Подробнее</button>`
+        }
       </div>
     </div>
     <div class="cmp-detail">
@@ -2260,7 +2328,19 @@ function handleLogoError(img) {
 
   /* Modal */
   const modal = $("#modal");
-  function openModal(agentId) {
+  function openModal(agentId, mode) {
+    mode = mode || "apply";
+    _currentModalMode = mode;
+    _currentModalAgentId = agentId;
+    const isUnlock = mode === "unlock";
+    const titleEl = $("#modalTitle");
+    const subEl = $("#modalSub");
+    const btnEl = $("#modalSubmitBtn");
+    if (titleEl) titleEl.textContent = isUnlock ? "Узнать условия агента" : "Подобрать маршрут";
+    if (subEl) subEl.textContent = isUnlock
+      ? "Оставьте контакт — уточним коммерческие условия этого агента и подберём оптимальный маршрут."
+      : "Уточните параметры сделки — подберём агента с лучшими условиями и свяжемся в течение часа.";
+    if (btnEl) btnEl.textContent = isUnlock ? "Узнать условия бесплатно" : "Получить подбор бесплатно";
     $("#modalForm").reset();
     $("#modalForm").style.display = "";
     $("#modalOk").classList.remove("show");
@@ -2269,7 +2349,6 @@ function handleLogoError(img) {
     if (state.country)  $("#mCountry").value  = state.country;
     if (state.currency) $("#mCurrency").value = state.currency;
     if (state.amount)   $("#mAmount").value   = "$" + state.amount.toLocaleString("ru-RU");
-    _currentModalAgentId = agentId;
     modal.classList.add("show");
     document.body.style.overflow = "hidden";
     trackGoal("modal_open");
@@ -2367,6 +2446,21 @@ function handleLogoError(img) {
         render();
         return;
       }
+      const unl = e.target.closest("[data-unlock]");
+      if (unl) {
+        trackGoal("unlock_conditions_click");
+        openModal(unl.dataset.unlock, "unlock");
+        return;
+      }
+      const lf = e.target.closest(".locked-field");
+      if (lf) {
+        const card = lf.closest("[data-id]");
+        if (card) {
+          trackGoal("unlock_conditions_click");
+          openModal(card.dataset.id, "unlock");
+        }
+        return;
+      }
       const app = e.target.closest("[data-apply]");
       if (app) {
         trackGoal("agent_card_click");
@@ -2403,6 +2497,7 @@ function handleLogoError(img) {
       e.target.style.display = "none";
       $("#modalOk").classList.add("show");
       trackGoal("modal_form_submit");
+      if (_currentModalMode === "unlock") trackGoal("unlock_conditions_submit");
       if (_currentModalAgentId === "valter") trackGoal("agent_v_alter_submit");
     });
 
