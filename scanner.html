@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подбор агента ВЭД — три варианта для вашего платежа | Дом ВЭД</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Укажите параметры платежа — сравним условия 17 проверенных агентов и пришлём три варианта: выгодный, быстрый и надёжный. Китай, ОАЭ, Турция, ЕС.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root {
+  --ink:        #11141A;
+  --ink-2:      #3A4250;
+  --muted:      #7B8698;
+  --line:       #E7EBF1;
+  --bg:         #F4F7FB;
+  --card:       #FFFFFF;
+  --brand:      #2B7FFF;
+  --brand-700:  #145CD6;
+  --brand-100:  #E7F0FF;
+  --accent:     #16B364;
+  --accent-700: #0E9457;
+  --accent-100: #E2F6EC;
+  --gold:       #F59E0B;
+  --font: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+p { margin: 0; }
+
+/* ── Header ── */
+.hdr {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.hdr-inner {
+  max-width: 1140px; margin: 0 auto; padding: 0 28px;
+  display: flex; align-items: center; justify-content: space-between; height: 64px;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-mark {
+  width: 34px; height: 34px; background: var(--brand);
+  border-radius: 9px; display: flex; align-items: center; justify-content: center; flex: none;
+}
+.logo-text { font-size: 17px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
+.hdr-phone { font-weight: 800; font-size: 15px; color: var(--ink); text-align: right; }
+.hdr-phone small { display: block; font-size: 11px; font-weight: 600; color: var(--muted); }
+.hdr-call {
+  display: none; align-items: center; gap: 7px;
+  background: var(--brand); color: #fff; border-radius: 10px;
+  padding: 10px 16px; font-size: 14px; font-weight: 700;
+}
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, #071A40 0%, #0D2E7C 35%, #1650C4 68%, #2468E0 100%);
+  padding: 64px 28px 0;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 600px 400px at 90% -10%, rgba(255,255,255,.10) 0%, transparent 60%),
+    radial-gradient(ellipse 400px 400px at 10% 110%, rgba(20,80,210,.5) 0%, transparent 55%);
+}
+.hero-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 440px; gap: 64px; align-items: start;
+  position: relative; z-index: 1;
+}
+
+/* ── Copy ── */
+.hero-copy { color: #fff; padding-bottom: 60px; }
+.eyebrow-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  border-radius: 100px; padding: 6px 16px;
+  font-size: 11.5px; font-weight: 700; color: rgba(255,255,255,.85);
+  text-transform: uppercase; letter-spacing: .08em; margin-bottom: 24px;
+}
+.pulse-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #4CE89A;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .6; transform: scale(.8); }
+}
+.hero-h1 {
+  font-size: clamp(28px, 3.2vw, 50px); font-weight: 800;
+  letter-spacing: -0.04em; line-height: 1.06; color: #fff;
+  margin-bottom: 20px;
+}
+.hero-h1 em { font-style: normal; color: #7DC4FF; }
+.hero-sub {
+  font-size: 17px; color: rgba(255,255,255,.72); line-height: 1.65;
+  max-width: 460px; margin-bottom: 36px;
+}
+.trust-list { display: flex; flex-direction: column; gap: 12px; }
+.trust-item {
+  display: flex; align-items: center; gap: 11px;
+  font-size: 15px; font-weight: 600; color: rgba(255,255,255,.82);
+}
+.check-icon {
+  width: 22px; height: 22px; border-radius: 50%; flex: none;
+  background: rgba(22,179,100,.18); border: 1.5px solid rgba(22,179,100,.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.check-icon svg { width: 10px; height: 10px; color: #4CE89A; }
+
+/* ── Wizard card ── */
+.wizard-card {
+  background: #fff; border-radius: 22px; padding: 30px;
+  box-shadow: 0 32px 80px rgba(0,0,0,.32);
+  position: sticky; top: 80px;
+}
+.wizard-progress {
+  display: flex; gap: 4px; margin-bottom: 22px;
+}
+.progress-step {
+  flex: 1; height: 3px; border-radius: 3px;
+  background: var(--line); transition: background .3s;
+}
+.progress-step.done { background: var(--accent); }
+.progress-step.active { background: var(--brand); }
+
+.wizard-step { display: none; }
+.wizard-step.active { display: block; }
+
+.step-label {
+  font-size: 11px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px;
+}
+.step-title {
+  font-size: 20px; font-weight: 800; letter-spacing: -0.03em;
+  margin-bottom: 5px; line-height: 1.2;
+}
+.step-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+
+/* Country buttons grid */
+.country-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 20px;
+}
+.country-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 15px; border-radius: 13px;
+  border: 1.5px solid var(--line); background: #fff;
+  font-size: 14.5px; font-weight: 700; color: var(--ink);
+  transition: border-color .15s, background .15s, box-shadow .15s;
+  cursor: pointer; text-align: left;
+}
+.country-btn:hover { border-color: var(--brand); background: var(--brand-100); }
+.country-btn.selected {
+  border-color: var(--brand); background: var(--brand-100);
+  box-shadow: 0 0 0 3px rgba(43,127,255,.12);
+}
+.country-btn .radio {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid var(--line); flex: none;
+  transition: border-color .15s; background: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+.country-btn.selected .radio {
+  border-color: var(--brand); background: var(--brand);
+}
+.country-btn.selected .radio::after {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff;
+}
+.country-flag { font-size: 18px; line-height: 1; }
+
+/* Input field */
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink-2); margin-bottom: 6px; }
+.control {
+  width: 100%; height: 52px; border: 1.5px solid var(--line); border-radius: 12px;
+  padding: 0 15px; font-size: 15px; font-family: inherit; color: var(--ink);
+  font-weight: 600; background: #fff; outline: none;
+  transition: border-color .15s, box-shadow .15s; appearance: none;
+}
+select.control {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%237B8698' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 13px center; padding-right: 40px; cursor: pointer;
+}
+.control:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-100); }
+.control::placeholder { color: #9AA5BE; font-weight: 500; }
+.field.invalid .control { border-color: #E0463E; }
+.field .hint { font-size: 12px; color: #E0463E; margin-top: 4px; display: none; }
+.field.invalid .hint { display: block; }
+
+/* Wizard buttons */
+.btn-next {
+  width: 100%; height: 54px; margin-top: 4px;
+  background: var(--brand); color: #fff;
+  border-radius: 13px; font-size: 16px; font-weight: 800;
+  box-shadow: 0 8px 24px rgba(43,127,255,.32);
+  transition: background .15s, transform .1s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-next:hover { background: var(--brand-700); }
+.btn-next:active { transform: translateY(1px); }
+.btn-next svg { width: 17px; height: 17px; }
+
+.btn-submit {
+  width: 100%; height: 54px; margin-top: 4px;
+  background: var(--accent); color: #fff;
+  border-radius: 13px; font-size: 16px; font-weight: 800;
+  box-shadow: 0 8px 24px rgba(22,179,100,.36);
+  transition: background .15s, transform .1s;
+}
+.btn-submit:hover { background: var(--accent-700); }
+.btn-submit:active { transform: translateY(1px); }
+
+.btn-back {
+  background: none; border: none; color: var(--muted);
+  font-size: 13.5px; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; gap: 5px; margin-bottom: 16px;
+  padding: 0;
+}
+.btn-back:hover { color: var(--ink); }
+.btn-back svg { width: 14px; height: 14px; }
+
+.form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
+
+/* Success state */
+.wizard-success { display: none; text-align: center; padding: 10px 0; }
+.wizard-success.show { display: block; }
+.success-icon {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--accent-100); margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.success-icon svg { width: 28px; height: 28px; color: var(--accent); }
+.wizard-success h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+.wizard-success p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* ── Stats bar ── */
+.hero-stats {
+  border-top: 1px solid rgba(255,255,255,.1);
+  display: flex; position: relative; z-index: 1;
+}
+.hs-item { flex: 1; padding: 22px 0; text-align: center; border-right: 1px solid rgba(255,255,255,.08); }
+.hs-item:last-child { border-right: none; }
+.hs-val { font-size: 21px; font-weight: 800; color: #fff; letter-spacing: -.03em; line-height: 1.1; }
+.hs-lbl { font-size: 11.5px; color: rgba(255,255,255,.5); font-weight: 600; margin-top: 3px; }
+
+/* ── Section ── */
+.section { padding: 80px 28px; }
+.section-inner { max-width: 1140px; margin: 0 auto; }
+.section-head { max-width: 680px; margin-bottom: 44px; }
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--brand); background: var(--brand-100);
+  padding: 6px 13px; border-radius: 100px; margin-bottom: 14px;
+}
+.section-head h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; margin-bottom: 14px; }
+.section-head p { color: var(--muted); font-size: 17px; line-height: 1.6; }
+
+/* ── Example routes ── */
+.routes-section { background: #0D1A35; padding: 80px 28px; }
+.routes-section .section-head h2 { color: #fff; }
+.routes-section .section-head p { color: rgba(255,255,255,.6); }
+.routes-section .section-eyebrow { background: rgba(43,127,255,.2); color: #7DC4FF; }
+
+.routes-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+.route-card {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px; padding: 26px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform .2s, box-shadow .2s;
+}
+.route-card:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+.route-card.recommended {
+  background: rgba(43,127,255,.12); border-color: rgba(43,127,255,.35);
+  box-shadow: 0 0 0 2px rgba(43,127,255,.18);
+}
+.route-card.recommended::before {
+  content: 'Рекомендуем'; position: absolute; top: 0; right: 22px;
+  background: var(--brand); color: #fff;
+  font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 0 0 10px 10px;
+}
+.route-label {
+  font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.5); margin-bottom: 6px;
+}
+.route-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 20px; }
+
+.route-table { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.route-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13.5px; padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.route-row:last-child { border-bottom: none; padding-bottom: 0; }
+.route-key { color: rgba(255,255,255,.55); font-weight: 600; }
+.route-val { color: #fff; font-weight: 700; }
+.badge-green {
+  background: rgba(22,179,100,.18); border: 1px solid rgba(22,179,100,.3);
+  color: #4CE89A; font-size: 12px; font-weight: 800;
+  padding: 3px 9px; border-radius: 7px;
+}
+.badge-blue {
+  background: rgba(43,127,255,.2); border: 1px solid rgba(43,127,255,.3);
+  color: #7DC4FF; font-size: 12px; font-weight: 800;
+  padding: 3px 9px; border-radius: 7px;
+}
+
+.route-calc {
+  background: rgba(255,255,255,.06); border-radius: 12px;
+  padding: 14px 16px; margin-top: 18px;
+}
+.route-calc-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.4); margin-bottom: 10px; }
+.route-calc-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; }
+.route-calc-row:first-of-type { margin-bottom: 5px; }
+.route-calc-key { color: rgba(255,255,255,.55); }
+.route-calc-val { color: #fff; font-weight: 700; }
+.route-calc-val.big { font-size: 20px; font-weight: 800; color: #4CE89A; }
+
+.route-cta {
+  margin-top: 20px; width: 100%; height: 46px;
+  background: rgba(43,127,255,.2); border: 1px solid rgba(43,127,255,.4);
+  color: #fff; border-radius: 12px; font-size: 14px; font-weight: 800;
+  transition: background .15s;
+}
+.route-cta:hover { background: rgba(43,127,255,.35); }
+
+.routes-note {
+  text-align: center; margin-top: 24px;
+  font-size: 13px; color: rgba(255,255,255,.35); font-weight: 600;
+}
+
+/* ── How it works ── */
+.steps-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+  counter-reset: steps;
+}
+.step-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 18px; padding: 24px 20px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(17,20,26,.04);
+}
+.step-num {
+  font-size: 36px; font-weight: 800; letter-spacing: -0.04em;
+  color: var(--brand-100); line-height: 1; margin-bottom: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.step-icon { color: var(--muted); margin-bottom: 12px; }
+.step-icon svg { width: 20px; height: 20px; }
+.step-card h4 { font-size: 15px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+.step-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* Connector */
+.steps-grid .step-card:not(:last-child)::after {
+  content: '→'; position: absolute; right: -14px; top: 28px;
+  font-size: 16px; color: var(--line); font-weight: 800; z-index: 2;
+}
+
+/* ── Why us ── */
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.why-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 18px; padding: 28px;
+  box-shadow: 0 2px 8px rgba(17,20,26,.04);
+}
+.why-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: var(--brand-100); display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.why-icon svg { width: 22px; height: 22px; color: var(--brand); }
+.why-val { font-size: 32px; font-weight: 800; letter-spacing: -0.04em; color: var(--ink); margin-bottom: 4px; }
+.why-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 10px; line-height: 1.3; }
+.why-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* ── Trust bar ── */
+.trust-bar {
+  background: var(--brand-100); border: 1px solid rgba(43,127,255,.15);
+  border-radius: 18px; padding: 22px 30px;
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  margin-top: 40px;
+}
+.trust-bar-icon { color: var(--brand); flex: none; }
+.trust-bar-icon svg { width: 22px; height: 22px; }
+.trust-bar p { font-size: 15px; font-weight: 700; color: var(--ink); }
+.trust-bar span { color: var(--muted); font-weight: 600; }
+
+/* ── FAQ ── */
+.faq-section { background: var(--bg); }
+.faq-list { max-width: 720px; }
+details.faq-item {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; overflow: hidden; margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(17,20,26,.04);
+}
+details.faq-item summary {
+  padding: 18px 22px; font-size: 15.5px; font-weight: 700; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  list-style: none;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after {
+  content: '+'; font-size: 20px; font-weight: 700; color: var(--muted);
+  flex: none; transition: transform .2s;
+}
+details.faq-item[open] summary::after { content: '−'; }
+.faq-body { padding: 0 22px 18px; font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+/* ── CTA section ── */
+.cta-section {
+  background: linear-gradient(135deg, #071A40 0%, #1650C4 100%);
+  padding: 80px 28px; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 600px 400px at 50% 0%, rgba(100,170,255,.18) 0%, transparent 60%);
+}
+.cta-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+.cta-section h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 800; letter-spacing: -0.04em; color: #fff; margin-bottom: 16px; }
+.cta-section p { font-size: 17px; color: rgba(255,255,255,.7); margin-bottom: 32px; line-height: 1.6; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: #fff;
+  height: 58px; padding: 0 36px; border-radius: 14px;
+  font-size: 17px; font-weight: 800;
+  box-shadow: 0 10px 28px rgba(22,179,100,.4);
+  transition: background .15s, transform .1s;
+}
+.cta-btn:hover { background: var(--accent-700); transform: translateY(-1px); }
+.cta-btn svg { width: 18px; height: 18px; }
+.cta-note { font-size: 13px; color: rgba(255,255,255,.45); margin-top: 16px; }
+
+/* ── Footer ── */
+.ftr { padding: 20px 28px; border-top: 1px solid var(--line); background: #fff; }
+.ftr-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+.ftr-copy { font-size: 13px; color: var(--muted); }
+.ftr-links { display: flex; gap: 20px; }
+.ftr-links a { font-size: 13px; color: var(--muted); }
+.ftr-links a:hover { color: var(--ink); }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .routes-grid { grid-template-columns: 1fr 1fr; }
+  .route-card:last-child { grid-column: span 2; max-width: 420px; margin: 0 auto; width: 100%; }
+  .steps-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .steps-grid .step-card:not(:last-child)::after { display: none; }
+}
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-copy { padding-bottom: 0; }
+  .wizard-card { position: static; }
+  .hero-sub { max-width: 100%; }
+  .hero { padding: 48px 20px 0; }
+  .hdr-phone { display: none; }
+  .hdr-call { display: flex; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; }
+  .hs-item:nth-child(2) { border-right: none; }
+  .hs-item:nth-child(3), .hs-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.08); }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .routes-grid { grid-template-columns: 1fr; }
+  .route-card:last-child { grid-column: span 1; max-width: 100%; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .section { padding: 56px 20px; }
+  .routes-section { padding: 56px 20px; }
+  .cta-section { padding: 56px 20px; }
+  .country-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .hero { padding: 32px 16px 0; }
+  .hero-h1 { font-size: 26px; }
+  .ftr { padding: 16px; }
+  .ftr-links { gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <a href="/index.html" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L3 7v10h5v-5h4v5h5V7L10 2z" fill="white" opacity=".9"/><circle cx="10" cy="10" r="2" fill="white"/></svg>
+      </div>
+      <span class="logo-text">Дом ВЭД</span>
+    </a>
+    <a href="tel:+74951205050" class="hdr-phone">
+      +7 495 120-50-50
+      <small>Пн–Пт, 9:00–20:00 МСК</small>
+    </a>
+    <a href="tel:+74951205050" class="hdr-call">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.58 3.5 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Позвонить
+    </a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <!-- Copy -->
+    <div class="hero-copy">
+      <div class="eyebrow-pill">
+        <span class="pulse-dot"></span>
+        17 агентов проверены · подбор активен
+      </div>
+      <h1 class="hero-h1">Три варианта для вашего<br><em>платежа за рубеж</em> — за 1 минуту</h1>
+      <p class="hero-sub">Укажите параметры — сравним условия 17 проверенных агентов и пришлём выгодный, быстрый и рекомендуемый вариант с реальными цифрами.</p>
+      <div class="trust-list">
+        <div class="trust-item">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Китай, ОАЭ, Турция, ЕС и 180+ стран
+        </div>
+        <div class="trust-item">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Первый расчёт в течение часа
+        </div>
+        <div class="trust-item">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Условия фиксируются до отправки денег
+        </div>
+        <div class="trust-item">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          СРО-членство и выплаты — ежемесячная проверка
+        </div>
+      </div>
+    </div>
+
+    <!-- Wizard -->
+    <div class="wizard-card">
+
+      <!-- Progress bar -->
+      <div class="wizard-progress">
+        <div class="progress-step active" id="prog-1"></div>
+        <div class="progress-step" id="prog-2"></div>
+        <div class="progress-step" id="prog-3"></div>
+        <div class="progress-step" id="prog-4"></div>
+      </div>
+
+      <!-- Step 1: Country -->
+      <div class="wizard-step active" id="step-1">
+        <div class="step-label">Шаг 1 из 4</div>
+        <div class="step-title">Куда платёж?</div>
+        <p class="step-sub">Страна получателя влияет на набор рабочих агентов и условия.</p>
+        <div class="country-grid">
+          <button class="country-btn" data-value="Китай" onclick="selectCountry(this)">
+            <span><span class="country-flag">🇨🇳</span> Китай</span>
+            <span class="radio"></span>
+          </button>
+          <button class="country-btn" data-value="ОАЭ" onclick="selectCountry(this)">
+            <span><span class="country-flag">🇦🇪</span> ОАЭ</span>
+            <span class="radio"></span>
+          </button>
+          <button class="country-btn" data-value="Турция" onclick="selectCountry(this)">
+            <span><span class="country-flag">🇹🇷</span> Турция</span>
+            <span class="radio"></span>
+          </button>
+          <button class="country-btn" data-value="Гонконг" onclick="selectCountry(this)">
+            <span><span class="country-flag">🇭🇰</span> Гонконг</span>
+            <span class="radio"></span>
+          </button>
+          <button class="country-btn" data-value="ЕС" onclick="selectCountry(this)">
+            <span><span class="country-flag">🇪🇺</span> ЕС</span>
+            <span class="radio"></span>
+          </button>
+          <button class="country-btn" data-value="Другое" onclick="selectCountry(this)">
+            <span>🌍 Другое</span>
+            <span class="radio"></span>
+          </button>
+        </div>
+        <button class="btn-next" id="btn-next-1" onclick="goStep(2)" disabled>
+          Далее
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- Step 2: Amount + Currency -->
+      <div class="wizard-step" id="step-2">
+        <button class="btn-back" onclick="goStep(1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Назад
+        </button>
+        <div class="step-label">Шаг 2 из 4</div>
+        <div class="step-title">Сумма и валюта</div>
+        <p class="step-sub">От суммы зависит комиссия и набор подходящих агентов.</p>
+        <div class="field">
+          <label for="f-amount">Сумма платежа</label>
+          <input class="control" id="f-amount" type="text" inputmode="numeric" placeholder="например $50 000">
+          <div class="hint">Укажите сумму</div>
+        </div>
+        <div class="field">
+          <label for="f-currency">Валюта получателя</label>
+          <select class="control" id="f-currency">
+            <option value="">Выберите валюту</option>
+            <option>CNY — юань</option>
+            <option>AED — дирхам</option>
+            <option>TRY — лира</option>
+            <option>USD — доллар</option>
+            <option>EUR — евро</option>
+            <option>HKD — гонконгский доллар</option>
+            <option>Другая</option>
+          </select>
+          <div class="hint">Выберите валюту</div>
+        </div>
+        <button class="btn-next" onclick="goStep(3)">
+          Далее
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- Step 3: Urgency -->
+      <div class="wizard-step" id="step-3">
+        <button class="btn-back" onclick="goStep(2)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Назад
+        </button>
+        <div class="step-label">Шаг 3 из 4</div>
+        <div class="step-title">Срочность</div>
+        <p class="step-sub">Поможем найти агента под ваши сроки.</p>
+        <div class="field">
+          <label for="f-urgency">Когда нужно провести платёж?</label>
+          <select class="control" id="f-urgency">
+            <option value="">Выберите срок</option>
+            <option>Как можно быстрее (день в день)</option>
+            <option>1–3 рабочих дня</option>
+            <option>До недели</option>
+            <option>Срок не критичен</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-docs">Документы для сделки</label>
+          <select class="control" id="f-docs">
+            <option value="">Выберите</option>
+            <option>Контракт + инвойс — есть</option>
+            <option>Только инвойс</option>
+            <option>Документов нет, нужна помощь</option>
+          </select>
+        </div>
+        <button class="btn-next" onclick="goStep(4)">
+          Далее
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- Step 4: Contact -->
+      <div class="wizard-step" id="step-4">
+        <button class="btn-back" onclick="goStep(3)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Назад
+        </button>
+        <div class="step-label">Шаг 4 из 4</div>
+        <div class="step-title">Куда прислать варианты?</div>
+        <p class="step-sub">Пришлём три расчёта — выгодный, быстрый и рекомендуемый.</p>
+        <div class="field" id="field-contact">
+          <label for="f-contact">Telegram или телефон</label>
+          <input class="control" id="f-contact" type="text" placeholder="@username или +7...">
+          <div class="hint">Укажите контакт для связи</div>
+        </div>
+        <button class="btn-submit" onclick="submitForm()">Получить три варианта →</button>
+        <p class="form-note">Контакт передаётся агенту только после вашего согласования · без обязательств</p>
+      </div>
+
+      <!-- Success -->
+      <div class="wizard-success" id="wizard-success">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>Заявка принята!</h3>
+        <p>Сравниваем условия по вашему запросу.<br>Свяжемся в течение часа в рабочее время.</p>
+      </div>
+
+    </div><!-- /wizard-card -->
+  </div><!-- /hero-inner -->
+
+  <!-- Stats bar -->
+  <div class="hero-stats">
+    <div class="hs-item"><div class="hs-val">17</div><div class="hs-lbl">проверенных агентов</div></div>
+    <div class="hs-item"><div class="hs-val">≤1 часа</div><div class="hs-lbl">до первого расчёта</div></div>
+    <div class="hs-item"><div class="hs-val">500+</div><div class="hs-lbl">компаний провели платёж</div></div>
+    <div class="hs-item"><div class="hs-val">180+</div><div class="hs-lbl">стран покрытия</div></div>
+  </div>
+</section>
+
+<!-- Example routes -->
+<div class="routes-section">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Пример расчёта</div>
+      <h2>Три варианта для платежа $100 000 в Китай</h2>
+      <p>Так выглядят реальные расчёты из нашей практики. Ваши цифры зависят от суммы, направления и срочности.</p>
+    </div>
+    <div class="routes-grid">
+
+      <div class="route-card">
+        <div class="route-label">Вариант A</div>
+        <div class="route-title">Выгодный</div>
+        <div class="route-table">
+          <div class="route-row">
+            <span class="route-key">Комиссия</span>
+            <span class="route-val"><span class="badge-green">1,1%</span></span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Курс</span>
+            <span class="route-val">ЦБ РФ + 0,5%</span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Срок зачисления</span>
+            <span class="route-val">5–8 раб. дней</span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Валюта</span>
+            <span class="route-val">CNY на счёт</span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Документы</span>
+            <span class="route-val">Контракт + инвойс</span>
+          </div>
+        </div>
+        <div class="route-calc">
+          <div class="route-calc-label">Пример расчёта</div>
+          <div class="route-calc-row">
+            <span class="route-calc-key">Отправляете</span>
+            <span class="route-calc-val">$100 000</span>
+          </div>
+          <div class="route-calc-row">
+            <span class="route-calc-key">Поставщик получит</span>
+            <span class="route-calc-val big">≈ 715 000 ¥</span>
+          </div>
+        </div>
+        <button class="route-cta" onclick="document.getElementById('step-1').scrollIntoView({behavior:'smooth'})">Выбрать этот вариант</button>
+      </div>
+
+      <div class="route-card recommended">
+        <div class="route-label">Вариант B</div>
+        <div class="route-title">Рекомендуемый</div>
+        <div class="route-table">
+          <div class="route-row">
+            <span class="route-key">Комиссия</span>
+            <span class="route-val"><span class="badge-blue">2,0%</span></span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Курс</span>
+            <span class="route-val">ЦБ РФ + 0,3%</span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Срок зачисления</span>
+            <span class="route-val"><span class="badge-green">2–4 раб. дня</span></span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Валюта</span>
+            <span class="route-val">CNY на счёт</span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Документы</span>
+            <span class="route-val">Контракт + инвойс</span>
+          </div>
+        </div>
+        <div class="route-calc">
+          <div class="route-calc-label">Пример расчёта</div>
+          <div class="route-calc-row">
+            <span class="route-calc-key">Отправляете</span>
+            <span class="route-calc-val">$100 000</span>
+          </div>
+          <div class="route-calc-row">
+            <span class="route-calc-key">Поставщик получит</span>
+            <span class="route-calc-val big">≈ 708 000 ¥</span>
+          </div>
+        </div>
+        <button class="route-cta" onclick="document.getElementById('step-1').scrollIntoView({behavior:'smooth'})">Выбрать этот вариант</button>
+      </div>
+
+      <div class="route-card">
+        <div class="route-label">Вариант C</div>
+        <div class="route-title">Быстрый</div>
+        <div class="route-table">
+          <div class="route-row">
+            <span class="route-key">Комиссия</span>
+            <span class="route-val">3,5%</span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Курс</span>
+            <span class="route-val">ЦБ РФ + 0,8%</span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Срок зачисления</span>
+            <span class="route-val"><span class="badge-green">1–2 раб. дня</span></span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Валюта</span>
+            <span class="route-val">USD на счёт</span>
+          </div>
+          <div class="route-row">
+            <span class="route-key">Документы</span>
+            <span class="route-val">Только инвойс</span>
+          </div>
+        </div>
+        <div class="route-calc">
+          <div class="route-calc-label">Пример расчёта</div>
+          <div class="route-calc-row">
+            <span class="route-calc-key">Отправляете</span>
+            <span class="route-calc-val">$100 000</span>
+          </div>
+          <div class="route-calc-row">
+            <span class="route-calc-key">Поставщик получит</span>
+            <span class="route-calc-val big">≈ $96 500</span>
+          </div>
+        </div>
+        <button class="route-cta" onclick="document.getElementById('step-1').scrollIntoView({behavior:'smooth'})">Выбрать этот вариант</button>
+      </div>
+
+    </div>
+    <p class="routes-note">Расчёты приведены как пример. Реальные условия зависят от суммы, страны, курса и агента — уточняем индивидуально.</p>
+  </div>
+</div>
+
+<!-- How it works -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Как работает</div>
+      <h2>От заявки до платежа — пять шагов</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h4>Описываете задачу</h4>
+        <p>Страна, сумма, валюта, срочность — 4 шага в калькуляторе выше.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <h4>Сравниваем агентов</h4>
+        <p>Проверяем 17 агентов по комиссии, сроку, курсу, документам и надёжности.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h4>Присылаем три варианта</h4>
+        <p>Выгодный, быстрый и рекомендуемый — с реальными цифрами для вашей сделки.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h4>Фиксируем условия</h4>
+        <p>Комиссия, курс, срок и сумма к получению согласуются до отправки денег.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+        <h4>Сопровождаем до зачисления</h4>
+        <p>Контролируем этапы и помогаем пройти сделку до подтверждения платежа.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why us -->
+<section class="section" style="background:#fff; padding-top: 0;">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Почему через нас</div>
+      <h2>Что отличает нас от прямого обращения к агенту</h2>
+      <p>При прямом обращении агент знает вашу срочность и объём — и называет цену выше. Мы это исключаем.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="why-val">17</div>
+        <h3>Прямые контакты с менеджерами</h3>
+        <p>Работаем с менеджерами агентов напрямую, а не через форму на сайте. Знаем реальные условия — не витрину.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="why-val">×1</div>
+        <h3>Ежемесячная проверка каждого агента</h3>
+        <p>СРО-членство, сроки последних выплат, отзывы клиентов. Агенты с проблемами немедленно убираются из базы.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="why-val">500+</div>
+        <h3>Рычаг переговоров на вашей стороне</h3>
+        <p>Агент не знает ни срочность, ни объём вашей сделки. За счёт совокупного объёма клиентов добиваемся условий ниже рыночных.</p>
+      </div>
+    </div>
+
+    <div class="trust-bar">
+      <div class="trust-bar-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <p>Мы не рекомендуем агента, пока не убедимся: <span>СРО активно, последние платежи прошли вовремя, маршрут работает по вашему направлению прямо сейчас.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Вопросы</div>
+      <h2>Частые вопросы</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Что я получу после заявки?</summary>
+        <div class="faq-body">Три варианта с реальными цифрами под вашу сделку: выгодный, быстрый и рекомендуемый. По каждому — комиссия, курс, срок зачисления, необходимые документы и сумма, которую получит поставщик. Всё фиксируется до отправки денег.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Сколько стоит подбор?</summary>
+        <div class="faq-body">Подбор и расчёт условий для вас бесплатны. Мы получаем вознаграждение от агента по факту успешно проведённой сделки. Это не добавляет наценку к стоимости для вас — такова стандартная рыночная практика.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Вы сами проводите платёж?</summary>
+        <div class="faq-body">Нет. Мы — независимый сервис подбора агентов. Сравниваем условия 17 проверенных агентов, подбираем подходящий вариант и сопровождаем сделку. Платёж проводит агент по согласованным условиям.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Можно ли оценить условия без обязательства платить?</summary>
+        <div class="faq-body">Да. Заявка нужна, чтобы понять параметры и подобрать варианты. Вы получаете расчёты, изучаете условия и только после этого принимаете решение. Никаких обязательств до момента, когда вы сами даёте добро на запуск платежа.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Как вы проверяете агентов?</summary>
+        <div class="faq-body">Ежемесячно: проверяем членство в СРО, актуальность лицензий, сроки последних выплат клиентам, отзывы и работоспособность конкретных маршрутов. Если что-то вызывает вопросы — агент убирается из базы до прояснения ситуации.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Что если у меня уже есть агент?</summary>
+        <div class="faq-body">Оставьте заявку — сравним условия вашего текущего агента с базой из 17. Если ваш вариант оптимален, так и скажем. Если найдём лучше по стоимости, срокам или надёжности — покажем альтернативу.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2>Получите три варианта для вашего платежа</h2>
+    <p>Одна заявка — выгодный, быстрый и рекомендуемый вариант с реальными цифрами. Условия фиксируются до отправки денег.</p>
+    <a href="#" class="cta-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+      Подобрать агента
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+    <p class="cta-note">Бесплатно · без обязательств · ответ в течение часа</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="ftr">
+  <div class="ftr-inner">
+    <span class="ftr-copy">© 2026 Дом ВЭД — независимый сервис подбора агентов ВЭД</span>
+    <div class="ftr-links">
+      <a href="/index.html">Все агенты</a>
+      <a href="/index.html#faq">FAQ</a>
+      <a href="tel:+74951205050">+7 (495) 120-50-50</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+var selectedCountry = null;
+
+function selectCountry(btn) {
+  document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedCountry = btn.dataset.value;
+  document.getElementById('btn-next-1').disabled = false;
+}
+
+function goStep(n) {
+  // Validate step 2
+  if (n === 3) {
+    var amount = document.getElementById('f-amount').value.trim();
+    var currency = document.getElementById('f-currency').value;
+    var amountField = document.getElementById('f-amount').closest('.field');
+    var currencyField = document.getElementById('f-currency').closest('.field');
+    var ok = true;
+    if (!amount) { amountField.classList.add('invalid'); ok = false; } else { amountField.classList.remove('invalid'); }
+    if (!currency) { currencyField.classList.add('invalid'); ok = false; } else { currencyField.classList.remove('invalid'); }
+    if (!ok) return;
+  }
+
+  // Hide all steps
+  document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+
+  // Update progress
+  for (var i = 1; i <= 4; i++) {
+    var p = document.getElementById('prog-' + i);
+    p.classList.remove('done', 'active');
+    if (i < n) p.classList.add('done');
+    else if (i === n) p.classList.add('active');
+  }
+}
+
+function submitForm() {
+  var contact = document.getElementById('f-contact').value.trim();
+  var fieldEl = document.getElementById('field-contact');
+  if (!contact) { fieldEl.classList.add('invalid'); return; }
+  fieldEl.classList.remove('invalid');
+
+  // Hide wizard steps, show progress as full done
+  document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+  for (var i = 1; i <= 4; i++) {
+    var p = document.getElementById('prog-' + i);
+    p.classList.remove('active');
+    p.classList.add('done');
+  }
+  document.getElementById('wizard-success').classList.add('show');
+}
+</script>
+</body>
+</html>
